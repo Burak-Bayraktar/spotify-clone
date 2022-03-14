@@ -1,0 +1,17 @@
+.header-logo {
+    @apply w-1/2;
+}
+
+.header-logo span {
+    @apply w-[8.75rem] block;
+}
+
+.header-container {
+    @apply max-w-[46.875rem] bg-red-800 flex justify-around m-auto;
+    @apply lg:max-w-[60.625rem] lg:h-20; 
+    @apply 2xl:max-w-[73.125rem];
+}
+
+.header-menu ul {
+    @apply flex flex-row;
+}
