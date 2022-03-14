@@ -1,7 +1,11 @@
+import MainPage from "./views/MainPage";
+
 function App() {
 
   return (
-    <div></div>
+    <div className="app-container">
+      <MainPage />
+    </div>
   );
 }
 
