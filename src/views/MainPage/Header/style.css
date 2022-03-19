@@ -1,6 +1,6 @@
 .header-logo {
     @apply w-1/2;
-    @apply lg:mt-5;
+    @apply lg:mt-0;
 }
 
 .logo {
