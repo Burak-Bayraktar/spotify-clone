@@ -4,6 +4,10 @@
 
 @layer base {
     body {
-        @apply bg-black text-white;
+        @apply bg-black text-white font-montserrat;
+    }
+
+    .logo {
+        @apply fill-white block w-[8.75rem] h-[2.813rem];
     }
 }

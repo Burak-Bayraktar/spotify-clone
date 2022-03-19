@@ -2,9 +2,14 @@ import MenuList from './components/MenuList'
 
 const Menu = () => {
   return (
-    <div className="header-menu">
-        <MenuList />
-    </div>
+    <nav className='header-menu-container'>
+      <div className="header-menu">
+          <MenuList />
+      </div>
+      <div className="header-mobile-menu">
+        MOBILE
+      </div>
+    </nav>
   )
 }
 

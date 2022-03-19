@@ -1,17 +1,39 @@
 .header-logo {
     @apply w-1/2;
+    @apply lg:mt-5;
 }
 
-.header-logo span {
-    @apply w-[8.75rem] block;
+.logo {
+    @apply h-[1.688rem] w-[5.563rem];
+    @apply lg:h-[2.813rem] lg:w-[8.75rem];
 }
 
 .header-container {
-    @apply max-w-[46.875rem] bg-red-800 flex justify-around m-auto;
-    @apply lg:max-w-[60.625rem] lg:h-20; 
+    @apply flex py-0 px-4 items-center justify-start max-w-[46.875rem] min-h-[3.375rem] m-auto;
+    @apply lg:justify-around lg:max-w-[60.625rem] lg:h-20; 
     @apply 2xl:max-w-[73.125rem];
+}
+
+.header-menu-container {
+    @apply ml-auto;
+    @apply lg:ml-0;
+}
+
+.header-menu {
+    @apply hidden;
+    @apply lg:block;
 }
 
 .header-menu ul {
     @apply flex flex-row;
+}
+
+.header-menu ul li {
+    @apply px-[1.063rem] py-[1.75rem];
+    @apply hover:text-green-100 cursor-pointer;
+}
+
+.header-mobile-menu {
+    @apply block py-0;
+    @apply lg:hidden lg:py-[1.75rem];;
 }

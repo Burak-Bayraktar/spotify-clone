@@ -1,0 +1,23 @@
+.content-container {
+    @apply w-full bg-main-page-mobile bg-blue-100 bg-no-repeat bg-[length:215%] bg-mobile-page-position min-h-[52.875rem] flex flex-col justify-center items-center;
+    @apply md:bg-main-page-tablet md:bg-[length:153%] md:bg-tablet-page-position;
+    @apply 2xl:bg-main-page-desktop 2xl:bg-[length:175%] 2xl:bg-desktop-page-position;
+}
+
+.content-container-body {
+    @apply flex flex-col items-center text-center text-green-100; 
+}
+
+.content-container-body span.title {
+    @apply text-5xl leading-[3.5rem] pb-4 w-[16.25rem];
+    @apply md:w-[26.563rem] md:text-[6.5rem] md:leading-[6.5rem] md:pb-[6.5rem];
+    @apply 2xl:text-[9.75rem] 2xl:leading-[10.375rem] tracking-tighter 2xl:w-[45.625rem] font-black pb-10;
+}
+
+.content-container-body span.content {
+    @apply text-lg font-normal pb-10;
+}
+
+.content-container-footer a {
+    @apply py-4 px-8 bg-green-100 text-[#2941ab] font-bold leading-5 rounded-[31.25rem];
+}
