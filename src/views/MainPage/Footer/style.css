@@ -3,23 +3,28 @@
 }
 
 .footer-container nav {
-  @apply flex flex-col pt-20 pb-[3.125rem] m-auto w-[73.125rem];
+  @apply flex flex-col pt-[50px] pb-[3.125rem] m-auto w-[73.125rem];
+  @apply md:pt-20;
 }
 
 .footer-container nav .top {
-  @apply flex;
+  @apply flex flex-col px-4 py-0;
+  @apply md:flex-row md:p-0;
 }
 
 .footer-container nav .top .logo-container {
-  @apply w-1/6 min-h-[21.625rem];
+  @apply w-1/6 min-h-max;
+  @apply md:min-h-[21.625rem];
 }
 
 .footer-container nav .top .footer-menu {
-  @apply grid grid-cols-3 mt-5 w-1/2;
+  @apply grid w-full;
+  @apply md:grid-cols-3 md:mt-5 md:w-1/2;
 }
 
 .menu-row-content {
-  @apply flex flex-col h-full;
+  @apply flex flex-col;
+  @apply md:h-full;
 }
 
 .menu-row-content .title {
@@ -27,22 +32,66 @@
 }
 
 .menu-row-title {
-  @apply text-[#919496] text-xs font-black leading-6 tracking-[.08em] uppercase;
+  @apply block mt-[50px] mb-[22px] text-[#919496] text-xs font-black leading-6 tracking-[.08em] uppercase;
+  @apply md:my-0;
 }
 
 .menu-row-content {
   @apply mt-5;
 }
 
+.menu-column {
+  @apply h-max;
+}
+
 .footer-social {
-  @apply grid grid-cols-3 gap-4 ml-auto;
+  @apply grid grid-cols-3 gap-4 mr-auto mt-[7.5rem];
+  @apply md:ml-auto md:mr-0 md:mt-0;
 }
 
 .footer-social .icon {
-  @apply bg-[#222326] rounded-full w-14 h-14 cursor-pointer flex justify-center items-center;
+  @apply bg-[#222326] rounded-full w-[44px] h-[44px] cursor-pointer flex justify-center items-center;
   @apply hover:text-green-100;
+  @apply md:w-14 md:h-14;
+}
+
+.social-icon {
+  @apply w-6 h-6;
+  @apply md:h-6 md:w-6;
 }
 
 .footer-container nav .bottom {
   @apply mt-auto pt-4;
+}
+
+.footer-container nav .bottom .country {
+  @apply flex w-max ml-auto;
+}
+
+.footer-container nav .bottom .bottom-section {
+  @apply w-full flex justify-between pl-[15px];
+}
+
+.bottom-section > * {
+  @apply w-1/2;
+}
+
+.footer-container nav .bottom .bottom-item {
+  @apply text-[10px] py-[1em] px-0 mr-6;
+}
+
+.copyright-icon {
+  @apply block w-max ml-auto mr-[15px];
+}
+
+.footer-container nav .bottom .country svg {
+  @apply mr-2;
+}
+
+.footer-container nav .bottom .country .country-name {
+  @apply text-[10px];
+}
+
+.copyright span {
+  @apply text-[10px] ml-auto block w-max pl-[1em] py-0;
 }
