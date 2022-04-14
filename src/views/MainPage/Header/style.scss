@@ -1,0 +1,76 @@
+.header {
+    &-logo {
+        @apply w-1/2;
+        @apply lg:mt-0;
+    }
+
+    &-container {
+        @apply flex py-0 px-4 items-center justify-start max-w-[46.875rem] min-h-[3.375rem] m-auto;
+        @apply lg:justify-around lg:max-w-[60.625rem] lg:h-20; 
+        @apply 2xl:max-w-[73.125rem];
+    }
+
+    &-menu {
+        @apply hidden;
+        @apply lg:block;
+
+        & ul {
+            @apply flex flex-row;
+
+            & li {
+                @apply px-[1.063rem] py-[1.75rem];
+                @apply hover:text-green-100 cursor-pointer;
+            }
+        }
+
+        &-container {
+            @apply ml-auto;
+            @apply lg:ml-0;
+        }
+    }
+
+    &-mobile-menu {
+        @apply w-[447px] max-w-full bg-black h-screen transition-all ease-linear fixed translate-x-full top-0 right-0;    
+        
+        &.menu-active {
+            @apply duration-500 translate-x-0 transition-all ease-linear;
+            @apply lg:hidden;
+        }
+
+        &-container {
+            @apply h-6 flex items-center;
+            @apply md:hidden;
+        }
+
+        &-trigger {
+            @apply relative h-full w-full z-10 cursor-pointer;
+
+            & .-line {
+                @apply block w-[22px] h-[3px] bg-white mb-[.375rem];
+            }
+
+            &.trigger-active {
+                @apply z-10;
+            }
+        }
+
+        ul {
+            @apply p-[38px];
+
+            & li {
+                @apply text-4xl mb-6 font-bold;
+                @apply hover:text-green-100;
+            }
+
+            & .-divider {
+                @apply block h-[2px] w-5 bg-white my-10 mx-0;
+            }
+        }
+
+    }
+}
+
+.logo {
+    @apply h-[1.688rem] w-[5.563rem];
+    @apply lg:h-[2.813rem] lg:w-[8.75rem];
+}

@@ -2,7 +2,7 @@ import LogoImg from "../../../assets/svg/LogoImg";
 import { SubwayWorld } from "../../../assets/svg/World";
 import FooterMenu from "../../../components/Footer/FooterMenu";
 import SocialMediaSection from "../../../components/Footer/SocialMediaSection";
-import "./style.css";
+import "./style.scss";
 
 interface MenuItem {
   title: string;

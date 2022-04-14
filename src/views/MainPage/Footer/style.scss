@@ -1,0 +1,97 @@
+.footer {
+  &-container {
+    @apply flex w-full m-auto;
+
+    nav {
+      @apply flex flex-col pt-[50px] pb-[3.125rem] m-auto w-[73.125rem];
+      @apply md:pt-20;
+
+      .top {
+        @apply flex flex-col px-4 py-0;
+        @apply md:flex-row md:p-0;
+
+        & .logo-container {
+          @apply w-1/6 min-h-max;
+          @apply md:min-h-[21.625rem];
+        }
+
+        & .footer-menu {
+          @apply grid w-full;
+          @apply md:grid-cols-3 md:mt-5 md:w-1/2;
+        }
+      }
+
+      .bottom {
+        @apply mt-auto pt-4;
+
+        &-section {
+          @apply w-full flex justify-between pl-[15px];
+
+          & > * {
+            @apply w-1/2;
+          }
+
+          .copyright {
+            @apply block w-max ml-auto mr-[15px];
+
+            span {
+              @apply text-[10px] ml-auto block w-max pl-[1em] py-0;
+            }
+          }
+        }
+
+        &-item {
+          @apply text-[10px] py-[1em] px-0 mr-6;
+        }
+
+        .country {
+          @apply flex w-max ml-auto;
+          @apply mr-[15px];
+
+          svg {
+            @apply mr-2;
+          }
+
+          &-name {
+            @apply text-[10px];
+          }
+        }
+      }
+    }
+  }
+
+  &-menu {
+    .menu {
+      &-column {
+        @apply h-max;
+      }
+
+      &-row {
+        &-title {
+          @apply block mt-[50px] mb-[22px] text-[#919496] text-xs font-black leading-6 tracking-[.08em] uppercase;
+          @apply md:my-0;
+        }
+
+        &-content {
+          @apply mt-5 flex flex-col;
+          @apply md:h-full;
+
+          .title {
+            @apply block mb-4;
+          }
+        }
+      }
+    }
+  }
+
+  &-social {
+    @apply grid grid-cols-3 gap-4 mr-auto mt-[7.5rem];
+    @apply md:ml-auto md:mr-0 md:mt-0;
+
+    .icon {
+      @apply bg-[#222326] rounded-full w-[44px] h-[44px] cursor-pointer flex justify-center items-center;
+      @apply hover:text-green-100;
+      @apply md:w-14 md:h-14;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Logo from '../../../components/Header/Logo'
 import Menu from "../../../components/Header/Menu";
-import './style.css'
+import './style.scss'
 
 const Header : FC = () => {
     return (
