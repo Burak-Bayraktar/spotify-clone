@@ -1,29 +1,17 @@
-import LogoImg from "../../../../assets/svg/LogoImg";
 import { SubwayWorld } from "../../../../assets/svg/World";
 import FooterMenu from "../../../../components/Footer/FooterMenu";
 import SocialMediaSection from "../../../../components/Footer/SocialMediaSection";
+import Logo from "../../../../components/Header/Logo";
+import { footerMenuItems } from "../../../../constants/MenuItems";
 import "./style.scss";
 
-interface MenuItem {
-  title: string;
-  href: string;
-}
-
 const Footer = () => {
-  const menuItems: MenuItem[] = [
-    { title: "Yasal", href: "#" },
-    { title: "Gizlilik Merkezi", href: '#'},
-    { title: "Gizlilik Politikası", href: '#'},
-    { title: "Tanımlama Bilgileri", href: '#'},
-    { title: "Reklamlar Hakkında", href: '#'},
-  ];
-
   return (
     <div className="footer-container">
       <nav>
         <div className="top">
           <div className="logo-container">
-            <LogoImg />
+            <Logo />
           </div>
           <FooterMenu />
           <SocialMediaSection />
@@ -32,7 +20,7 @@ const Footer = () => {
           <div className="country"><SubwayWorld /> <span className="country-name">Türkiye</span></div>
           <div className="bottom-section">
             <div className="bottom-items">
-            {menuItems.map((menuItem) => {
+            {footerMenuItems.map((menuItem) => {
               return <a className="bottom-item" href={menuItem.href}>{menuItem.title}</a>;
             })}
             </div>

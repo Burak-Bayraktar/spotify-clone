@@ -1,40 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { footerMegaMenuItems } from "../../constants/MenuItems";
 
-type Props = {};
-
-export default function FooterMenu(props: Props) {
-  const menuItems: object[] = [
-    {
-      Şirket: ["Hakkında", "Kariyer", "For the Record"],
-    },
-    {
-      Topluluklar: [
-        "Sanatçılar İçin",
-        "Geliştiriciler",
-        "Reklam",
-        "Yatırımcılar",
-        "Satıcılar",
-      ],
-    },
-    {
-      "Yararlı Bağlantılar": ["Destek", "Web Çalar", "Ücretsiz Mobil Uygulama"],
-    },
-  ];
-
+export default function FooterMenu() {
   return (
     <div className="footer-menu">
-      {menuItems.map((item, index) => {
-        const key: string = Object.keys(item)[0];
-        const values: string[] = Object.values(item)[0];
-
+      {footerMegaMenuItems.map((item, index) => {
         return (
           <div className="menu-column" key={index}>
-            <span className="menu-row-title">{key}</span>
+            <span className="menu-row-title">{item.title}</span>
             <div className="menu-row-content">
-              {values.map((i, index) => (
-                <a href="#" className="title" key={index}>
-                  {i}
-                </a>
+              {item.subItems.map((i, index) => (
+                <Link to={i.href} className="title" key={index}>
+                  {i.title}
+                </Link>
               ))}
             </div>
           </div>

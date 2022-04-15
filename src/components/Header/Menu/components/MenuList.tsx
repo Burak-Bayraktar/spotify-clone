@@ -1,26 +1,27 @@
+import { MenuItemProps } from "../../../../interfaces/MenuProps";
 import MenuItem from "../components/MenuItem";
 
 export interface Props {
-  menuItems: string[];
+  menuItems: MenuItemProps[];
   dividerLine: number;
 }
 
 const MenuList = ({ menuItems, dividerLine }: Props) => {
   return (
     <ul>
-      {menuItems.map((itemTitle: string, index) => {
+      {menuItems.map((item: MenuItemProps, index) => {
         if (index === dividerLine) {
           return (
             <>
             <li>
               <span className="-divider"></span>
             </li>
-            <MenuItem key={index} content={itemTitle} />
+            <MenuItem content={item} />
             </>
           );
         }
 
-        return <MenuItem key={index} content={itemTitle} />;
+        return <MenuItem content={item} />;
       })}
     </ul>
   );
