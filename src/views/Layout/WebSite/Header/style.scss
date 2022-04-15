@@ -6,7 +6,7 @@
 
   &-container {
     @apply max-w-[46.875rem] min-h-[3.375rem] flex py-0 px-4 items-center justify-between m-auto;
-    @apply lg:max-w-[60.625rem] lg:justify-around lg:h-20;
+    @apply lg:max-w-[60.625rem] lg:justify-between lg:h-20 lg:pr-0;
     @apply 2xl:max-w-[73.125rem];
   }
 
@@ -40,7 +40,7 @@
   }
 
   &-mobile-menu {
-    @apply flex flex-col justify-around w-[27.938rem] max-w-full h-screen bg-black transition-all ease-linear fixed translate-x-full top-0 right-0;
+    @apply flex flex-col justify-between w-[27.938rem] max-w-full h-screen bg-black transition-all ease-linear fixed translate-x-full top-0 right-0;
 
     &.menu-active {
       @apply translate-x-0 transition-all ease-linear opacity-0;

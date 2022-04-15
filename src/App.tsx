@@ -1,10 +1,9 @@
-import MainPage from "./views/MainPage";
+import HomePage from "./views/Content/HomePage";
 
 function App() {
-
   return (
     <div className="app-container">
-      <MainPage />
+        <HomePage />
     </div>
   );
 }
