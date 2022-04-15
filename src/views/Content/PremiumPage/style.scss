@@ -1,0 +1,4 @@
+.premium-page {
+  @apply flex flex-col text-sm items-center font-bold p-20 w-full h-[70%] bg-white text-black;
+  @apply md:text-base;
+}
