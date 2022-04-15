@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import LogoImg from "../../../assets/svg/LogoImg";
 import MenuList from "./components/MenuList";
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const menuItemsTitle:string[] = ["Premium", "Destek", "İndir", "Kaydol", "Oturum Aç"];
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  return (
-    <nav className="header-menu-container">
+  useEffect(() => {
+    setTimeout(() => {
+      setIsMenuVisible(true)
+    }, 100)
+  }, [])
+
+  return (<>
+    <nav className={`header-menu-container ${isMenuVisible ? '-visible' : '-invisible'}`}>
       <div className="header-menu">
-        <MenuList />
+        <MenuList dividerLine={3} menuItems={menuItemsTitle} />
       </div>
-      <div className="header-mobile-menu-container">
+    </nav>
+    <nav className="header-mobile-menu-container">
         <div>
           <div
             className={`header-mobile-menu-trigger ${
@@ -18,34 +28,15 @@ const Menu = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <span className="-line"></span>
-            <span className="-line"></span>
-            <span className="-line"></span>
           </div>
           <div
             className={`header-mobile-menu ${isMenuOpen ? "menu-active" : ""}`}
           >
-            <ul>
-              <li>
-                <a href="#">Premium</a>
-              </li>
-              <li>
-                <a href="#">Destek</a>
-              </li>
-              <li>
-                <a href="#">İndir</a>
-              </li>
-              <span className="-divider"></span>
-              <li>
-                <a href="#">Kaydol</a>
-              </li>
-              <li>
-                <a href="#">Oturum Aç</a>
-              </li>
-            </ul>
+            <MenuList menuItems={menuItemsTitle} dividerLine={3} />
+            <LogoImg />
           </div>
         </div>
-      </div>
-    </nav>
+    </nav></>
   );
 };
 

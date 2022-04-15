@@ -3,7 +3,7 @@
     @apply flex w-full m-auto;
 
     nav {
-      @apply flex flex-col pt-[50px] pb-[3.125rem] m-auto w-[73.125rem];
+      @apply pt-[3.125rem] pb-[3.125rem] w-[73.125rem] flex flex-col m-auto;
       @apply md:pt-20;
 
       .top {
@@ -25,35 +25,35 @@
         @apply mt-auto pt-4;
 
         &-section {
-          @apply w-full flex justify-between pl-[15px];
+          @apply pl-4 w-full flex justify-between;
 
           & > * {
             @apply w-1/2;
           }
 
           .copyright {
-            @apply block w-max ml-auto mr-[15px];
+            @apply mr-4 block w-max ml-auto;
 
             span {
-              @apply text-[10px] ml-auto block w-max pl-[1em] py-0;
+              @apply text-[.625rem] pl-[1em] ml-auto block w-max py-0;
             }
           }
         }
 
         &-item {
-          @apply text-[10px] py-[1em] px-0 mr-6;
+          @apply text-[.625rem] py-[1em] px-0 mr-6;
         }
 
         .country {
           @apply flex w-max ml-auto;
-          @apply mr-[15px];
+          @apply mr-4;
 
           svg {
             @apply mr-2;
           }
 
           &-name {
-            @apply text-[10px];
+            @apply text-[.625rem];
           }
         }
       }
@@ -68,7 +68,7 @@
 
       &-row {
         &-title {
-          @apply block mt-[50px] mb-[22px] text-[#919496] text-xs font-black leading-6 tracking-[.08em] uppercase;
+          @apply block mt-[3.125rem] mb-[1.375rem] tracking-[.08em] text-[#919496] text-xs font-black leading-6 uppercase;
           @apply md:my-0;
         }
 
@@ -85,11 +85,11 @@
   }
 
   &-social {
-    @apply grid grid-cols-3 gap-4 mr-auto mt-[7.5rem];
+    @apply mt-[7.5rem] grid grid-cols-3 gap-4 mr-auto;
     @apply md:ml-auto md:mr-0 md:mt-0;
 
     .icon {
-      @apply bg-[#222326] rounded-full w-[44px] h-[44px] cursor-pointer flex justify-center items-center;
+      @apply w-[2.75rem] h-[2.75rem] bg-[#222326] rounded-full cursor-pointer flex justify-center items-center;
       @apply hover:text-green-100;
       @apply md:w-14 md:h-14;
     }

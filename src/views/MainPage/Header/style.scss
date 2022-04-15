@@ -1,76 +1,139 @@
 .header {
-    &-logo {
-        @apply w-1/2;
-        @apply lg:mt-0;
+  &-logo {
+    @apply w-1/2;
+    @apply lg:mt-0;
+  }
+
+  &-container {
+    @apply max-w-[46.875rem] min-h-[3.375rem] flex py-0 px-4 items-center justify-between m-auto;
+    @apply lg:max-w-[60.625rem] lg:justify-around lg:h-20;
+    @apply 2xl:max-w-[73.125rem];
+  }
+
+  &-menu {
+    & ul {
+      @apply flex flex-row;
+
+      li {
+        @apply px-[1.063rem] py-[1.75rem];
+        @apply hover:text-green-100 cursor-pointer;
+
+        .-divider {
+          @apply block w-[1px] h-5 bg-white;
+        }
+      }
     }
 
     &-container {
-        @apply flex py-0 px-4 items-center justify-start max-w-[46.875rem] min-h-[3.375rem] m-auto;
-        @apply lg:justify-around lg:max-w-[60.625rem] lg:h-20; 
-        @apply 2xl:max-w-[73.125rem];
+      @apply hidden ml-auto;
+      @apply md:block;
+      @apply lg:ml-0;
+
+      &.-invisible {
+        @apply translate-x-[200%] transition-transform duration-500;
+      }
+
+      &.-visible {
+        @apply translate-x-0 transition-transform duration-500;
+      }
+    }
+  }
+
+  &-mobile-menu {
+    @apply flex flex-col justify-around w-[27.938rem] max-w-full h-screen bg-black transition-all ease-linear fixed translate-x-full top-0 right-0;
+
+    &.menu-active {
+      @apply translate-x-0 transition-all ease-linear opacity-0;
+      @apply lg:hidden;
+
+      --li-animation-1: 100ms;
+      --li-animation-2: 150ms;
+      --li-animation-3: 200ms;
+      --li-animation-4: 250ms;
+      --li-animation-5: 300ms;
+      --li-animation-6: 350ms;
+      animation: menu-open ease-in 350ms forwards;
+
+      li {
+        @apply translate-x-full;
+
+        @for $i from 1 to 7 {
+          &:nth-child(#{$i}) {
+            animation: right-to-left linear var(--li-animation-#{$i}) forwards;
+          }
+        }
+      }
     }
 
-    &-menu {
-        @apply hidden;
-        @apply lg:block;
-
-        & ul {
-            @apply flex flex-row;
-
-            & li {
-                @apply px-[1.063rem] py-[1.75rem];
-                @apply hover:text-green-100 cursor-pointer;
-            }
-        }
-
-        &-container {
-            @apply ml-auto;
-            @apply lg:ml-0;
-        }
+    &.menu-passive {
+      animation: menu-close 1s ease-in 1s alternate forwards;
     }
 
-    &-mobile-menu {
-        @apply w-[447px] max-w-full bg-black h-screen transition-all ease-linear fixed translate-x-full top-0 right-0;    
-        
-        &.menu-active {
-            @apply duration-500 translate-x-0 transition-all ease-linear;
-            @apply lg:hidden;
-        }
-
-        &-container {
-            @apply h-6 flex items-center;
-            @apply md:hidden;
-        }
-
-        &-trigger {
-            @apply relative h-full w-full z-10 cursor-pointer;
-
-            & .-line {
-                @apply block w-[22px] h-[3px] bg-white mb-[.375rem];
-            }
-
-            &.trigger-active {
-                @apply z-10;
-            }
-        }
-
-        ul {
-            @apply p-[38px];
-
-            & li {
-                @apply text-4xl mb-6 font-bold;
-                @apply hover:text-green-100;
-            }
-
-            & .-divider {
-                @apply block h-[2px] w-5 bg-white my-10 mx-0;
-            }
-        }
-
+    &-container {
+      @apply h-6 flex items-center mt-2;
+      @apply md:hidden;
     }
+
+    &-trigger {
+      @apply relative h-full w-full z-10 cursor-pointer;
+
+      & .-line {
+        @apply w-[1.375rem] h-[.188rem] mb-[.375rem] block bg-white;
+        @apply before:content-[''] before:absolute before:-top-[.375rem] before:w-[1.375rem] before:h-[.188rem] before:mb-[.375rem] before:block before:bg-white before:transition-all;
+        @apply after:content-[''] after:absolute after:top-[.375rem] after:w-[1.375rem] after:h-[.188rem] after:mb-[.375rem] after:block after:bg-white before:transition-all;
+      }
+
+      &.trigger-active {
+        @apply z-10;
+
+        .-line {
+          @apply bg-transparent transition-transform;
+          @apply before:-rotate-45 before:top-0 before:transition-all;
+          @apply after:rotate-45 after:top-0 after:transition-all;
+        }
+      }
+    }
+
+    ul {
+      @apply p-[2.375rem];
+
+      li {
+        @apply text-[1.875rem] mb-5 font-bold w-max;
+        @apply hover:text-green-100;
+      }
+
+     .-divider {
+        @apply h-[.125rem] block w-5 bg-white my-10 mx-0;
+      }
+    }
+
+    .logo {
+        @apply m-[2.375rem];
+    }
+  }
 }
 
 .logo {
-    @apply h-[1.688rem] w-[5.563rem];
-    @apply lg:h-[2.813rem] lg:w-[8.75rem];
+  @apply h-[1.688rem] w-[5.563rem];
+  @apply lg:h-[2.813rem] lg:w-[8.75rem];
+}
+
+@keyframes menu-open {
+  0% {
+    @apply opacity-0;
+  }
+
+  100% {
+    @apply opacity-100;
+  }
+}
+
+@keyframes right-to-left {
+  0% {
+    @apply translate-x-full;
+  }
+
+  100% {
+    @apply translate-x-0;
+  }
 }

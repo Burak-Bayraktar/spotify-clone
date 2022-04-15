@@ -1,10 +1,25 @@
 import MenuItem from "../components/MenuItem";
 
-const MenuList = () => {
-  const menuItemsTitle:string[] = ["Premium", "Destek", "İndir", "Kaydol", "Oturum Aç"];
+export interface Props {
+  menuItems: string[];
+  dividerLine: number;
+}
+
+const MenuList = ({ menuItems, dividerLine }: Props) => {
   return (
     <ul>
-      {menuItemsTitle.map((itemTitle:string, index) => {
+      {menuItems.map((itemTitle: string, index) => {
+        if (index === dividerLine) {
+          return (
+            <>
+            <li>
+              <span className="-divider"></span>
+            </li>
+            <MenuItem key={index} content={itemTitle} />
+            </>
+          );
+        }
+
         return <MenuItem key={index} content={itemTitle} />;
       })}
     </ul>
