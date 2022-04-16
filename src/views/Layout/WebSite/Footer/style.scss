@@ -68,7 +68,7 @@
 
       &-row {
         &-title {
-          @apply block mt-[3.125rem] mb-[1.375rem] tracking-[.08em] text-[#919496] text-xs font-black leading-6 uppercase;
+          @apply block mt-[3.125rem] mb-[1.375rem] tracking-[.08em] text-gray-100 text-xs font-black leading-6 uppercase;
           @apply md:my-0;
         }
 
@@ -89,7 +89,7 @@
     @apply md:ml-auto md:mr-0 md:mt-0;
 
     .icon {
-      @apply w-[2.75rem] h-[2.75rem] bg-[#222326] rounded-full cursor-pointer flex justify-center items-center;
+      @apply w-[2.75rem] h-[2.75rem] bg-gray-300 rounded-full cursor-pointer flex justify-center items-center;
       @apply hover:text-green-100;
       @apply md:w-14 md:h-14;
     }

@@ -1,0 +1,56 @@
+.premium-header {
+    @apply max-w-full flex flex-col items-center w-full mb-[1.875rem] mx-auto;
+    @apply md:w-[46.875rem] md:mb-[4.5rem];
+    @apply lg:w-[60.625rem];
+    @apply 2xl:w-[73.125rem];
+
+    .title {
+        @apply text-[1.75rem] tracking-[-0.015em] leading-[2.875rem] text-center;
+        @apply md:text-[2.2rem];
+    }
+
+    .subtitle {
+        @apply font-normal text-sm leading-5 text-center;
+    }
+}
+
+.premium-content {
+    @apply max-w-full m-auto grid grid-cols-1;
+    @apply md:w-[46.875rem] md:grid-cols-2 md:grid-rows-2;
+    @apply lg:w-[60.625rem] lg:grid-cols-4 lg:grid-rows-none;
+    @apply 2xl:w-[73.125rem];
+
+    .pp-column {
+        @apply mb-5 grid grid-cols-pp-grid-cols gap-5;
+        @apply lg:grid-cols-none lg:grid-rows-pp-grid-rows lg:gap-10 lg:place-items-center;
+
+        --pp-column-img-1: url('../../../../assets/img/premium-p_1.png');
+        --pp-column-img-2: url('../../../../assets/img/premium-p_2.png');
+        --pp-column-img-3: url('../../../../assets/img/premium-p_3.png');
+        --pp-column-img-4: url('../../../../assets/img/premium-p_4.png');
+
+        @for $i from 1 to 5 {
+            &.column-#{$i} {
+                .img {
+                    @apply bg-pp-column-#{$i};
+                    @apply w-[7.125rem] h-[8.875rem] bg-[center_top] bg-contain bg-no-repeat;
+                    @apply lg:w-[8.875rem];
+                }
+            }
+        }
+        
+
+        .inline-column {
+            @apply flex flex-col mt-4;
+            @apply lg:mt-0 lg:items-center;
+
+            span:nth-child(1) {
+                @apply text-[1.313rem] mb-[.625rem] font-bold;
+            }
+
+            span:nth-child(2) {
+                @apply font-normal;
+            }
+        }
+    }
+}
