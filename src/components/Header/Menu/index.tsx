@@ -21,7 +21,7 @@ const Menu = () => {
         }`}
       >
         <div className="header-menu">
-          <MenuList dividerLine={3} menuItems={headerMenuItems} />
+          <MenuList setIsMenuOpen={setIsMenuOpen} dividerLine={3} menuItems={headerMenuItems} />
         </div>
       </nav>
       <nav className="header-mobile-menu-container">
@@ -37,8 +37,8 @@ const Menu = () => {
           <div
             className={`header-mobile-menu ${isMenuOpen ? "menu-active" : ""}`}
           >
-            <MenuList menuItems={headerMenuItems} dividerLine={3} />
-            <Logo />
+            <MenuList setIsMenuOpen={setIsMenuOpen} menuItems={headerMenuItems} dividerLine={3} />
+            <Logo setIsMenuOpen={setIsMenuOpen} />
           </div>
         </div>
       </nav>

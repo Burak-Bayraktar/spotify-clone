@@ -1,12 +1,13 @@
 import { MenuItemProps } from "../../../../interfaces/MenuProps";
 import MenuItem from "../components/MenuItem";
 
-export interface Props {
-  menuItems: MenuItemProps[];
-  dividerLine: number;
+interface Props {
+  menuItems: MenuItemProps[],
+  dividerLine: number,
+  setIsMenuOpen: Function
 }
 
-const MenuList = ({ menuItems, dividerLine }: Props) => {
+const MenuList = ({ menuItems, dividerLine, setIsMenuOpen }: Props) => {
   return (
     <ul>
       {menuItems.map((item: MenuItemProps, index) => {
@@ -16,12 +17,12 @@ const MenuList = ({ menuItems, dividerLine }: Props) => {
             <li>
               <span className="-divider"></span>
             </li>
-            <MenuItem content={item} />
+            <MenuItem setIsMenuOpen={setIsMenuOpen} content={item} />
             </>
           );
         }
 
-        return <MenuItem content={item} />;
+        return <MenuItem setIsMenuOpen={setIsMenuOpen} content={item} />;
       })}
     </ul>
   );

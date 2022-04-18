@@ -5,6 +5,7 @@ export interface MenuItemProps {
 
 export interface MenuProps {
     content: MenuItemProps,
+    setIsMenuOpen: Function
   }
 
 export interface FooterMegaMenuProps {
