@@ -5,7 +5,12 @@ import { MenuProps } from "../../../../interfaces/MenuProps";
 const MenuItem: FC<MenuProps> = ({ content, setIsMenuOpen }) => {
   return (
     <li>
-      <Link onClick={() => setIsMenuOpen(false)} to={content.href}>{content.title}</Link>
+      {
+        content.internalNavigate
+        ? <Link onClick={() => setIsMenuOpen(false)} to={content.href}>{content.title}</Link>
+        : <a href={content.href} target="_blank">{content.title}</a>
+      }
+      
     </li>
   );
 };

@@ -12,16 +12,25 @@ module.exports = {
       },
       extend: {
         colors: {
+          'black': {
+            default: '#000000',
+            100: '#191414',
+          },
           'green': {
             100: '#1ed760',
+            200: '#1fdf64',
+            300: '#14833b',
           },
           'blue': {
             100: '#2941ab',
+            200: '#2e77d0',
           },
           'gray': {
             100: '#919496',
             200: '#efefef',
-            300: '#222326'
+            300: '#222326',
+            400: '#cccccc',
+            500: '#212121',
           },
         },
         backgroundImage: {
@@ -42,10 +51,11 @@ module.exports = {
           'desktop-page-position': '47% 7%',
         },
         gridTemplateColumns: {
-          'pp-grid-cols': '114px auto'
+          'pp-grid-cols': '114px auto',
         },
         gridTemplateRows: {
-          'pp-grid-rows': '142px auto'
+          'pp-grid-rows': '142px auto',
+          '5-auto': 'repeat(4, minmax(0, 1fr))',
         }
       },
     },

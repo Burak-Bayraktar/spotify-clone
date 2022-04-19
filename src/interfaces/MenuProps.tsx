@@ -1,6 +1,7 @@
 export interface MenuItemProps {
     href: string, 
-    title: string
+    title: string,
+    internalNavigate: boolean
 }
 
 export interface MenuProps {

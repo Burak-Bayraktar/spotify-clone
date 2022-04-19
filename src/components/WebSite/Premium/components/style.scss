@@ -1,56 +1,185 @@
-.premium-header {
+.section-top,
+.section-bottom {
+  .premium-header {
     @apply max-w-full flex flex-col items-center w-full mb-[1.875rem] mx-auto;
     @apply md:w-[46.875rem] md:mb-[4.5rem];
     @apply lg:w-[60.625rem];
     @apply 2xl:w-[73.125rem];
 
     .title {
-        @apply text-[1.75rem] tracking-[-0.015em] leading-[2.875rem] text-center;
-        @apply md:text-[2.2rem];
+      @apply text-[1.75rem] tracking-[-0.015em] leading-[2.875rem] text-center;
+      @apply md:text-[2.2rem];
     }
 
     .subtitle {
-        @apply font-normal text-sm leading-5 text-center;
+      @apply font-normal text-sm leading-5 text-center;
     }
+  }
+
+  .premium-content {
+    @apply max-w-full m-auto;
+    @apply md:w-[46.875rem];
+    @apply lg:w-[60.625rem];
+    @apply 2xl:w-[73.125rem];
+  }
 }
 
-.premium-content {
-    @apply max-w-full m-auto grid grid-cols-1;
-    @apply md:w-[46.875rem] md:grid-cols-2 md:grid-rows-2;
-    @apply lg:w-[60.625rem] lg:grid-cols-4 lg:grid-rows-none;
-    @apply 2xl:w-[73.125rem];
+.section-top {
+  .premium-content {
+    @apply grid grid-cols-1;
+    @apply md:grid-cols-2 md:grid-rows-2;
+    @apply lg:grid-cols-4 lg:grid-rows-none;
 
     .pp-column {
-        @apply mb-5 grid grid-cols-pp-grid-cols gap-5;
-        @apply lg:grid-cols-none lg:grid-rows-pp-grid-rows lg:gap-10 lg:place-items-center;
+      @apply mb-5 grid grid-cols-pp-grid-cols gap-5;
+      @apply lg:grid-cols-none lg:grid-rows-pp-grid-rows lg:gap-10 lg:place-items-center;
 
-        --pp-column-img-1: url('../../../../assets/img/premium-p_1.png');
-        --pp-column-img-2: url('../../../../assets/img/premium-p_2.png');
-        --pp-column-img-3: url('../../../../assets/img/premium-p_3.png');
-        --pp-column-img-4: url('../../../../assets/img/premium-p_4.png');
+      --pp-column-img-1: url("../../../../assets/img/premium-p_1.png");
+      --pp-column-img-2: url("../../../../assets/img/premium-p_2.png");
+      --pp-column-img-3: url("../../../../assets/img/premium-p_3.png");
+      --pp-column-img-4: url("../../../../assets/img/premium-p_4.png");
 
-        @for $i from 1 to 5 {
-            &.column-#{$i} {
-                .img {
-                    @apply bg-pp-column-#{$i};
-                    @apply w-[7.125rem] h-[8.875rem] bg-[center_top] bg-contain bg-no-repeat;
-                    @apply lg:w-[8.875rem];
-                }
-            }
+      @for $i from 1 to 5 {
+        &.column-#{$i} {
+          .img {
+            @apply bg-pp-column-#{$i};
+            @apply w-[7.125rem] h-[8.875rem] bg-[center_top] bg-contain bg-no-repeat;
+            @apply lg:w-[8.875rem];
+          }
         }
-        
+      }
 
-        .inline-column {
-            @apply flex flex-col mt-4;
-            @apply lg:mt-0 lg:items-center;
+      .inline-column {
+        @apply flex flex-col mt-4;
+        @apply lg:mt-0 lg:items-center;
 
-            span:nth-child(1) {
-                @apply text-[1.313rem] mb-[.625rem] font-bold;
-            }
-
-            span:nth-child(2) {
-                @apply font-normal;
-            }
+        span:nth-child(1) {
+          @apply text-[1.313rem] mb-[.625rem] font-bold;
         }
+
+        span:nth-child(2) {
+          @apply font-normal;
+        }
+      }
     }
+
+    .pp-offer {
+      @apply grid grid-cols-1 bg-red-300;
+      @apply md:grid-cols-4;
+    }
+  }
+}
+
+.section-bottom {
+  .premium-content {
+    @apply flex flex-col max-w-[27.5rem];
+    @apply 2xl:grid 2xl:grid-cols-4 2xl:px-[23px] 2xl:max-w-max;
+
+    .row-content {
+      @apply bg-white p-4 pb-0;
+      @apply 2xl:mr-4;
+
+      &:not(.container_labels_offer) {
+        box-shadow: white 0px 8px 0px 0px, rgba(0, 0, 0, 0.3) 0px 10px 8px;
+      }
+    }
+
+    .container_labels_offer {
+      @apply relative row-[1];
+      box-shadow: rgb(255, 255, 255) 0px 8px 0px 0px, rgba(0, 0, 0, 0.3) 0px 0px 8px;
+      border-radius: 10px 10px 0px 0px;
+
+      &:not(:first-child) {
+        @apply mt-[1.875rem];
+        @apply 2xl:mt-0;
+      }
+
+      .pp-offer {
+        &__labels {
+          @apply flex flex-col;
+
+          &-title,
+          &-desc {
+            @apply w-max rounded text-xs py-1 px-2 font-black mr-1 mb-[.625rem];
+          }
+
+          &-title {
+            @apply bg-blue-200 text-white;
+          }
+
+          &-desc {
+            @apply bg-white text-blue-200 border border-blue-200 border-solid;
+          }
+        }
+
+        &__offer {
+          @apply relative;
+
+          &.row-content {
+            @apply shadow-none;
+          }
+
+          &-title {
+            @apply text-2xl font-bold;
+          }
+
+          &-desc {
+            @apply font-normal mb-5;
+          }
+        }
+      }
+
+      hr {
+        @apply absolute w-[85%] m-0 mt-auto bottom-0 h-[.125rem] border-gray-400 text-gray-400 bg-gray-400;
+      }
+    }
+
+    .pp-offer {
+      @apply bg-white p-4 pb-0;
+
+      &__content {
+        @apply row-[2];
+
+        ul {
+          @apply pt-5;
+
+          li {
+            @apply flex font-normal leading-6 mb-[.313rem];
+            span {
+              @apply ml-[.625rem];
+            }
+          }
+        }
+      }
+
+      &__buttons {
+        @apply flex flex-col items-center font-bold pt-4 row-[3];
+
+        .time-range,
+        .other-options {
+          @apply relative w-full transition-all duration-500 ease-out cursor-pointer inline-flex justify-center items-center rounded-[31.25rem] uppercase text-sm;
+          @apply hover:scale-105;
+        }
+
+        .time-range {
+          @apply h-12 bg-black-100 text-white;
+        }
+
+        .other-options {
+          @apply h-[4.375rem] mt-[.625rem] text-center bg-white text-black-default pb-[.875rem] px-8;
+          @apply hover:text-green-300;
+        }
+
+        .time-range:active .border-visited,
+        .other-options:active .border-visited {
+          @apply absolute w-full h-[115%] content-[''] bg-transparent border-[3px] border-solid border-black-default rounded-[31.25rem] scale-105;
+        }
+      }
+
+      &__credits {
+        @apply text-gray-500 text-xs font-normal tracking-tight row-[4];
+        border-radius: 0px 0px 10px 10px;
+      }
+    }
+  }
 }

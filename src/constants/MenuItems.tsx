@@ -1,45 +1,47 @@
+import { generateLoginUrl } from "../helpers";
 import { FooterMegaMenuProps, MenuItemProps } from "../interfaces/MenuProps";
 
+const test= encodeURIComponent("http://localhost:3000/callback.html");
 export const headerMenuItems: MenuItemProps[] = [
-  { href: "/premium", title: "Premium" },
-  { href: "/support", title: "Destek" },
-  { href: "/download", title: "İndir" },
-  { href: "/register", title: "Kaydol" },
-  { href: "/login", title: "Oturum Aç" },
+  { href: "/premium", title: "Premium", internalNavigate: true },
+  { href: "/support", title: "Destek", internalNavigate: true },
+  { href: "/download", title: "İndir", internalNavigate: true },
+  { href: "/register", title: "Kaydol", internalNavigate: false },
+  { href: generateLoginUrl(), title: "Oturum Aç", internalNavigate: false },
 ];
 
 export const footerMenuItems: MenuItemProps[] = [
-  { title: "Yasal", href: "#" },
-  { title: "Gizlilik Merkezi", href: "#" },
-  { title: "Gizlilik Politikası", href: "#" },
-  { title: "Tanımlama Bilgileri", href: "#" },
-  { title: "Reklamlar Hakkında", href: "#" },
+  { title: "Yasal", href: "#", internalNavigate: true },
+  { title: "Gizlilik Merkezi", href: "#", internalNavigate: true },
+  { title: "Gizlilik Politikası", href: "#", internalNavigate: true },
+  { title: "Tanımlama Bilgileri", href: "#", internalNavigate: true },
+  { title: "Reklamlar Hakkında", href: "#", internalNavigate: true },
 ];
 
 export const footerMegaMenuItems: FooterMegaMenuProps[] = [
   {
     title: "Şirket",
     subItems: [
-      { title: "Hakkında", href: "#" },
-      { title: "For the Record", href: "#" },
+      { title: "Hakkında", href: "#", internalNavigate: true },
+      { title: "For the Record", href: "#", internalNavigate: true },
     ],
   },
   {
     title: "Topluluklar",
     subItems: [
-      { title: "Sanatçılar İçin", href: "#" },
-      { title: "Geliştiriciler", href: "#" },
-      { title: "Reklam", href: "#" },
-      { title: "Yatırımcılar", href: "#" },
-      { title: "Satıcılar", href: "#" },
+      { title: "Sanatçılar İçin", href: "#", internalNavigate: true },
+      { title: "Geliştiriciler", href: "#", internalNavigate: true },
+      { title: "Reklam", href: "#", internalNavigate: true },
+      { title: "Yatırımcılar", href: "#", internalNavigate: true },
+      { title: "Satıcılar", href: "#", internalNavigate: true },
     ],
   },
   {
     title: "Yararlı Bağlantılar",
     subItems: [
-      { title: "Destek", href: "#" },
-      { title: "Web Çalar", href: "#" },
-      { title: "Ücretsiz Mobil Uygulama", href: "#" },
+      { title: "Destek", href: "#", internalNavigate: true },
+      { title: "Web Çalar", href: "#", internalNavigate: true },
+      { title: "Ücretsiz Mobil Uygulama", href: "#", internalNavigate: true },
     ],
   },
 ];
