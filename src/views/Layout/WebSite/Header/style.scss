@@ -40,7 +40,7 @@
   }
 
   &-mobile-menu {
-    @apply flex flex-col justify-between w-[27.938rem] max-w-full h-screen bg-black transition-all ease-linear fixed translate-x-full top-0 right-0;
+    @apply flex flex-col justify-between w-[27.938rem] max-w-full h-screen bg-black-default transition-all ease-linear fixed translate-x-full top-0 right-0;
 
     &.menu-active {
       @apply translate-x-0 transition-all ease-linear opacity-0;
