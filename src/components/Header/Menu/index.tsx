@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { headerMenuItems } from "../../../constants/MenuItems";
+import { useUser } from "../../../contexts/UserContext";
 import Logo from "../Logo";
 import MenuList from "./components/MenuList";
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const { display_name } = useUser();
 
   useEffect(() => {
     setTimeout(() => {
@@ -13,6 +15,20 @@ const Menu = () => {
     }, 100);
   }, []);
 
+  function setUserLoginMenuItems() {
+    if (display_name) {
+      return (
+        [{ href: '/profile', title: 'Hello byrktrhmx', internalNavigate: true}]
+      )
+    }
+  
+    return (
+      [{ href: "/register", title: "Kaydol", internalNavigate: false },
+      { href: "/login", title: "Oturum Aç", internalNavigate: false }]
+    )
+  }
+
+  const items = [...headerMenuItems, ...setUserLoginMenuItems()]
   return (
     <>
       <nav
@@ -21,7 +37,7 @@ const Menu = () => {
         }`}
       >
         <div className="header-menu">
-          <MenuList setIsMenuOpen={setIsMenuOpen} dividerLine={3} menuItems={headerMenuItems} />
+          <MenuList setIsMenuOpen={setIsMenuOpen} dividerLine={3} menuItems={items} />
         </div>
       </nav>
       <nav className="header-mobile-menu-container">
@@ -37,7 +53,7 @@ const Menu = () => {
           <div
             className={`header-mobile-menu ${isMenuOpen ? "menu-active" : ""}`}
           >
-            <MenuList setIsMenuOpen={setIsMenuOpen} menuItems={headerMenuItems} dividerLine={3} />
+            <MenuList setIsMenuOpen={setIsMenuOpen} menuItems={items} dividerLine={3} />
             <Logo setIsMenuOpen={setIsMenuOpen} />
           </div>
         </div>

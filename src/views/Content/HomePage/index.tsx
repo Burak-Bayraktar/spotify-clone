@@ -1,7 +1,9 @@
 import React from 'react'
+import { useUser } from '../../../contexts/UserContext'
 import './style.scss'
 
 const HomePage = () => {
+  const user = useUser();
   return (
     <div className="home-page-container">
       <div className='home-page-container-body'>
@@ -9,7 +11,9 @@ const HomePage = () => {
         <span className='content'>Milyonlarca şarkı ve podcast. Kredi kartına gerek yok.</span>
       </div>
       <div className='home-page-container-footer'>
-        <a href='#'>Spotify Free'yi Edin</a>
+        {user.display_name 
+        ? <a href='#'>Dinlemeye devam et</a> 
+        : <a href='#'>Spotify Free'yi Edin</a>}
       </div>
     </div>
   )

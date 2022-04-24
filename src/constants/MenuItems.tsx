@@ -1,13 +1,9 @@
-import { generateLoginUrl } from "../helpers";
 import { FooterMegaMenuProps, MenuItemProps } from "../interfaces/MenuProps";
 
-const test= encodeURIComponent("http://localhost:3000/callback.html");
 export const headerMenuItems: MenuItemProps[] = [
   { href: "/premium", title: "Premium", internalNavigate: true },
   { href: "/support", title: "Destek", internalNavigate: true },
   { href: "/download", title: "İndir", internalNavigate: true },
-  { href: "/register", title: "Kaydol", internalNavigate: false },
-  { href: generateLoginUrl(), title: "Oturum Aç", internalNavigate: false },
 ];
 
 export const footerMenuItems: MenuItemProps[] = [
