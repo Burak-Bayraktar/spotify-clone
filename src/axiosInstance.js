@@ -20,7 +20,7 @@ axiosInstance.interceptors.response.use(
                 const refresh_token = localStorage.getItem('refresh-token');
                 axiosInstance.get('/refreshToken', {
                     params: { refresh_token }
-                }).then(async () => {
+                }).then(async (resAT) => {
                     localStorage.setItem('access-token', resAT.data['access-token'])
                 })
             }
