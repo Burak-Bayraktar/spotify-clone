@@ -18,7 +18,7 @@ const Menu = () => {
   function setUserLoginMenuItems() {
     if (display_name) {
       return (
-        [{ href: '/profile', title: 'Hello byrktrhmx', internalNavigate: true}]
+        [{ href: '/profile', title: `Hello ${display_name}`, internalNavigate: true}]
       )
     }
   
