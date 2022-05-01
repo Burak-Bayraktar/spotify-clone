@@ -1,0 +1,7 @@
+.download-page-container {
+    @apply bg-white h-1/2 flex text-center justify-center py-10 text-xl;
+
+    .info-message {
+        @apply text-black-default font-bold;
+    }
+}
