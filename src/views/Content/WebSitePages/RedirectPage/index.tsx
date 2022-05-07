@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAccessToken } from "../../../helpers";
+import { getAccessToken } from "helpers";
 
 const RedirectPage = () => {  
   const [hasError, setHasError] = useState<boolean>(false);

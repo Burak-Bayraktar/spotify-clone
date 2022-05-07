@@ -1,6 +1,6 @@
 import React from 'react'
-import Download from '../../../components/WebSite/Download'
-import './style.scss'
+import Download from 'components/WebSite/Download'
+import 'views/Content/WebSitePages/DownloadPage/style.scss'
 
 const DownloadPage = () => {
   return (

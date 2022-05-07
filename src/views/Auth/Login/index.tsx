@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import LogoImg from "../../../assets/svg/LogoImg";
-import { generateLoginUrl } from "../../../helpers";
+import LogoImg from "assets/svg/LogoImg";
+import { generateLoginUrl } from "helpers";
 
 const LoginPage = () => {
 

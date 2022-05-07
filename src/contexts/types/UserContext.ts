@@ -1,4 +1,4 @@
-import { ISpotifyImage } from './../interfaces/UserContext';
+import { ISpotifyImage } from 'contexts/interfaces/UserContext';
 
 export type UserContextType = {
     country: string,

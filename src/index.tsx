@@ -1,18 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.scss";
-import App from "./App";
+import "index.scss";
+import App from "views/App";
 import { BrowserRouter } from "react-router-dom";
-import WebSiteLayout from "./views/Layout/WebSite";
-import { UserProvider } from "./contexts/UserContext";
+import { UserProvider } from "contexts/UserContext";
+import WebPlayerApp from "views/WebPlayerApp";
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
       <BrowserRouter>
-        <WebSiteLayout>
           <App />
-        </WebSiteLayout>
+          <WebPlayerApp />
       </BrowserRouter>
     </UserProvider>
   </React.StrictMode>,

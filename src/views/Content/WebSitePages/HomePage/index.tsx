@@ -1,9 +1,11 @@
 import React from 'react'
-import { useUser } from '../../../contexts/UserContext'
-import './style.scss'
+import { useNavigate } from 'react-router-dom';
+import { useUser } from 'contexts/UserContext'
+import 'views/Content/WebSitePages/HomePage/style.scss'
 
 const HomePage = () => {
   const user = useUser();
+  const navigate = useNavigate();
   return (
     <div className="home-page-container">
       <div className='home-page-container-body'>
@@ -12,8 +14,8 @@ const HomePage = () => {
       </div>
       <div className='home-page-container-footer'>
         {user.display_name 
-        ? <a href='#'>Dinlemeye devam et</a> 
-        : <a href='#'>Spotify Free'yi Edin</a>}
+        ? <button onClick={() => navigate("/player")}>Dinlemeye devam et</button> 
+        : <button>Spotify Free'yi Edin</button>}
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
-import { UserContextType } from './../../contexts/types/UserContext';
-import axiosInstance from "../../axiosInstance";
+import { UserContextType } from 'contexts/types/UserContext';
+import axiosInstance from "axiosInstance";
 
 export function getCurrentUser() {
     return axiosInstance.get("/getCurrentUser").then((res) => {

@@ -1,6 +1,6 @@
-import { Facebook } from "../../assets/svg/Social Logos/Facebook";
-import { Instagram } from "../../assets/svg/Social Logos/Instagram";
-import { Twitter } from "../../assets/svg/Social Logos/Twitter";
+import { Facebook } from "assets/svg/Social Logos/Facebook";
+import { Instagram } from "assets/svg/Social Logos/Instagram";
+import { Twitter } from "assets/svg/Social Logos/Twitter";
 
 type Props = {};
 

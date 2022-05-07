@@ -1,10 +1,11 @@
 import React from "react";
-import './/style.scss'
+import 'components/WebSite/Premium/components/style.scss'
 
 interface PHeaderProps {
   title: string,
   subtitle?: string,
 }
+
 const PHeader = ({ title, subtitle }: PHeaderProps) => {
   return (
     <header className="premium-header">

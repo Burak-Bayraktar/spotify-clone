@@ -1,13 +1,14 @@
 import React from 'react'
-import Footer from './Footer'
-import Header from './Header'
+import { Outlet } from 'react-router-dom'
+import Footer from 'views/Layout/WebSite/Footer'
+import Header from 'views/Layout/WebSite/Header'
 
-const WebSiteLayout = ({ children }) => {
+const WebSiteLayout = () => {
   return (
     <>
-        <Header />
-        { children }
-        <Footer />
+      <Header />
+      <Outlet />
+      <Footer />
     </>
   )
 }

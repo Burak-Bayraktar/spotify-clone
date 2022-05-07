@@ -1,4 +1,4 @@
-import { FooterMegaMenuProps, MenuItemProps } from "../interfaces/MenuProps";
+import { FooterMegaMenuProps, MenuItemProps } from "interfaces/MenuProps";
 
 export const headerMenuItems: MenuItemProps[] = [
   { href: "/premium", title: "Premium", internalNavigate: true },

@@ -1,7 +1,7 @@
 import React from "react";
-import { PremiumPageHeader } from "../../../../interfaces/PremiumPageHeader";
-import PHeader from "./PHeader";
-import { ppContentItems } from "../../../../constants/PremiumPage";
+import { PremiumPageHeader } from "interfaces/PremiumPageHeader";
+import { ppContentItems } from "constants/PremiumPage";
+import PHeader from "components/WebSite/Premium/components/PHeader";
 
 interface SectionTopProps {
   headerTitles: PremiumPageHeader;

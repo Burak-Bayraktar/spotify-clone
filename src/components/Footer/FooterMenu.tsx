@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { footerMegaMenuItems } from "../../constants/MenuItems";
+import { footerMegaMenuItems } from "constants/MenuItems";
 
 export default function FooterMenu() {
   return (

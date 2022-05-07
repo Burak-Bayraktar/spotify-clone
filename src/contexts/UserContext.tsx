@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { getCurrentUser } from "../services/User";
-import { UserContextType } from "./types/UserContext";
+import { getCurrentUser } from "services/User";
+import { UserContextType } from "contexts/types/UserContext";
 
 const UserProps: UserContextType = {
   country: "",

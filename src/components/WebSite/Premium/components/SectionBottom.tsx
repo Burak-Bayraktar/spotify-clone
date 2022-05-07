@@ -1,8 +1,8 @@
 import React from 'react'
-import PHeader from './PHeader'
-import Checkmark from '../../../../assets/svg/Checkmark'
-import { contentsOfOffers } from '../../../../constants/PremiumPage'
-import { PremiumPageHeader } from '../../../../interfaces/PremiumPageHeader'
+import PHeader from 'components/WebSite/Premium/components/PHeader'
+import Checkmark from 'assets/svg/Checkmark'
+import { contentsOfOffers } from 'constants/PremiumPage'
+import { PremiumPageHeader } from 'interfaces/PremiumPageHeader'
 
 interface SectionBottomProps {
     headerTitles: PremiumPageHeader

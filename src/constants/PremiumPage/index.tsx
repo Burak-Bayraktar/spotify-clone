@@ -1,4 +1,4 @@
-import { PremiumPageHeader } from "../../interfaces/PremiumPageHeader";
+import { PremiumPageHeader } from "interfaces/PremiumPageHeader";
 
 export const ppHeaderTitles = {
     section_top: { title: "Neden Premium'a geçmelisin?" },

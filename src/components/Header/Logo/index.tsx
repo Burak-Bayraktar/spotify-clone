@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import LogoImg from "../../../assets/svg/LogoImg"
+import LogoImg from "assets/svg/LogoImg"
 
 interface Props {
   setIsMenuOpen?: Function

@@ -1,9 +1,9 @@
-import { SubwayWorld } from "../../../../assets/svg/World";
-import FooterMenu from "../../../../components/Footer/FooterMenu";
-import SocialMediaSection from "../../../../components/Footer/SocialMediaSection";
-import Logo from "../../../../components/Header/Logo";
-import { footerMenuItems } from "../../../../constants/MenuItems";
-import "./style.scss";
+import { SubwayWorld } from "assets/svg/World";
+import FooterMenu from "components/Footer/FooterMenu";
+import SocialMediaSection from "components/Footer/SocialMediaSection";
+import Logo from "components/Header/Logo";
+import { footerMenuItems } from "constants/MenuItems";
+import "views/Layout/WebSite/Footer/style.scss";
 
 const Footer = () => {
   return (

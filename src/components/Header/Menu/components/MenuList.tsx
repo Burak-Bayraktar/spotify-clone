@@ -1,5 +1,5 @@
-import { MenuItemProps } from "../../../../interfaces/MenuProps";
-import MenuItem from "../components/MenuItem";
+import { MenuItemProps } from "interfaces/MenuProps";
+import MenuItem from "components/Header/Menu/components/MenuItem";
 
 interface Props {
   menuItems: MenuItemProps[],

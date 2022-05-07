@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { headerMenuItems } from "../../../constants/MenuItems";
-import { useUser } from "../../../contexts/UserContext";
-import Logo from "../Logo";
-import MenuList from "./components/MenuList";
+import { headerMenuItems } from "constants/MenuItems";
+import { useUser } from "contexts/UserContext";
+import Logo from "components/Header/Logo";
+import MenuList from "components/Header/Menu/components/MenuList";
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
