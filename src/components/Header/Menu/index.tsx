@@ -6,11 +6,14 @@ import MenuList from "components/Header/Menu/components/MenuList";
 import { MenuItemProps, MenuItemTypes } from "interfaces/MenuProps";
 import { useLocation } from "react-router-dom";
 
+interface LocationState {
+  from: string,
+}
+
 const Menu = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const { display_name, images } = useUser();
-  const { state, pathname } = useLocation();
-
+  const { state, pathname }: { state: LocationState, pathname: string } = useLocation();
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -21,10 +24,10 @@ const Menu = () => {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    if (state?.from !== pathname) {
+    if (state.from !== pathname) {
       setIsMobileMenuOpen(false);
     }
-  }, [pathname]);
+  }, [pathname, state.from]);
 
   function setUserLoginMenuItems(): MenuItemProps[] {
     return display_name ? authenticatedItems : nonAuthenticatedItems;
