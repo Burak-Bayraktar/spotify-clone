@@ -22,6 +22,11 @@ export const UserProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if (!localStorage.getItem('access-token')) {
+      setLoading(false);
+      return;
+    };
+
     setLoading(true);
     const currentUser = getCurrentUser();
     Promise.resolve(currentUser)
