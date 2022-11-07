@@ -1,10 +1,22 @@
+import UserMiniIndicator from "components/Header/Menu/components/UserMiniIndicator";
 import { FooterMegaMenuProps, MenuItemProps } from "interfaces/MenuProps";
 
-export const headerMenuItems: MenuItemProps[] = [
+export const headerMenuGlobalItems: MenuItemProps[] = [
   { href: "/premium", title: "Premium", internalNavigate: true },
   { href: "/support", title: "Destek", internalNavigate: true },
   { href: "/download", title: "İndir", internalNavigate: true },
 ];
+
+export const headerMenuAuthenticatedUserMenuItems: MenuItemProps[] = [
+  { href: '/profile', title: <UserMiniIndicator />, internalNavigate: true, isItemForMobileMenu: false, isItemForAuthenticatedUser: true},
+  { href: '/profile', title: "Hesap", internalNavigate: true, isItemForMobileMenu: true, isItemForAuthenticatedUser: true},
+  { href: '/logout', title: "Oturumu Kapat", internalNavigate: true, isItemForMobileMenu: true, isItemForAuthenticatedUser: true },
+]
+
+export const headerMenuNonAuthenticatedUserMenuItems: MenuItemProps[] = [
+  { href: "/register", title: "Kaydol", internalNavigate: false, isItemForAuthenticatedUser: false },
+  { href: "/login", title: "Oturum Aç", internalNavigate: false, isItemForAuthenticatedUser: false },
+]
 
 export const footerMenuItems: MenuItemProps[] = [
   { title: "Yasal", href: "#", internalNavigate: true },
