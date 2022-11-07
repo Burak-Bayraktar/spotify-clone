@@ -21,7 +21,7 @@ const Menu = () => {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    if (state?.from !== pathname) {
+    if (state && state?.from !== pathname) {
       setIsMobileMenuOpen(false);
     }
   }, [pathname]);
