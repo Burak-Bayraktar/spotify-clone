@@ -1,0 +1,47 @@
+// @Stidges from Codepen: https://codepen.io/stidges/pen/VwrrGQ
+$body-bg   : #222;
+$dot-bg    : rgba(#fff, .1);
+$dot-flash : rgba(#fff, .75);
+$duration  : 2s;
+
+body { background-color: $body-bg; }
+
+.spinner {
+	position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.spinner > .dot {
+	position: absolute;
+  left: 50%;
+  top: -40px;
+  margin-left: -7.5px;
+  width: 15px;
+  height: 15px;
+  background-color: $dot-bg;
+  border-radius: 100%;
+  transform-origin: center 40px;
+  animation: flash $duration infinite;
+}
+
+@for $i from 2 through 8 {
+	
+  .spinner > .dot:nth-child(#{$i}) {
+    transform: rotate(($i - 1) * 45deg);
+    animation-delay: (($i - 1) * ($duration / 16));
+  }
+  
+}
+
+@keyframes flash {
+	
+  0% { 
+    background-color: $dot-flash; 
+  }
+  
+  50% { 
+    background-color: $dot-bg; 
+  }
+  
+}
