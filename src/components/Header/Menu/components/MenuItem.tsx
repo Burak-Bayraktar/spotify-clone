@@ -1,16 +1,28 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
-import { MenuProps } from "interfaces/MenuProps";
+import { Link, useLocation } from "react-router-dom";
+import { MenuItemProps, MenuItemTypes, MenuProps } from "interfaces/MenuProps";
 
-const MenuItem: FC<MenuProps> = ({ content, setIsMenuOpen }) => {
+const MenuItem: FC<MenuProps> = ({ content }) => {
+  const {pathname} = useLocation();
+
+  const setInternalLink = (content: MenuItemProps) => {
+    switch (typeof content.title) {
+      case "string":
+        return <Link className="list-item-link" to={content.href} state={{ from: pathname }}>{content.title}</Link>        
+      case "object":
+        return content.title
+      default:
+        break;
+    }
+  }
+
   return (
-    <li>
+    <li className="list-item">
       {
         content.internalNavigate
-        ? <Link onClick={() => setIsMenuOpen(false)} to={content.href}>{content.title}</Link>
+        ? setInternalLink(content)
         : <a href={content.href} target="_blank">{content.title}</a>
       }
-      
     </li>
   );
 };

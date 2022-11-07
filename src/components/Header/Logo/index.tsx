@@ -1,18 +1,11 @@
 import { Link } from "react-router-dom"
 import LogoImg from "assets/svg/LogoImg"
 
-interface Props {
-  setIsMenuOpen?: Function
-}
-
-const Logo = ({ setIsMenuOpen } : Props) => {
+const Logo = () => {
   return (
         <div className="header-logo">
           <span>
-            <Link
-             onClick={() => setIsMenuOpen && setIsMenuOpen(false)} 
-             to={'/'}
-            >
+            <Link to={'/'}>
               <LogoImg />
             </Link>
           </span>
