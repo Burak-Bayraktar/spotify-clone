@@ -21,6 +21,11 @@ export const generateLoginUrl = () => {
     return baseUrl
 }
 
+export const logoutUser = () => {
+    localStorage.removeItem('access-token')
+    localStorage.removeItem('refresh-token')
+}
+
 export const getAccessToken = (code:string) => {
     return axiosInstance.get('/accessToken', {params: { code }}).then((resAT) => {
         return resAT

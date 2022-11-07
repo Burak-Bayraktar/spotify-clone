@@ -4,7 +4,8 @@ import { useUser } from "contexts/UserContext";
 import Logo from "components/Header/Logo";
 import MenuList from "components/Header/Menu/components/MenuList";
 import { MenuItemProps, MenuItemTypes } from "interfaces/MenuProps";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { logoutUser } from "helpers";
 
 interface LocationState {
   from: string,
@@ -14,6 +15,7 @@ const Menu = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const { display_name, images } = useUser();
   const location = useLocation();
+  const navigate = useNavigate();
   const newLocationState = location.state as LocationState;
 
   useEffect(() => {
@@ -28,7 +30,13 @@ const Menu = () => {
     if (newLocationState?.from !== location.pathname) {
       setIsMobileMenuOpen(false);
     }
-  }, [location.pathname, newLocationState]);
+
+    if (location.search.includes('?logout=true')) {
+      logoutUser();
+      navigate(location.pathname);
+      navigate(0);
+    }
+  }, [location, location.pathname, newLocationState]);
 
   function setUserLoginMenuItems(): MenuItemProps[] {
     return display_name ? authenticatedItems : nonAuthenticatedItems;

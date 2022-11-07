@@ -10,7 +10,7 @@ export const headerMenuGlobalItems: MenuItemProps[] = [
 export const headerMenuAuthenticatedUserMenuItems: MenuItemProps[] = [
   { href: '/profile', title: <UserMiniIndicator />, internalNavigate: true, isItemForMobileMenu: false, isItemForAuthenticatedUser: true},
   { href: '/profile', title: "Hesap", internalNavigate: true, isItemForMobileMenu: true, isItemForAuthenticatedUser: true},
-  { href: '/logout', title: "Oturumu Kapat", internalNavigate: true, isItemForMobileMenu: true, isItemForAuthenticatedUser: true },
+  { href: '?logout=true', title: "Oturumu Kapat", internalNavigate: true, isItemForMobileMenu: true, isItemForAuthenticatedUser: true },
 ]
 
 export const headerMenuNonAuthenticatedUserMenuItems: MenuItemProps[] = [

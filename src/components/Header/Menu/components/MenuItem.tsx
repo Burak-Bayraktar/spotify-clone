@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { MenuItemProps, MenuItemTypes, MenuProps } from "interfaces/MenuProps";
+import { MenuItemProps, MenuProps } from "interfaces/MenuProps";
 
 const MenuItem: FC<MenuProps> = ({ content }) => {
   const {pathname} = useLocation();
