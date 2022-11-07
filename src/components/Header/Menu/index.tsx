@@ -1,62 +1,85 @@
 import { useEffect, useState } from "react";
-import { headerMenuItems } from "constants/MenuItems";
+import { headerMenuGlobalItems, headerMenuAuthenticatedUserMenuItems as authenticatedItems, headerMenuNonAuthenticatedUserMenuItems as nonAuthenticatedItems } from "constants/MenuItems";
 import { useUser } from "contexts/UserContext";
 import Logo from "components/Header/Logo";
 import MenuList from "components/Header/Menu/components/MenuList";
+import { MenuItemProps, MenuItemTypes } from "interfaces/MenuProps";
+import { useLocation } from "react-router-dom";
 
 const Menu = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const { display_name } = useUser();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const { display_name, images } = useUser();
+  const { state, pathname } = useLocation();
+
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsMenuVisible(true);
-    }, 100);
-  }, []);
-
-  function setUserLoginMenuItems() {
-    if (display_name) {
-      return (
-        [{ href: '/profile', title: `Hello ${display_name}`, internalNavigate: true}]
-      )
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.removeAttribute('style' || '');
     }
-  
-    return (
-      [{ href: "/register", title: "Kaydol", internalNavigate: false },
-      { href: "/login", title: "Oturum Aç", internalNavigate: false }]
-    )
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (state?.from !== pathname) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [pathname]);
+
+  function setUserLoginMenuItems(): MenuItemProps[] {
+    return display_name ? authenticatedItems : nonAuthenticatedItems;
   }
 
-  const items = [...headerMenuItems, ...setUserLoginMenuItems()]
+  function setTriggerStateOnMenuOpen(): string {
+    return isMobileMenuOpen ? "trigger-active" : "";
+  }
+
+  function setItems(type : MenuItemTypes): MenuItemProps[] {
+    const loginItems = setUserLoginMenuItems();
+
+    if (!display_name) {
+      return [...headerMenuGlobalItems, ...loginItems];
+    }
+
+    let items: MenuItemProps[] = [];
+    switch (type) {
+      case MenuItemTypes.DESKTOP:
+        items = loginItems.filter(item => {
+          return item.isItemForMobileMenu ? '' : item
+        })
+      break;
+      case MenuItemTypes.MOBILE:
+        items = loginItems.filter(item => {
+          return item.isItemForMobileMenu && item
+        })
+      break;
+      default:
+      break;
+    }
+
+    return [...headerMenuGlobalItems, ...items];
+  }
+
   return (
     <>
-      <nav
-        className={`header-menu-container ${
-          isMenuVisible ? "-visible" : "-invisible"
-        }`}
-      >
+      <nav className={`header-menu-container`}>
         <div className="header-menu">
-          <MenuList setIsMenuOpen={setIsMenuOpen} dividerLine={3} menuItems={items} />
+          <MenuList dividerLine={3} menuItems={setItems(MenuItemTypes.DESKTOP)} />
         </div>
       </nav>
       <nav className="header-mobile-menu-container">
-        <div>
+          {display_name && <img src={images[0].url} alt="user-image" />}
           <div
-            className={`header-mobile-menu-trigger ${
-              isMenuOpen ? "trigger-active" : ""
-            }`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`header-mobile-menu-trigger ${setTriggerStateOnMenuOpen()}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <span className="-line"></span>
           </div>
-          <div
-            className={`header-mobile-menu ${isMenuOpen ? "menu-active" : ""}`}
-          >
-            <MenuList setIsMenuOpen={setIsMenuOpen} menuItems={items} dividerLine={3} />
-            <Logo setIsMenuOpen={setIsMenuOpen} />
+          <div className={`header-mobile-menu ${isMobileMenuOpen ? "menu-active" : ""}`}>
+            <MenuList menuItems={setItems(MenuItemTypes.MOBILE)} dividerLine={3} />
+            <Logo />
           </div>
-        </div>
+          {isMobileMenuOpen && <div className="overlay" />}
       </nav>
     </>
   );

@@ -1,28 +1,26 @@
 import { MenuItemProps } from "interfaces/MenuProps";
 import MenuItem from "components/Header/Menu/components/MenuItem";
+import { Fragment } from "react";
 
 interface Props {
   menuItems: MenuItemProps[],
   dividerLine: number,
-  setIsMenuOpen: Function
 }
 
-const MenuList = ({ menuItems, dividerLine, setIsMenuOpen }: Props) => {
+const MenuList = ({ menuItems, dividerLine }: Props) => {
   return (
-    <ul>
+    <ul className="top-menu">
       {menuItems.map((item: MenuItemProps, index) => {
         if (index === dividerLine) {
           return (
-            <>
-            <li>
-              <span className="-divider"></span>
-            </li>
-            <MenuItem setIsMenuOpen={setIsMenuOpen} content={item} />
-            </>
+            <Fragment key={index}>
+              <li className="list-item"><span className="-divider"></span></li>
+              <MenuItem content={item} />
+            </Fragment>
           );
         }
 
-        return <MenuItem setIsMenuOpen={setIsMenuOpen} content={item} />;
+        return <MenuItem key={index} content={item} />;
       })}
     </ul>
   );
