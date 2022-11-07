@@ -13,7 +13,8 @@ interface LocationState {
 const Menu = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const { display_name, images } = useUser();
-  const { state, pathname }: { state: LocationState, pathname: string } = useLocation();
+  const location = useLocation();
+  const newLocationState = location.state as LocationState;
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -24,10 +25,10 @@ const Menu = () => {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    if (state.from !== pathname) {
+    if (newLocationState?.from !== location.pathname) {
       setIsMobileMenuOpen(false);
     }
-  }, [pathname, state.from]);
+  }, [location.pathname, newLocationState]);
 
   function setUserLoginMenuItems(): MenuItemProps[] {
     return display_name ? authenticatedItems : nonAuthenticatedItems;
