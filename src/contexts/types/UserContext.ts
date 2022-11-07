@@ -8,5 +8,9 @@ export type UserContextType = {
     product: string,
     type: string,
     uri: string;
-  };
-  
+};
+
+export type FetchStateType = {
+  loading: boolean,
+  error: boolean,
+}
