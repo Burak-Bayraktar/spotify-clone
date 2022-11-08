@@ -13,6 +13,7 @@
     "@types/react-dom": "^17.0.9",
     "axios": "^0.26.1",
     "postcss-nesting": "^10.1.3",
+    "prettier": "^2.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.3.0",
@@ -24,9 +25,11 @@
   },
   "scripts": {
     "start": "craco start",
+    "format": "npx prettier --write .",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "prepare": "husky install"
   },
   "browserslist": {
     "production": [
@@ -42,7 +45,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",
+    "husky": "^8.0.0",
     "postcss": "^8.4.12",
+    "pretty-quick": "^3.1.3",
     "resolve-url-loader": "^5.0.0",
     "tailwindcss": "^3.0.24"
   }
