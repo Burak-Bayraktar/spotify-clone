@@ -1,7 +1,7 @@
-.download-page-container {
-    @apply bg-white h-1/2 flex text-center justify-center py-10 text-xl;
+.download-page {
+    @apply w-full;
 
-    .info-message {
-        @apply text-black-default font-bold;
+    &-container {
+        @apply bg-white w-full h-full flex text-center justify-center text-xl;
     }
 }
