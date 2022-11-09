@@ -1,6 +1,6 @@
-import React from "react";
-import Premium from "components/WebSite/Premium";
-import "views/Content/WebSitePages/PremiumPage/style.scss";
+import React from 'react';
+import Premium from 'components/WebSite/Premium';
+import 'views/Content/WebSitePages/PremiumPage/style.scss';
 
 const PremiumPage = () => {
   return (

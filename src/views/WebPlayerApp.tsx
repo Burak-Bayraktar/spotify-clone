@@ -1,6 +1,6 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import WebPlayerLayout from "views/Layout/WebPlayer";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import WebPlayerLayout from 'views/Layout/WebPlayer';
 
 const WebPlayerApp = () => {
   return (

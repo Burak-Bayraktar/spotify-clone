@@ -1,10 +1,10 @@
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "views/Auth/Login";
-import HomePage from "views/Content/WebSitePages/HomePage";
-import RedirectPage from "views/Content/WebSitePages/RedirectPage";
-import PremiumPage from "views/Content/WebSitePages/PremiumPage";
-import WebSiteLayout from "views/Layout/WebSite";
-import DownloadPage from "views/Content/WebSitePages/DownloadPage";
+import { Route, Routes } from 'react-router-dom';
+import LoginPage from 'views/Auth/Login';
+import HomePage from 'views/Content/WebSitePages/HomePage';
+import RedirectPage from 'views/Content/WebSitePages/RedirectPage';
+import PremiumPage from 'views/Content/WebSitePages/PremiumPage';
+import WebSiteLayout from 'views/Layout/WebSite';
+import DownloadPage from 'views/Content/WebSitePages/DownloadPage';
 
 function App() {
   return (

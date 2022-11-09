@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
-import { headerMenuGlobalItems, headerMenuAuthenticatedUserMenuItems as authenticatedItems, headerMenuNonAuthenticatedUserMenuItems as nonAuthenticatedItems } from "constants/MenuItems";
-import { useUser } from "contexts/UserContext";
-import Logo from "components/Header/Logo";
-import MenuList from "components/Header/Menu/components/MenuList";
-import { MenuItemProps, MenuItemTypes } from "interfaces/MenuProps";
-import { useLocation, useNavigate } from "react-router-dom";
-import { logoutUser } from "helpers";
+import { useEffect, useState } from 'react';
+import {
+  headerMenuGlobalItems,
+  headerMenuAuthenticatedUserMenuItems as authenticatedItems,
+  headerMenuNonAuthenticatedUserMenuItems as nonAuthenticatedItems,
+} from 'constants/MenuItems';
+import { useUser } from 'contexts/UserContext';
+import Logo from 'components/Header/Logo';
+import MenuList from 'components/Header/Menu/components/MenuList';
+import { MenuItemProps, MenuItemTypes } from 'interfaces/MenuProps';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { logoutUser } from 'helpers';
 
 interface LocationState {
-  from: string,
+  from: string;
 }
 
 const Menu = () => {
@@ -43,10 +47,10 @@ const Menu = () => {
   }
 
   function setTriggerStateOnMenuOpen(): string {
-    return isMobileMenuOpen ? "trigger-active" : "";
+    return isMobileMenuOpen ? 'trigger-active' : '';
   }
 
-  function setItems(type : MenuItemTypes): MenuItemProps[] {
+  function setItems(type: MenuItemTypes): MenuItemProps[] {
     const loginItems = setUserLoginMenuItems();
 
     if (!display_name) {
@@ -56,17 +60,17 @@ const Menu = () => {
     let items: MenuItemProps[] = [];
     switch (type) {
       case MenuItemTypes.DESKTOP:
-        items = loginItems.filter(item => {
-          return item.isItemForMobileMenu ? '' : item
-        })
-      break;
+        items = loginItems.filter((item) => {
+          return item.isItemForMobileMenu ? '' : item;
+        });
+        break;
       case MenuItemTypes.MOBILE:
-        items = loginItems.filter(item => {
-          return item.isItemForMobileMenu && item
-        })
-      break;
+        items = loginItems.filter((item) => {
+          return item.isItemForMobileMenu && item;
+        });
+        break;
       default:
-      break;
+        break;
     }
 
     return [...headerMenuGlobalItems, ...items];
@@ -80,18 +84,18 @@ const Menu = () => {
         </div>
       </nav>
       <nav className="header-mobile-menu-container">
-          {display_name && <img src={images[0].url} alt="user-image" />}
-          <div
-            className={`header-mobile-menu-trigger ${setTriggerStateOnMenuOpen()}`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <span className="-line"></span>
-          </div>
-          <div className={`header-mobile-menu ${isMobileMenuOpen ? "menu-active" : ""}`}>
-            <MenuList menuItems={setItems(MenuItemTypes.MOBILE)} dividerLine={3} />
-            <Logo />
-          </div>
-          {isMobileMenuOpen && <div className="overlay" />}
+        {display_name && <img src={images[0].url} alt="user-image" />}
+        <div
+          className={`header-mobile-menu-trigger ${setTriggerStateOnMenuOpen()}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <span className="-line"></span>
+        </div>
+        <div className={`header-mobile-menu ${isMobileMenuOpen ? 'menu-active' : ''}`}>
+          <MenuList menuItems={setItems(MenuItemTypes.MOBILE)} dividerLine={3} />
+          <Logo />
+        </div>
+        {isMobileMenuOpen && <div className="overlay" />}
       </nav>
     </>
   );

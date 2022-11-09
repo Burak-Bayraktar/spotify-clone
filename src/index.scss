@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply bg-black-default text-white font-montserrat overflow-x-hidden;
-    }
+  body {
+    @apply bg-black-default text-white font-montserrat overflow-x-hidden;
+  }
 
-    .logo {
-        @apply w-[8.75rem] h-[2.813rem] fill-white block;
-    }
+  .logo {
+    @apply w-[8.75rem] h-[2.813rem] fill-white block;
+  }
 }

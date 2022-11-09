@@ -34,10 +34,10 @@
       @apply mb-5 grid grid-cols-pp-grid-cols gap-5;
       @apply lg:grid-cols-none lg:grid-rows-pp-grid-rows lg:gap-10 lg:place-items-center;
 
-      --pp-column-img-1: url("../../../../assets/img/premium-p_1.png");
-      --pp-column-img-2: url("../../../../assets/img/premium-p_2.png");
-      --pp-column-img-3: url("../../../../assets/img/premium-p_3.png");
-      --pp-column-img-4: url("../../../../assets/img/premium-p_4.png");
+      --pp-column-img-1: url('../../../../assets/img/premium-p_1.png');
+      --pp-column-img-2: url('../../../../assets/img/premium-p_2.png');
+      --pp-column-img-3: url('../../../../assets/img/premium-p_3.png');
+      --pp-column-img-4: url('../../../../assets/img/premium-p_4.png');
 
       @for $i from 1 to 5 {
         &.column-#{$i} {

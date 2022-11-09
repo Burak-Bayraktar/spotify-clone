@@ -1,7 +1,3 @@
 export const MobileSection = () => {
-  return (
-    <div className="download-page-section mobile-section">
-      MobileSection
-    </div>
-  )
-}
+  return <div className="download-page-section mobile-section">MobileSection</div>;
+};

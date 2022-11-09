@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function useUserOs() {
   const [userOs, setUserOs] = useState('');
@@ -14,7 +14,6 @@ export function useUserOs() {
 
     setUserOs(userOS);
   }, []);
-
 
   return { userOs, appLink: '' };
 }

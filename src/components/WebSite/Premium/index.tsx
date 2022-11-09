@@ -1,7 +1,7 @@
-import React from "react";
-import SectionTop from "components/WebSite/Premium/components/SectionTop";
-import SectionBottom from "components/WebSite/Premium/components/SectionBottom";
-import { ppHeaderTitles } from "constants/PremiumPage";
+import React from 'react';
+import SectionTop from 'components/WebSite/Premium/components/SectionTop';
+import SectionBottom from 'components/WebSite/Premium/components/SectionBottom';
+import { ppHeaderTitles } from 'constants/PremiumPage';
 
 const Premium = () => {
   const titles = ppHeaderTitles;

@@ -32,7 +32,7 @@
 
             &-content {
               @apply flex items-center gap-4 py-4 select-none;
-              
+
               img {
                 @apply w-10 h-10 rounded-full;
               }
@@ -127,7 +127,7 @@
         @apply fixed z-[1] pointer-events-none cursor-default w-full h-full bg-black-default bg-opacity-75 inset-0;
       }
     }
-    
+
     &-trigger {
       @apply relative w-full z-10 cursor-pointer;
 
@@ -156,13 +156,13 @@
         @apply hover:text-green-100;
       }
 
-    .-divider {
+      .-divider {
         @apply h-[.125rem] block w-5 bg-white my-10 mx-0;
       }
     }
 
     .logo {
-        @apply m-[2.375rem];
+      @apply m-[2.375rem];
     }
   }
 }

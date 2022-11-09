@@ -1,10 +1,10 @@
-import { MenuItemProps } from "interfaces/MenuProps";
-import MenuItem from "components/Header/Menu/components/MenuItem";
-import { Fragment } from "react";
+import { MenuItemProps } from 'interfaces/MenuProps';
+import MenuItem from 'components/Header/Menu/components/MenuItem';
+import { Fragment } from 'react';
 
 interface Props {
-  menuItems: MenuItemProps[],
-  dividerLine: number,
+  menuItems: MenuItemProps[];
+  dividerLine: number;
 }
 
 const MenuList = ({ menuItems, dividerLine }: Props) => {
@@ -14,7 +14,9 @@ const MenuList = ({ menuItems, dividerLine }: Props) => {
         if (index === dividerLine) {
           return (
             <Fragment key={index}>
-              <li className="list-item"><span className="-divider"></span></li>
+              <li className="list-item">
+                <span className="-divider"></span>
+              </li>
               <MenuItem content={item} />
             </Fragment>
           );

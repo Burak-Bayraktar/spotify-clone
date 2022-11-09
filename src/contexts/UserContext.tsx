@@ -1,15 +1,15 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { getCurrentUser } from "services/User";
-import { FetchStateType, UserContextType } from "contexts/types/UserContext";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getCurrentUser } from 'services/User';
+import { FetchStateType, UserContextType } from 'contexts/types/UserContext';
 
 const UserProps: UserContextType & FetchStateType = {
-  country: "",
-  display_name: "",
-  id: "",
-  images: [{ height: "", width: "", url: "" }],
-  product: "",
-  type: "",
-  uri: "",
+  country: '',
+  display_name: '',
+  id: '',
+  images: [{ height: '', width: '', url: '' }],
+  product: '',
+  type: '',
+  uri: '',
   loading: true,
   error: false,
 };
@@ -25,7 +25,7 @@ export const UserProvider: React.FC<React.ReactNode> = ({ children }) => {
     if (!localStorage.getItem('access-token')) {
       setLoading(false);
       return;
-    };
+    }
 
     setLoading(true);
     const currentUser = getCurrentUser();

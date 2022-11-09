@@ -1,7 +1,7 @@
-import React from 'react'
-import { AllPlatformsSection } from './components/AllPlatformsSection'
-import { DownloadSection } from './components/DownloadSection'
-import { MobileSection } from './components/MobileSection'
+import React from 'react';
+import { AllPlatformsSection } from './components/AllPlatformsSection';
+import { DownloadSection } from './components/DownloadSection';
+import { MobileSection } from './components/MobileSection';
 import './style.scss';
 
 const Download = () => {
@@ -11,7 +11,7 @@ const Download = () => {
       <MobileSection />
       <AllPlatformsSection />
     </>
-  )
-}
+  );
+};
 
-export default Download
+export default Download;
