@@ -1,3 +1,46 @@
 .download-page-section {
-  @apply bg-white text-black-default w-full h-6;
+  @apply text-black-default w-full;
+
+  &.download-section {
+    @apply flex flex-col px-4 pt-10 pb-[6.5rem] bg-green-400;
+
+    .laptop-container {
+      @apply relative m-auto w-max mt-16 mb-10;
+
+      .laptop-icon {
+        @apply w-[8.5rem] h-20;
+      }
+
+      .green-circle-icon,
+      .green-success-check-icon {
+        @apply absolute left-1/2 top-[47%] -translate-x-1/2 -translate-y-1/2;
+      }
+
+      .green-circle-icon {
+        @apply w-[2.125rem] h-[2.125rem];
+      }
+
+      .green-success-check-icon {
+        @apply w-[.688rem] h-[.563rem];
+      }
+    }
+
+    .section-content {
+      .title {
+        @apply text-5xl leading-[3.5rem] pb-6 tracking-[-1px] font-black;
+      }
+
+      .description {
+        @apply font-normal leading-6 pb-[1em] mb-6 text-base;
+      }
+
+      .download-button {
+        @apply flex justify-center items-center w-max m-auto bg-white text-black-default rounded-[500px] py-[1.125rem] px-8 text-sm font-bold;
+
+        &:hover {
+          @apply scale-[1.04] bg-gray-600;
+        }
+      }
+    }
+  }
 }
