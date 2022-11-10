@@ -1,6 +1,7 @@
 export function Laptop() {
   return (
     <svg
+      className="laptop-icon"
       width="350px"
       height="206px"
       viewBox="0 0 350 206"
@@ -10,9 +11,9 @@ export function Laptop() {
       <g
         id="Install-Page"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="b2-desktop-1" transform="translate(-942.000000, -211.000000)">
           <g
