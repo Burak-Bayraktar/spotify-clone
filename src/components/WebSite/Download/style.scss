@@ -1,7 +1,7 @@
-.download-page-section {
+.download-page-container {
   @apply text-black-default w-full;
 
-  &.download-section {
+  .download-section {
     @apply flex flex-col px-4 pt-10 pb-[6.5rem] bg-green-400;
 
     .laptop-container {
@@ -13,19 +13,20 @@
 
       .green-circle-icon,
       .green-success-check-icon {
-        @apply absolute left-1/2 top-[47%] -translate-x-1/2 -translate-y-1/2;
+        @apply absolute left-1/2 -translate-x-1/2 -translate-y-1/2;
       }
 
       .green-circle-icon {
-        @apply w-[2.125rem] h-[2.125rem];
+        @apply w-[2.125rem] top-[47%] h-[2.125rem];
       }
 
       .green-success-check-icon {
-        @apply w-[.688rem] h-[.563rem];
+        @apply w-[.688rem] h-[.563rem] top-0 opacity-0;
+        animation: checkIconMove 300ms linear 500ms forwards;
       }
     }
 
-    .section-content {
+    &-content {
       .title {
         @apply text-5xl leading-[3.5rem] pb-6 tracking-[-1px] font-black;
       }
@@ -42,5 +43,15 @@
         }
       }
     }
+  }
+}
+
+@keyframes checkIconMove {
+  0% {
+    @apply top-3/4 opacity-0;
+  }
+
+  100% {
+    @apply top-[47%] opacity-100;
   }
 }

@@ -11,7 +11,7 @@ export const DownloadSection = () => {
         <GreenCircle />
         <GreenSuccessCheck />
       </div>
-      <div className="section-content">
+      <div className="download-section-content">
         <div className="title">Spotify'ı İndir</div>
         <div className="description">Cihazında milyonlarca şarkı ve podcast çal.</div>
         <Link className="download-button" to={'#'}>
