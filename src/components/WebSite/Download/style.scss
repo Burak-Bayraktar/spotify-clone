@@ -36,11 +36,30 @@
       }
 
       .download-button {
-        @apply flex justify-center items-center w-max m-auto bg-white text-black-default rounded-[500px] py-[1.125rem] px-8 text-sm font-bold;
+        @apply flex justify-center items-center w-max m-auto bg-white text-black-default rounded-[31.25rem] py-[1.125rem] px-8 text-sm font-bold;
 
         &:hover {
           @apply scale-[1.04] bg-gray-600;
         }
+      }
+    }
+  }
+
+  .mobile-section {
+    @apply max-w-[46.875rem] m-auto py-[4.375rem] px-[.938rem];
+    @apply lg:max-w-[60.625rem];
+
+    .title {
+      @apply font-black text-[1.75rem] pb-[.75em];
+    }
+
+    .description {
+      @apply text-base pb-[1em];
+    }
+
+    &-badges {
+      a {
+        @apply inline-block m-[.625rem];
       }
     }
   }

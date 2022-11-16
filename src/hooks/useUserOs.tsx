@@ -18,9 +18,9 @@ enum OSNames {
 export function useUserOs() {
   const osTypes: OSTypes[] = [
     {
-      name: OSNames.Windows,
-      link: 'https://apps.microsoft.com/store/detail/spotify-music-and-podcasts/9NCBCSZSJRSB?hl=en-us&gl=us',
-      badge: <img src={MicrosoftBadge} />,
+      name: OSNames.iPhone,
+      link: 'itms-apps://itunes.apple.com/app/apple-store/id375380948?mt=8',
+      badge: <AppStoreBadge />,
     },
     {
       name: OSNames.Android,
@@ -28,9 +28,9 @@ export function useUserOs() {
       badge: <GooglePlayBadge />,
     },
     {
-      name: OSNames.iPhone,
-      link: 'itms-apps://itunes.apple.com/app/apple-store/id375380948?mt=8',
-      badge: <AppStoreBadge />,
+      name: OSNames.Windows,
+      link: 'https://apps.microsoft.com/store/detail/spotify-music-and-podcasts/9NCBCSZSJRSB?hl=en-us&gl=us',
+      badge: <img src={MicrosoftBadge} />,
     },
   ];
 
