@@ -17,7 +17,7 @@ export const DownloadSection = () => {
       <div className="download-section-content">
         <div className="title">Spotify'ı İndir</div>
         <div className="description">Cihazında milyonlarca şarkı ve podcast çal.</div>
-        <a className="download-button" href={userOs.link} target="_blank">
+        <a className="download-button" href={userOs.link as string} target="_blank">
           İndir
         </a>
       </div>
