@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react';
-import { OSNames, OSTypes, ScreenTypes, UserOsLinks } from 'types/WebSite/DownloadPage';
-import { osTypes } from 'constants/DownloadPage';
+import { TDeviceTypes, TUserOsLinks } from 'types/WebSite/DownloadPage';
+import { DEVICE_INFO } from 'constants/DownloadPage';
 
 export function useUserOs() {
-  const [userOs, setUserOs] = useState<OSTypes | null>(null);
-  const [items, setItems] = useState<OSTypes[]>([]);
+  const [userDeviceType, setUserDeviceType] = useState<TDeviceTypes | null>(null);
+  const [deviceTypes, setDeviceTypes] = useState<TDeviceTypes[]>([]);
 
-  function isObject(link: UserOsLinks | string): link is UserOsLinks {
-    return (link as UserOsLinks).onDevice !== undefined;
+  function isObject(link: TUserOsLinks | string): link is TUserOsLinks {
+    return (link as TUserOsLinks).onDevice !== undefined;
   }
 
   function setObjectBasedOnOS(): void {
-    if (userOs?.name) {
-      items.length ||
-        osTypes.map((item) => {
+    if (userDeviceType?.name) {
+      deviceTypes.length ||
+        DEVICE_INFO.map((item) => {
           if (isObject(item.link)) {
-            const linkBasedOnDevice = userOs.name === item.name ? item.link.onDevice : item.link.onOtherDevices;
+            const linkBasedOnDevice =
+              userDeviceType.store === item.store ? item.link.onDevice : item.link.onOtherDevices;
 
-            setItems((prev) => {
+            setDeviceTypes((prev) => {
               return [
                 ...prev,
                 {
@@ -27,7 +28,7 @@ export function useUserOs() {
               ];
             });
           } else {
-            setItems((prev) => [...prev, { ...item }]);
+            setDeviceTypes((prev) => [...prev, { ...item }]);
           }
         });
     }
@@ -36,23 +37,25 @@ export function useUserOs() {
   useEffect(() => {
     const { userAgent } = window.navigator;
 
-    const { name, link, badge, screenType } = osTypes.find((item) => {
+    const device = DEVICE_INFO.find((item) => {
       if (userAgent.search(item.name) !== -1) {
         return item;
       }
     })!;
 
-    setUserOs({
-      name,
-      link: isObject(link) ? link.onDevice : link,
-      badge,
-      screenType,
+    setUserDeviceType({
+      name: device.name,
+      link: isObject(device.link) ? device.link.onDevice : device.link,
+      badge: device.badge,
+      screenType: device.screenType,
+      os: device.os,
+      store: device.store,
     });
   }, []);
 
   useEffect(() => {
     setObjectBasedOnOS();
-  }, [userOs?.name]);
+  }, [userDeviceType?.name]);
 
-  return { userOs, allOsTypes: items };
+  return { userDeviceType, deviceTypes };
 }

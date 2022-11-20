@@ -5,18 +5,18 @@ import { Laptop } from 'assets/svg/Laptop';
 import MobilePhone from 'assets/svg/MobilePhone';
 import { useUserOs } from 'hooks/useUserOs';
 import React from 'react';
-import { ScreenTypes } from 'types/WebSite/DownloadPage';
+import { EScreenTypes } from 'types/WebSite/DownloadPage';
 
 export const DownloadSection = () => {
-  const { userOs } = useUserOs();
+  const { userDeviceType } = useUserOs();
 
-  if (!userOs) {
+  if (!userDeviceType) {
     return <SpotifySpinner />;
   }
 
   const renderScreenTypeSvg = () => {
-    switch (userOs.screenType) {
-      case ScreenTypes.Desktop:
+    switch (userDeviceType.screenType) {
+      case EScreenTypes.Desktop:
         return (
           <div className="laptop-container">
             <Laptop />
@@ -24,7 +24,8 @@ export const DownloadSection = () => {
             <GreenSuccessCheck />
           </div>
         );
-      case ScreenTypes.Mobile:
+      case EScreenTypes.Mobile:
+      case EScreenTypes.Tablet:
         return (
           <div className="mobile-container">
             <MobilePhone />
@@ -43,7 +44,7 @@ export const DownloadSection = () => {
       <div className="download-section-content">
         <div className="title">Spotify'ı İndir</div>
         <div className="description">Cihazında milyonlarca şarkı ve podcast çal.</div>
-        <a className="download-button" href={userOs.link as string} target="_blank">
+        <a className="download-button" href={userDeviceType.link as string} target="_blank">
           İndir
         </a>
       </div>
