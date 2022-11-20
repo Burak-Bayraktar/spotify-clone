@@ -67,7 +67,7 @@
   .all-platforms {
     @apply flex flex-col items-center bg-gray-300 pt-[4.375rem] pb-[3.125rem] px-[.938rem] max-w-[46.875rem];
     @apply md:max-w-[60.625rem];
-    @apply 2xl:max-w-[73.125rem];
+    @apply 2xl:max-w-none;
 
     &-image {
       @apply mb-5 px-10 max-w-[35rem] w-full;
