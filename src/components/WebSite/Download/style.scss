@@ -63,6 +63,41 @@
       }
     }
   }
+
+  .all-platforms {
+    @apply flex flex-col items-center bg-gray-300 pt-[4.375rem] pb-[3.125rem] px-[.938rem] max-w-[46.875rem];
+    @apply md:max-w-[60.625rem];
+    @apply 2xl:max-w-[73.125rem];
+
+    &-image {
+      @apply mb-5 px-10 max-w-[35rem] w-full;
+    }
+
+    &-description {
+      @apply font-black text-[1.75rem] text-white pb-[.75em] leading-9 tracking-[-.25px];
+    }
+
+    &-links {
+      &-group {
+        @apply my-4 flex flex-col items-center;
+        @apply md:flex-row;
+      }
+
+      &-item {
+        @apply flex items-center text-white pb-4;
+        @apply md:after:content-['•'] md:after:px-[.875rem] md:after:text-[1.375rem] md:after:text-green-500;
+        @apply md:last:after:content-[''];
+
+        span {
+          @apply text-base;
+
+          a {
+            @apply underline text-green-500;
+          }
+        }
+      }
+    }
+  }
 }
 
 @keyframes checkIconMove {

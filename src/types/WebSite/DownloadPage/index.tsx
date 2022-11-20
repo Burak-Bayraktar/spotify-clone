@@ -13,3 +13,9 @@ export enum OSNames {
   Android = 'Android',
   iPhone = 'iPhone',
 }
+
+export type AvailableDevices = {
+  title: string;
+  link: string;
+  hasLink: boolean;
+};

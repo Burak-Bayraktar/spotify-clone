@@ -1,4 +1,4 @@
-import { OSNames, OSTypes } from 'types/WebSite/DownloadPage';
+import { AvailableDevices, OSNames, OSTypes } from 'types/WebSite/DownloadPage';
 import { AppStoreBadge } from 'assets/svg/AppStoreBadge';
 import { GooglePlayBadge } from 'assets/svg/GooglePlayBadge';
 import MicrosoftBadge from 'assets/img/microsoft-badge.png';
@@ -24,5 +24,53 @@ export const osTypes: OSTypes[] = [
       onOtherDevices: 'https://apps.microsoft.com/store/detail/spotify-music-and-podcasts/9NCBCSZSJRSB?hl=en-us&gl=us',
     },
     badge: <img src={MicrosoftBadge} />,
+  },
+];
+
+export const availableDevices: AvailableDevices[] = [
+  {
+    title: 'Cep Telefonu',
+    link: '',
+    hasLink: false,
+  },
+  {
+    title: 'Bilgisayar',
+    link: '',
+    hasLink: false,
+  },
+  {
+    title: 'Tablet',
+    link: '',
+    hasLink: false,
+  },
+  {
+    title: 'Araç',
+    link: '',
+    hasLink: true,
+  },
+  {
+    title: 'Playstation',
+    link: '',
+    hasLink: true,
+  },
+  {
+    title: 'Xbox',
+    link: '',
+    hasLink: true,
+  },
+  {
+    title: 'TV',
+    link: '',
+    hasLink: true,
+  },
+  {
+    title: 'Hoparlör',
+    link: '',
+    hasLink: true,
+  },
+  {
+    title: 'Web Player',
+    link: '',
+    hasLink: true,
   },
 ];

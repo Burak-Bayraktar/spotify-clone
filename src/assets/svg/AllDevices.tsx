@@ -1,6 +1,6 @@
 export default function AllDevices() {
     return (
-        <svg width="302px" height="109px" viewBox="37 71 302 109" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="37 71 302 109" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <desc>Created with Sketch.</desc>
             <defs>
                 <rect id="path-1" x="5.50085323" y="34.9541694" width="81.5126434" height="53.9292899" rx="3.1104"></rect>
