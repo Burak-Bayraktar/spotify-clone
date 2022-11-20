@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { OSTypes, UserOsLinks } from 'types/WebSite/DownloadPage';
+import { OSNames, OSTypes, ScreenTypes, UserOsLinks } from 'types/WebSite/DownloadPage';
 import { osTypes } from 'constants/DownloadPage';
 
 export function useUserOs() {
-  const [userOs, setUserOs] = useState<OSTypes>({ name: '', link: '', badge: <div /> });
+  const [userOs, setUserOs] = useState<OSTypes | null>(null);
   const [items, setItems] = useState<OSTypes[]>([]);
 
   function isObject(link: UserOsLinks | string): link is UserOsLinks {
@@ -11,7 +11,7 @@ export function useUserOs() {
   }
 
   function setObjectBasedOnOS(): void {
-    if (userOs.name) {
+    if (userOs?.name) {
       items.length ||
         osTypes.map((item) => {
           if (isObject(item.link)) {
@@ -36,7 +36,7 @@ export function useUserOs() {
   useEffect(() => {
     const { userAgent } = window.navigator;
 
-    const { name, link, badge } = osTypes.find((item) => {
+    const { name, link, badge, screenType } = osTypes.find((item) => {
       if (userAgent.search(item.name) !== -1) {
         return item;
       }
@@ -46,12 +46,13 @@ export function useUserOs() {
       name,
       link: isObject(link) ? link.onDevice : link,
       badge,
+      screenType,
     });
   }, []);
 
   useEffect(() => {
     setObjectBasedOnOS();
-  }, [userOs.name]);
+  }, [userOs?.name]);
 
   return { userOs, allOsTypes: items };
 }

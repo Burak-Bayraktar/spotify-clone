@@ -4,16 +4,19 @@
   .download-section {
     @apply flex flex-col px-4 pt-10 pb-[6.5rem] bg-green-400;
 
-    .laptop-container {
+    .laptop-container,
+    .mobile-container {
       @apply relative m-auto w-max mt-16 mb-10;
-
-      .laptop-icon {
-        @apply w-[8.5rem] h-20;
-      }
 
       .green-circle-icon,
       .green-success-check-icon {
         @apply absolute left-1/2 -translate-x-1/2 -translate-y-1/2;
+      }
+    }
+
+    .laptop-container {
+      .laptop-icon {
+        @apply w-[8.5rem] h-20;
       }
 
       .green-circle-icon {
@@ -23,6 +26,16 @@
       .green-success-check-icon {
         @apply w-[.688rem] h-[.563rem] top-0 opacity-0;
         animation: checkIconMove 300ms linear 500ms forwards;
+      }
+    }
+
+    .mobile-container {
+      .green-circle-icon {
+        @apply w-[28px] top-[45%] h-[2.125rem];
+      }
+
+      .green-success-check-icon {
+        @apply top-[45%] w-[30%];
       }
     }
 
@@ -65,12 +78,16 @@
   }
 
   .all-platforms {
-    @apply flex flex-col items-center bg-gray-300 pt-[4.375rem] pb-[3.125rem] px-[.938rem] max-w-[46.875rem];
-    @apply md:max-w-[60.625rem];
-    @apply 2xl:max-w-none;
+    @apply flex flex-col items-center bg-gray-300 pt-[4.375rem] pb-[3.125rem] px-[.938rem];
+
+    &-container {
+      @apply max-w-[46.875rem];
+      @apply md:max-w-[60.625rem];
+      @apply 2xl:max-w-none;
+    }
 
     &-image {
-      @apply mb-5 px-10 max-w-[35rem] w-full;
+      @apply m-auto mb-5 px-10 max-w-[35rem] w-full;
     }
 
     &-description {
