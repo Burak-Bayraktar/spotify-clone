@@ -5,8 +5,8 @@ import {
   headerMenuNonAuthenticatedUserMenuItems as nonAuthenticatedItems,
 } from 'constants/MenuItems';
 import { useUser } from 'contexts/UserContext';
-import Logo from 'components/Header/Logo';
-import MenuList from 'components/Header/Menu/components/MenuList';
+import Logo from 'components/WebSite/Header/Logo';
+import MenuList from 'components/WebSite/Header/Menu/components/MenuList';
 import { MenuItemProps, MenuItemTypes } from 'interfaces/MenuProps';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { logoutUser } from 'helpers';

@@ -1,4 +1,4 @@
-import UserMiniIndicator from 'components/Header/Menu/components/UserMiniIndicator';
+import UserMiniIndicator from 'components/WebSite/Header/Menu/components/UserMiniIndicator';
 import { FooterMegaMenuProps, MenuItemProps } from 'interfaces/MenuProps';
 
 export const headerMenuGlobalItems: MenuItemProps[] = [

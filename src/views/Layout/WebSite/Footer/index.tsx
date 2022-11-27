@@ -1,7 +1,7 @@
 import { SubwayWorld } from 'assets/svg/World';
-import FooterMenu from 'components/Footer/FooterMenu';
-import SocialMediaSection from 'components/Footer/SocialMediaSection';
-import Logo from 'components/Header/Logo';
+import FooterMenu from 'components/WebSite/Footer/FooterMenu';
+import SocialMediaSection from 'components/WebSite/Footer/SocialMediaSection';
+import Logo from 'components/WebSite/Header/Logo';
 import { footerMenuItems } from 'constants/MenuItems';
 import 'views/Layout/WebSite/Footer/style.scss';
 
@@ -22,9 +22,9 @@ const Footer = () => {
           </div>
           <div className="bottom-section">
             <div className="bottom-items">
-              {footerMenuItems.map((menuItem) => {
+              {footerMenuItems.map((menuItem, index) => {
                 return (
-                  <a className="bottom-item" href={menuItem.href}>
+                  <a className="bottom-item" href={menuItem.href} key={index}>
                     {menuItem.title}
                   </a>
                 );

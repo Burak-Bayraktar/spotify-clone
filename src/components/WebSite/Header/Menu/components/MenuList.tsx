@@ -1,5 +1,5 @@
 import { MenuItemProps } from 'interfaces/MenuProps';
-import MenuItem from 'components/Header/Menu/components/MenuItem';
+import MenuItem from 'components/WebSite/Header/Menu/components/MenuItem';
 import { Fragment } from 'react';
 
 interface Props {

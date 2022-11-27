@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const WebPlayerLayout = () => {
   return (
-    <div>
+    <div className="web-player-container">
       <Outlet />
     </div>
   );
