@@ -1,0 +1,25 @@
+.web-player-container {
+  @apply grid w-full grid-rows-3 h-screen;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 80px 1fr 90px;
+
+  .header-container {
+    grid-column: 2;
+    @apply bg-green-300;
+  }
+
+  .main-section-container {
+    @apply bg-purple-500;
+  }
+
+  .sidebar-container {
+    grid-row: 1/3;
+    @apply bg-red-400;
+  }
+
+  .now-playing-bar-container {
+    grid-column: 1/3;
+    grid-row: 3;
+    @apply bg-blue-100;
+  }
+}
