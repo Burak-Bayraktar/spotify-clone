@@ -1,12 +1,16 @@
 import axios from 'axios';
 
+type RefreshToken = {
+  'access-token': string;
+};
+
 const headers = {
   Authorization: `Bearer ${localStorage.getItem('access-token')}`,
   'Content-Type': 'application/json',
 };
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers,
 });
 
@@ -19,7 +23,7 @@ axiosInstance.interceptors.response.use(
       if (error.response.status === 401) {
         const refresh_token = localStorage.getItem('refresh-token');
         axiosInstance
-          .get('/refreshToken', {
+          .get<RefreshToken>('/refreshToken', {
             params: { refresh_token },
           })
           .then(async (resAT) => {
