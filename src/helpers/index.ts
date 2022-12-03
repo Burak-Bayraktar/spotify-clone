@@ -13,8 +13,8 @@ export const generateLoginUrl = () => {
   ];
 
   let baseUrl = `https://accounts.spotify.com/authorize?`;
-  baseUrl += `&client_id=${process.env.REACT_APP_CLIENT_ID}`;
-  baseUrl += `&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}`;
+  baseUrl += `&client_id=${import.meta.env.VITE_CLIENT_ID}`;
+  baseUrl += `&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`;
   baseUrl += '&scope=' + encodeURIComponent(scopes.join(' '));
   baseUrl += `&response_type=code`;
 
