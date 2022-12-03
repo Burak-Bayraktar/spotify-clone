@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.4.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -18,18 +17,16 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "vite",
     "format": "npx prettier --write .",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
     "prepare": "husky install"
   },
   "browserslist": {
@@ -45,11 +42,15 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.4",
+    "@vitejs/plugin-react": "^2.2.0",
+    "autoprefixer": "^10.4.13",
     "husky": "^8.0.0",
-    "postcss": "^8.4.12",
+    "postcss": "^8.4.19",
     "pretty-quick": "^3.1.3",
     "resolve-url-loader": "^5.0.0",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.2.4",
+    "vite": "^3.2.4",
+    "vite-plugin-svgr": "^2.2.2",
+    "vite-tsconfig-paths": "^3.6.0"
   }
 }
