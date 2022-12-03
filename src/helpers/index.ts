@@ -1,4 +1,9 @@
-import axiosInstance from 'axiosInstance';
+import axiosInstance from '../axiosInstance';
+
+type AccessToken = {
+  'access-token': string;
+  'refresh-token': string;
+};
 
 export const generateLoginUrl = () => {
   var scopes = [
@@ -27,7 +32,7 @@ export const logoutUser = () => {
 };
 
 export const getAccessToken = (code: string) => {
-  return axiosInstance.get('/accessToken', { params: { code } }).then((resAT) => {
+  return axiosInstance.get<AccessToken>('/accessToken', { params: { code } }).then((resAT) => {
     return resAT;
   });
 };
