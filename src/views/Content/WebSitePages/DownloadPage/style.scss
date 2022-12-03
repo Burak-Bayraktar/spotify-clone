@@ -1,7 +1,9 @@
-.download-page {
-  @apply w-full;
+.app-container {
+  .download-page {
+    @apply w-full;
 
-  &-container {
-    @apply bg-white w-full h-full flex text-center justify-center text-xl;
+    &-container {
+      @apply bg-white w-full h-full flex text-center justify-center text-xl;
+    }
   }
 }

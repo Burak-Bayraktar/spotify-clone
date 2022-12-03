@@ -1,20 +1,22 @@
-.premium-page-container {
-  @apply bg-white;
+.app-container {
+  .premium-page-container {
+    @apply bg-white;
 
-  .premium-page {
-    @apply flex flex-col text-sm items-center mx-auto font-bold h-[70%] bg-white text-black-default;
-    @apply md:text-base;
+    .premium-page {
+      @apply flex flex-col text-sm items-center mx-auto font-bold h-[70%] bg-white text-black-default;
+      @apply md:text-base;
 
-    .section {
-      &-top,
-      &-bottom {
-        @apply bg-white py-[2.188rem] px-[.938rem] m-auto w-full;
-        @apply md:py-[4.688rem];
-        @apply 2xl:pb-[7.188rem];
-      }
+      .section {
+        &-top,
+        &-bottom {
+          @apply bg-white py-[2.188rem] px-[.938rem] m-auto w-full;
+          @apply md:py-[4.688rem];
+          @apply 2xl:pb-[7.188rem];
+        }
 
-      &-bottom {
-        @apply bg-gray-200;
+        &-bottom {
+          @apply bg-gray-200;
+        }
       }
     }
   }

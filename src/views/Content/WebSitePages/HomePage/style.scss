@@ -1,30 +1,32 @@
-.home-page-container {
-  @apply bg-[length:215%] min-h-[52.875rem] w-full bg-main-page-mobile bg-blue-100 bg-no-repeat bg-mobile-page-position flex flex-col justify-center items-center;
-  @apply sm:bg-[length:153%] sm:bg-main-page-tablet sm:bg-tablet-page-position;
-  @apply 2xl:bg-[length:175%] 2xl:bg-main-page-desktop 2xl:bg-desktop-page-position;
+.app-container {
+  .home-page-container {
+    @apply bg-[length:215%] min-h-[52.875rem] w-full bg-main-page-mobile bg-blue-100 bg-no-repeat bg-mobile-page-position flex flex-col justify-center items-center;
+    @apply sm:bg-[length:153%] sm:bg-main-page-tablet sm:bg-tablet-page-position;
+    @apply 2xl:bg-[length:175%] 2xl:bg-main-page-desktop 2xl:bg-desktop-page-position;
 
-  &-body {
-    @apply flex flex-col items-center text-center text-green-100;
+    &-body {
+      @apply flex flex-col items-center text-center text-green-100;
 
-    span {
-      &.title {
-        @apply leading-[3.5rem] w-[16.25rem] text-5xl pb-4;
-        @apply sm:w-[26.563rem] sm:text-[6.5rem] sm:leading-[6.5rem] sm:pb-[6.5rem];
-        @apply 2xl:text-[9.25rem] 2xl:leading-[10.375rem] 2xl:w-[45.625rem] tracking-tighter font-black pb-10;
-      }
+      span {
+        &.title {
+          @apply leading-[3.5rem] w-[16.25rem] text-5xl pb-4;
+          @apply sm:w-[26.563rem] sm:text-[6.5rem] sm:leading-[6.5rem] sm:pb-[6.5rem];
+          @apply 2xl:text-[9.25rem] 2xl:leading-[10.375rem] 2xl:w-[45.625rem] tracking-tighter font-black pb-10;
+        }
 
-      &.content {
-        @apply w-[19.5rem] text-lg font-normal pb-10;
-        @apply sm:w-[25rem];
-        @apply 2xl:w-[50rem];
+        &.content {
+          @apply w-[19.5rem] text-lg font-normal pb-10;
+          @apply sm:w-[25rem];
+          @apply 2xl:w-[50rem];
+        }
       }
     }
-  }
 
-  &-footer {
-    button {
-      @apply text-blue-100 rounded-[31.25rem] block py-4 px-8 bg-green-100 font-bold leading-5;
-      @apply hover:scale-105;
+    &-footer {
+      button {
+        @apply text-blue-100 rounded-[31.25rem] block py-4 px-8 bg-green-100 font-bold leading-5;
+        @apply hover:scale-105;
+      }
     }
   }
 }
