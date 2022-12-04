@@ -1,3 +1,5 @@
+import SpotifySpinner from 'assets/spinners/spotify-spinner';
+import { useUser } from 'contexts/UserContext';
 import { useUserOs } from 'hooks/useUserOs';
 import { EOSTypes } from 'types/WebSite/DownloadPage';
 import WebPlayerHeader from 'views/Layout/WebPlayer/Header';
@@ -7,7 +9,12 @@ import NowPlayingBar from './NowPlayingBar';
 import './style.scss';
 
 const WebPlayerLayout = () => {
+  const { loading } = useUser();
   const { userDeviceType } = useUserOs();
+
+  if (loading) {
+    return <SpotifySpinner />;
+  }
 
   const getDesktopVersion = () => {
     return (
