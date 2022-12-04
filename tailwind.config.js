@@ -1,3 +1,10 @@
+const SCRENN_RESOLUTIONS = {
+  'SM': '480px',
+  'MD': '768px',
+  'LG': '992px',
+  '2XL': '1200',
+}
+
 module.exports = {
   mode: 'jit',
   content: [
@@ -6,10 +13,10 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'sm': '480px',
-      'md': '768px',
-      'lg': '992px',
-      '2xl': '1200px'
+      'sm': SCRENN_RESOLUTIONS.SM,
+      'md': SCRENN_RESOLUTIONS.MD,
+      'lg': SCRENN_RESOLUTIONS.LG,
+      '2xl': SCRENN_RESOLUTIONS["2XL"]
     },
     extend: {
       colors: {
@@ -60,6 +67,9 @@ module.exports = {
       gridTemplateRows: {
         'pp-grid-rows': '142px auto',
         '5-auto': 'repeat(4, minmax(0, 1fr))',
+      },
+      minWidth: {
+        'web-player': SCRENN_RESOLUTIONS.MD,
       }
     },
   },
