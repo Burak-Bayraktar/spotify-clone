@@ -1,12 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import 'index.scss';
 import WebSiteApp from 'views/App';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from 'contexts/UserContext';
 import WebPlayerApp from 'views/WebPlayerApp';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
   <React.StrictMode>
     <UserProvider>
       <BrowserRouter>
@@ -14,6 +16,5 @@ ReactDOM.render(
         <WebPlayerApp />
       </BrowserRouter>
     </UserProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
