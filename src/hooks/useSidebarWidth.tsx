@@ -1,5 +1,5 @@
 import { useUser } from 'contexts/UserContext';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 enum ESidebarWidth {
   MIN_WIDTH = 120,
@@ -7,6 +7,8 @@ enum ESidebarWidth {
 }
 
 const useSidebarWidth = () => {
+  const [isResizing, setIsResizing] = useState<boolean>(false);
+
   const { display_name } = useUser();
   const sidebarRef = useRef<HTMLElement>(null);
   const resizerRef = useRef<HTMLElement>(null);
@@ -14,9 +16,11 @@ const useSidebarWidth = () => {
   useEffect(() => {
     resizerRef.current?.addEventListener('mousedown', (e) => {
       window.addEventListener('mousemove', resize);
+      setIsResizing(true);
 
       window.addEventListener('mouseup', (e) => {
         window.removeEventListener('mousemove', resize);
+        setIsResizing(false);
       });
     });
   }, []);
@@ -39,7 +43,7 @@ const useSidebarWidth = () => {
     localStorage.setItem(`${display_name}:sidebar-width`, e.pageX.toString());
   }
 
-  return { sidebarRef, resizerRef };
+  return { sidebarRef, resizerRef, isResizing };
 };
 
 export default useSidebarWidth;

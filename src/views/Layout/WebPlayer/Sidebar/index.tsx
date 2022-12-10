@@ -3,11 +3,11 @@ import useSidebarWidth from 'hooks/useSidebarWidth';
 import './style.scss';
 
 const Sidebar = () => {
-  const { resizerRef, sidebarRef } = useSidebarWidth();
+  const { resizerRef, sidebarRef, isResizing } = useSidebarWidth();
 
   return (
     <>
-      <aside ref={sidebarRef} className="sidebar-container">
+      <aside ref={sidebarRef} className={`sidebar-container${isResizing ? ' -resizing' : ''}`}>
         <UserPlaylists />
         <span ref={resizerRef} className="resizer" />
       </aside>
