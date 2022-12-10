@@ -2,7 +2,7 @@ const SCRENN_RESOLUTIONS = {
   'SM': '480px',
   'MD': '768px',
   'LG': '992px',
-  '2XL': '1200',
+  '2XL': '1200px',
 }
 
 module.exports = {
