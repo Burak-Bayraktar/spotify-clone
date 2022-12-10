@@ -1,0 +1,30 @@
+.web-player-container {
+  .sidebar-navigation-section {
+    @apply flex flex-col gap-y-4;
+
+    .navigation-group {
+      &__item {
+        &,
+        &__link {
+          @apply flex items-center gap-4 h-10 opacity-70;
+
+          &:hover {
+            @apply opacity-100;
+
+            .text {
+              @apply text-white;
+            }
+          }
+        }
+
+        .icon {
+          @apply w-6 h-6 flex items-center justify-center;
+        }
+
+        .text {
+          @apply text-gray-700 text-[.8125rem] font-bold;
+        }
+      }
+    }
+  }
+}
