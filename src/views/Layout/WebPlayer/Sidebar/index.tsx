@@ -1,4 +1,5 @@
-import UserPlaylists from 'components/WebPlayer/Sidebar/user-playlists';
+import LogoImg from 'assets/svg/LogoImg';
+import UserPlaylists from 'components/WebPlayer/Sidebar/UserPlaylists';
 import useSidebarWidth from 'hooks/useSidebarWidth';
 import './style.scss';
 
@@ -8,6 +9,9 @@ const Sidebar = () => {
   return (
     <>
       <aside ref={sidebarRef} className={`sidebar-container${isResizing ? ' -resizing' : ''}`}>
+        <div className="logo-container">
+          <LogoImg />
+        </div>
         <UserPlaylists />
         <span ref={resizerRef} className="resizer" />
       </aside>

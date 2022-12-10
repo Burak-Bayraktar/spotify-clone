@@ -1,14 +1,8 @@
 .web-player-container {
   .sidebar-container {
-    .user-playlists {
-      @apply whitespace-nowrap;
-
-      &__item {
-        @apply select-none max-w-[23.125rem];
-      }
-
-      &__name {
-        @apply text-sm text-gray-700 leading-8 overflow-hidden text-ellipsis;
+    .logo-container {
+      svg {
+        @apply max-w-[131px] h-10;
       }
     }
   }

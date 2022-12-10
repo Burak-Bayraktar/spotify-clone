@@ -2,6 +2,7 @@ import axiosInstance from 'axiosInstance';
 import { ISpotifyImage } from 'contexts/interfaces/UserContext';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './style.scss';
 
 type TFollowers = {
   href: string;
