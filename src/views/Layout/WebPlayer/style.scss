@@ -22,7 +22,7 @@
 
   .sidebar-container {
     grid-row: 1/3;
-    @apply bg-red-400 relative;
+    @apply bg-black-default relative;
 
     .resizer {
       width: var(--sidebar-resizer-width);
