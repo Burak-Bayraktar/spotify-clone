@@ -1,4 +1,5 @@
 import LogoImg from 'assets/svg/LogoImg';
+import InstallApp from 'components/WebPlayer/Sidebar/InstallApp';
 import NavigationSection from 'components/WebPlayer/Sidebar/NavigationSection';
 import UserPlaylists from 'components/WebPlayer/Sidebar/UserPlaylists';
 import useSidebarWidth from 'hooks/useSidebarWidth';
@@ -14,7 +15,9 @@ const Sidebar = () => {
           <LogoImg />
         </div>
         <NavigationSection />
+        <hr className="--divider" />
         <UserPlaylists />
+        <InstallApp />
         <span ref={resizerRef} className="resizer" />
       </aside>
     </>
