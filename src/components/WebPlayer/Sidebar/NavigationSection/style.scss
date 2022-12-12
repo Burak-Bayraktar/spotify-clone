@@ -1,12 +1,15 @@
 .web-player-container {
   .sidebar-navigation-section {
-    @apply flex flex-col gap-y-4;
+    @apply flex flex-col gap-y-4 mb-2;
 
     .navigation-group {
+      @apply select-none;
       &__item {
+        @apply opacity-70;
+
         &,
         &__link {
-          @apply flex items-center gap-4 h-10 opacity-70;
+          @apply flex items-center gap-4 h-10 overflow-hidden whitespace-nowrap text-ellipsis;
 
           &:hover {
             @apply opacity-100;
@@ -18,11 +21,19 @@
         }
 
         .icon {
-          @apply w-6 h-6 flex items-center justify-center;
+          @apply w-6 h-6 flex items-center justify-center flex-shrink-0;
         }
 
         .text {
-          @apply text-gray-700 text-[.8125rem] font-bold;
+          @apply text-gray-700 text-[.8125rem] font-bold text-ellipsis overflow-hidden;
+        }
+
+        &.--active {
+          @apply opacity-100;
+
+          .text {
+            @apply text-white;
+          }
         }
       }
     }

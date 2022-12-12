@@ -1,6 +1,6 @@
 .web-player-container {
   .user-playlists {
-    @apply whitespace-nowrap;
+    @apply whitespace-nowrap mt-2;
 
     &__item {
       @apply select-none max-w-[23.125rem];

@@ -1,9 +1,17 @@
 .web-player-container {
   .sidebar-container {
+    @apply px-6 py-6;
+
     .logo-container {
+      @apply flex mb-[1.125rem];
+
       svg {
-        @apply max-w-[131px] h-10;
+        @apply flex flex-shrink-[1] max-w-[131px] h-10;
       }
+    }
+
+    .--divider {
+      @apply h-px border-t-gray-800 border-solid;
     }
   }
 }
