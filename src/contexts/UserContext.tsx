@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { getCurrentUser } from 'services/User';
 import { FetchStateType, UserContextType } from 'contexts/types/UserContext';
 
@@ -14,9 +14,13 @@ const UserProps: UserContextType & FetchStateType = {
   error: false,
 };
 
+interface ProviderProps {
+  children: React.ReactNode;
+}
+
 const SpotifyUser = createContext<UserContextType & FetchStateType>(UserProps);
 
-export const UserProvider: React.FC<React.ReactNode> = ({ children }) => {
+export const UserProvider: React.FC<ProviderProps> = ({ children }) => {
   const [user, setUser] = useState<UserContextType>(UserProps);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
