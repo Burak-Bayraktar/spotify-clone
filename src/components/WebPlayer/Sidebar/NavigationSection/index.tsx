@@ -1,26 +1,39 @@
-import CreatePlaylistSvg from 'assets/svg/CreatePlaylist';
-import HomeIconSvg from 'assets/svg/HomeIcon';
-import LikedSongsSvg from 'assets/svg/LikedSongs';
-import SearchIconSvg from 'assets/svg/SearchIcon';
-import YourEpisodesSvg from 'assets/svg/YourEpisodes';
-import YourLibraryIconSvg from 'assets/svg/YourLibraryIcon';
+import CreatePlaylistSvg from 'assets/svg/Player_NavigationSection/CreatePlaylist/CreatePlaylist_Regular';
+import HomeIconSvgRegular from 'assets/svg/Player_NavigationSection/HomeIcon/HomeIcon_Regular';
+import HomeIconSvgActive from 'assets/svg/Player_NavigationSection/HomeIcon/HomeIcon_Active';
+import LikedSongsSvg from 'assets/svg/Player_NavigationSection/LikedSongs/LikedSongs_Regular';
+import SearchIconRegularSvg from 'assets/svg/Player_NavigationSection/SearchIcon/SearchIcon_Regular';
+import SearchIconActiveSvg from 'assets/svg/Player_NavigationSection/SearchIcon/SearchIcon_Active';
+import YourEpisodesSvg from 'assets/svg/Player_NavigationSection/YourEpisodes/YourEpisodes_Regular';
+import YourLibraryIconSvg from 'assets/svg/Player_NavigationSection/YourLibraryIcon/YourLibraryIcon_Regular';
 import './style.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { SVGProps } from 'react';
+import YourLibraryIconActive from 'assets/svg/Player_NavigationSection/YourLibraryIcon/YourLibraryIcon_Active';
 
 type NavigationGroupContent = {
-  icon: React.ComponentType;
-  iconBgColor?: string;
+  regularIcon: React.ElementType<SVGProps<SVGSVGElement>>;
+  activeIcon?: React.ElementType<SVGProps<SVGSVGElement>>;
+  activeLink?: string;
+  iconFill: string;
+  iconBgColor: string;
   text: string;
   to?: string;
   onClick?: () => void;
 };
 
 const NavigationSection = () => {
+  const { pathname } = useLocation();
+
   const setNavigationGroup = (navigationGroup: NavigationGroupContent[]) => {
     return (
       <div className="navigation-group-container">
         {navigationGroup.map((item) => {
-          return <div className="navigation-group">{setNavigationGroupItem(item)}</div>;
+          return (
+            <div key={item.text} className="navigation-group">
+              {setNavigationGroupItem(item)}
+            </div>
+          );
         })}
       </div>
     );
@@ -30,8 +43,12 @@ const NavigationSection = () => {
     const generateItemElement = () => {
       return (
         <>
-          <div className="icon">
-            <itemContent.icon />
+          <div className="icon" style={{ background: itemContent.iconBgColor }}>
+            {itemContent.activeLink === pathname && itemContent.activeIcon ? (
+              <itemContent.activeIcon />
+            ) : (
+              <itemContent.regularIcon fill={itemContent.iconFill} />
+            )}
           </div>
           <div className="text">{itemContent.text}</div>
         </>
@@ -39,8 +56,9 @@ const NavigationSection = () => {
     };
 
     if (itemContent.to) {
+      const isActive = itemContent.activeLink === pathname;
       return (
-        <div className="navigation-group__item">
+        <div className={`navigation-group__item ${isActive ? '--active' : ''}`}>
           <Link className="navigation-group__item__link" to={itemContent.to}>
             {generateItemElement()}
           </Link>
@@ -50,9 +68,9 @@ const NavigationSection = () => {
 
     if (itemContent.onClick) {
       return (
-        <button className="navigation-group__item" onClick={() => itemContent.onClick?.()}>
+        <div role="button" className="navigation-group__item" onClick={() => itemContent.onClick?.()}>
           {generateItemElement()}
-        </button>
+        </div>
       );
     }
   };
@@ -64,15 +82,57 @@ const NavigationSection = () => {
   return (
     <div className="sidebar-navigation-section">
       {setNavigationGroup([
-        { icon: HomeIconSvg, text: 'Home', to: '.' },
-        { icon: SearchIconSvg, text: 'Search', to: 'search' },
-        { icon: YourLibraryIconSvg, text: 'Your Library', to: 'collection' },
+        {
+          regularIcon: HomeIconSvgRegular,
+          activeIcon: HomeIconSvgActive,
+          activeLink: '/player',
+          text: 'Home',
+          iconFill: '#FFFFFF',
+          iconBgColor: 'transparent',
+          to: '.',
+        },
+        {
+          regularIcon: SearchIconRegularSvg,
+          activeIcon: SearchIconActiveSvg,
+          activeLink: '/player/search',
+          text: 'Search',
+          iconFill: '#FFFFFF',
+          iconBgColor: 'transparent',
+          to: 'search',
+        },
+        {
+          regularIcon: YourLibraryIconSvg,
+          activeIcon: YourLibraryIconActive,
+          activeLink: '/player/collection',
+          iconFill: '#FFFFFF',
+          iconBgColor: 'transparent',
+          text: 'Your Library',
+          to: 'collection',
+        },
       ])}
-      <span className="--divider" />
+
       {setNavigationGroup([
-        { icon: CreatePlaylistSvg, iconBgColor: '', text: 'Create Playlist', onClick: createNewPlaylist },
-        { icon: LikedSongsSvg, iconBgColor: '', text: 'Liked Songs', to: 'collection/tracks' },
-        { icon: YourEpisodesSvg, iconBgColor: '', text: 'Your Episodes', to: 'collection/episodes' },
+        {
+          regularIcon: CreatePlaylistSvg,
+          iconFill: '#000000',
+          iconBgColor: '#FFFFFF',
+          text: 'Create Playlist',
+          onClick: createNewPlaylist,
+        },
+        {
+          regularIcon: LikedSongsSvg,
+          iconFill: '#FFFFFF',
+          iconBgColor: 'linear-gradient(135deg,#450af5,#c4efd9)',
+          text: 'Liked Songs',
+          to: 'collection/tracks',
+        },
+        {
+          regularIcon: YourEpisodesSvg,
+          iconFill: '#1ed760',
+          iconBgColor: '#006450',
+          text: 'Your Episodes',
+          to: 'collection/episodes',
+        },
       ])}
     </div>
   );
