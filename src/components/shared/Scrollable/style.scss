@@ -1,0 +1,12 @@
+.scrollable {
+  @apply relative h-[var(--scrollable-height)];
+
+  .scroll-container {
+    @apply h-full w-3 absolute top-0 right-[2px] bg-transparent;
+
+    .scroll-bar {
+      @apply h-1/3;
+      background: hsla(0, 0%, 100%, 0.3);
+    }
+  }
+}
