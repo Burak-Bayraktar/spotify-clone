@@ -1,6 +1,7 @@
 import axiosInstance from 'axiosInstance';
+import Scrollable from 'components/shared/Scrollable';
 import { ISpotifyImage } from 'contexts/interfaces/UserContext';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
@@ -46,30 +47,41 @@ type TUserPlaylist = {
   total: number;
 };
 
-const UserPlaylists = () => {
+type UserPlaylistProps = {
+  containerRef: React.RefObject<HTMLDivElement>;
+  componentHeight: number;
+};
+
+const UserPlaylists = (props: UserPlaylistProps) => {
   const [userPlaylists, setUserPlaylists] = useState<TUserPlaylist>();
+
+  const playlistRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     axiosInstance.get<TUserPlaylist>('/current-user-playlists').then((res) => {
+      if (!res) return;
+
       const { data } = res;
       setUserPlaylists({ ...data });
     });
   }, []);
 
   return (
-    <div className="user-playlists-container">
-      <ul className="user-playlists">
-        {userPlaylists?.items.map((item) => {
-          return (
-            <li key={item.id} className="user-playlists__item">
-              <div className="user-playlists__name">
-                <Link to={`playlist/${item.id}`}>{item.name}</Link>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <Scrollable elementRef={playlistRef.current!} height={props.componentHeight}>
+      <div ref={props.containerRef} className="user-playlists-container">
+        <ul ref={playlistRef} className="user-playlists">
+          {userPlaylists?.items.map((item) => {
+            return (
+              <li key={item.id} className="user-playlists__item">
+                <div className="user-playlists__name">
+                  <Link to={`playlist/${item.id}`}>{item.name}</Link>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </Scrollable>
   );
 };
 

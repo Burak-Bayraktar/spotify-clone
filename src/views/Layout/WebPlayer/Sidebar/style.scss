@@ -1,9 +1,9 @@
 .web-player-container {
   .sidebar-container {
-    @apply px-6 py-6;
+    @apply pl-6 pt-6 overflow-hidden;
 
     .logo-container {
-      @apply flex mb-[1.125rem];
+      @apply flex mb-[1.125rem] pr-6;
 
       svg {
         @apply flex flex-shrink-[1] max-w-[131px] h-10;

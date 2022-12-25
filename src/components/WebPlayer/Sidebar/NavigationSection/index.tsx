@@ -8,7 +8,7 @@ import YourEpisodesSvg from 'assets/svg/Player_NavigationSection/YourEpisodes/Yo
 import YourLibraryIconSvg from 'assets/svg/Player_NavigationSection/YourLibraryIcon/YourLibraryIcon_Regular';
 import './style.scss';
 import { Link, useLocation } from 'react-router-dom';
-import { SVGProps } from 'react';
+import { RefObject, SVGProps } from 'react';
 import YourLibraryIconActive from 'assets/svg/Player_NavigationSection/YourLibraryIcon/YourLibraryIcon_Active';
 
 type NavigationGroupContent = {
@@ -22,7 +22,11 @@ type NavigationGroupContent = {
   onClick?: () => void;
 };
 
-const NavigationSection = () => {
+type NavigationSectionProps = {
+  navigationSectionRef: RefObject<HTMLDivElement>;
+};
+
+const NavigationSection = (props: NavigationSectionProps) => {
   const { pathname } = useLocation();
 
   const setNavigationGroup = (navigationGroup: NavigationGroupContent[]) => {
@@ -80,7 +84,7 @@ const NavigationSection = () => {
   };
 
   return (
-    <div className="sidebar-navigation-section">
+    <div ref={props.navigationSectionRef} className="sidebar-navigation-section">
       {setNavigationGroup([
         {
           regularIcon: HomeIconSvgRegular,

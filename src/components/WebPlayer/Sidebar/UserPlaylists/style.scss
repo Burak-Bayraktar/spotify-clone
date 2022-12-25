@@ -1,9 +1,20 @@
 .web-player-container {
+  --row-height: 32px;
+
   .user-playlists {
-    @apply whitespace-nowrap mt-2;
+    @apply whitespace-nowrap overflow-y-scroll pr-6 h-full;
+    scrollbar-width: 12px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &-container {
+      @apply h-full mt-2;
+    }
 
     &__item {
-      @apply select-none max-w-[23.125rem];
+      @apply select-none max-w-[23.125rem] h-[var(--row-height)];
     }
 
     &__name {
