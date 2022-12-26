@@ -1,10 +1,19 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 
 const useTotalHeightOfElement = (props: { element: RefObject<HTMLElement> }) => {
   const [elementHeight, setElementHeight] = useState<number>(0);
   const [elementStyles, setElementStyles] = useState<CSSStyleDeclaration>();
 
   useEffect(() => {
+    calculateElementHeight();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', calculateElementHeight);
+    return () => window.removeEventListener('resize', calculateElementHeight);
+  }, [props.element.current]);
+
+  const calculateElementHeight = () => {
     let height: number = 0;
     const elementStyles = getComputedStyle(props.element.current!);
     ['height', 'margin-top', 'margin-bottom', 'border-width'].forEach((cssProp: string) => {
@@ -20,7 +29,7 @@ const useTotalHeightOfElement = (props: { element: RefObject<HTMLElement> }) => 
 
     setElementHeight(height);
     setElementStyles(elementStyles);
-  }, [props.element.current]);
+  };
 
   return {
     height: elementHeight,

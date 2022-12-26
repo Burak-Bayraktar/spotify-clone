@@ -26,9 +26,9 @@ const useChildrenHeight = () => {
     if (!userPlaylistsRef.current) return;
 
     const targetMarginTop = Number(getComputedStyle(userPlaylistsRef.current!).marginTop.slice(0, -2));
-    const test =
+    const result =
       sidebarContainerHeight - (navigationHeight + logoHeight + dividerHeight + installAppHeight + targetMarginTop);
-    return test;
+    return result;
   };
 
   const componentHeight = useMemo(calculateTargetElementHeight, [
