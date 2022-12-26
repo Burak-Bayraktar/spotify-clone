@@ -1,7 +1,7 @@
 import axiosInstance from 'axiosInstance';
 import Scrollable from 'components/shared/Scrollable';
 import { ISpotifyImage } from 'contexts/interfaces/UserContext';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
@@ -85,4 +85,4 @@ const UserPlaylists = (props: UserPlaylistProps) => {
   );
 };
 
-export default UserPlaylists;
+export default memo(UserPlaylists);

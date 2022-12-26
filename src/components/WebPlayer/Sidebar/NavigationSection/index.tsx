@@ -8,7 +8,7 @@ import YourEpisodesSvg from 'assets/svg/Player_NavigationSection/YourEpisodes/Yo
 import YourLibraryIconSvg from 'assets/svg/Player_NavigationSection/YourLibraryIcon/YourLibraryIcon_Regular';
 import './style.scss';
 import { Link, useLocation } from 'react-router-dom';
-import { RefObject, SVGProps } from 'react';
+import { RefObject, SVGProps, memo } from 'react';
 import YourLibraryIconActive from 'assets/svg/Player_NavigationSection/YourLibraryIcon/YourLibraryIcon_Active';
 
 type NavigationGroupContent = {
@@ -142,4 +142,4 @@ const NavigationSection = (props: NavigationSectionProps) => {
   );
 };
 
-export default NavigationSection;
+export default memo(NavigationSection);

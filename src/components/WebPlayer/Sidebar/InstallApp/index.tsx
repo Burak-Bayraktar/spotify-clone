@@ -1,4 +1,5 @@
 import InstallAppSvg from 'assets/svg/InstallApp';
+import { memo } from 'react';
 import './style.scss';
 
 type InstallAppProps = {
@@ -14,4 +15,4 @@ const InstallApp = (props: InstallAppProps) => {
   );
 };
 
-export default InstallApp;
+export default memo(InstallApp);
