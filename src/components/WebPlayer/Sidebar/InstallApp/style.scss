@@ -1,5 +1,19 @@
 .web-player-container {
-  .install-app-container {
-    @apply flex absolute bottom-0 bg-black-default w-full h-10 left-0 pl-6 gap-4 items-center;
+  .install-app {
+    &-container {
+      @apply flex absolute bottom-0 bg-black-default w-full h-10 left-0 ml-6 gap-4 items-center;
+      @apply hover:cursor-pointer;
+    }
+
+    &-svg {
+      svg {
+        @apply fill-gray-700;
+      }
+    }
+
+    &-text {
+      @apply truncate text-[.8125rem] font-bold text-gray-700 select-none;
+      @apply md:text-sm;
+    }
   }
 }

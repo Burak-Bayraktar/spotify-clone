@@ -6,13 +6,13 @@ type InstallAppProps = {
   elementRef: React.RefObject<HTMLDivElement>;
 };
 
-const InstallApp = (props: InstallAppProps) => {
-  return (
-    <div ref={props.elementRef} className="install-app-container">
+const InstallApp = (props: InstallAppProps) => (
+  <div ref={props.elementRef} className="install-app-container">
+    <div className="install-app-svg">
       <InstallAppSvg />
-      Install App
     </div>
-  );
-};
+    <div className="install-app-text">Install App</div>
+  </div>
+);
 
 export default memo(InstallApp);

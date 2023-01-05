@@ -4,7 +4,7 @@ import NavigationSection from 'components/WebPlayer/Sidebar/NavigationSection';
 import UserPlaylists from 'components/WebPlayer/Sidebar/UserPlaylists';
 import useSidebarWidth from 'hooks/useSidebarWidth';
 import './style.scss';
-import useChildrenHeight from './useChildrenHeight';
+import useChildrenHeight from '../../../../hooks/useChildrenHeight';
 
 const Sidebar = () => {
   const { resizerRef, isResizing } = useSidebarWidth();
