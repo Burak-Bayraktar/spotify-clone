@@ -4,16 +4,13 @@
 
     .navigation-group {
       @apply select-none;
-      &__item {
-        @apply opacity-70;
 
+      &__item {
         &,
         &__link {
           @apply flex items-center gap-4 h-10 overflow-hidden whitespace-nowrap text-ellipsis;
 
           &:hover {
-            @apply opacity-100;
-
             .text {
               @apply text-white;
             }
@@ -21,18 +18,33 @@
         }
 
         .icon {
-          @apply w-6 h-6 flex items-center justify-center flex-shrink-0;
+          @apply opacity-70 w-6 h-6 flex items-center justify-center flex-shrink-0;
+        }
+
+        .icon:hover {
+          @apply opacity-100;
+        }
+
+        .icon:hover {
+          @apply transition-all duration-200;
+
+          & ~ .text {
+            @apply opacity-100;
+          }
         }
 
         .text {
-          @apply text-gray-700 text-[.8125rem] font-bold text-ellipsis overflow-hidden;
+          @apply opacity-70 text-gray-700 text-[.8125rem] font-bold text-ellipsis overflow-hidden transition-all duration-200;
+          @apply hover:text-white hover:transition-colors hover:duration-200 hover:opacity-100;
         }
 
         &.--active {
-          @apply opacity-100;
+          .icon {
+            @apply opacity-100;
+          }
 
           .text {
-            @apply text-white;
+            @apply text-white opacity-100;
           }
         }
       }

@@ -3,8 +3,9 @@ import InstallApp from 'components/WebPlayer/Sidebar/InstallApp';
 import NavigationSection from 'components/WebPlayer/Sidebar/NavigationSection';
 import UserPlaylists from 'components/WebPlayer/Sidebar/UserPlaylists';
 import useSidebarWidth from 'hooks/useSidebarWidth';
-import './style.scss';
+import { Link } from 'react-router-dom';
 import useChildrenHeight from '../../../../hooks/useChildrenHeight';
+import './style.scss';
 
 const Sidebar = () => {
   const { resizerRef, isResizing } = useSidebarWidth();
@@ -14,10 +15,14 @@ const Sidebar = () => {
     <>
       <aside ref={childrenRefs.sidebarRef} className={`sidebar-container${isResizing ? ' -resizing' : ''}`}>
         <div ref={childrenRefs.logoRef as React.RefObject<HTMLDivElement>} className="logo-container">
-          <LogoImg />
+          <Link to={'/player'}>
+            <LogoImg />
+          </Link>
         </div>
         <NavigationSection navigationSectionRef={childrenRefs.navigationRef as React.RefObject<HTMLDivElement>} />
+
         <hr ref={childrenRefs.dividerRef as React.RefObject<HTMLHRElement>} className="--divider" />
+
         <UserPlaylists
           containerRef={childrenRefs.userPlaylistsRef as React.RefObject<HTMLDivElement>}
           componentHeight={targetHeight}

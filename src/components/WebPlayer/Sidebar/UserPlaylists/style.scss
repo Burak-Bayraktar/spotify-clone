@@ -14,7 +14,13 @@
     }
 
     &__item {
-      @apply select-none max-w-[23.125rem] h-[var(--row-height)];
+      @apply select-none h-[var(--row-height)];
+    }
+
+    &__item:hover {
+      .user-playlists__name {
+        @apply text-white;
+      }
     }
 
     &__name {

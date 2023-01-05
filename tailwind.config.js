@@ -72,7 +72,10 @@ module.exports = {
       },
       minWidth: {
         'web-player': SCRENN_RESOLUTIONS.MD,
-      }
+      },
+      transitionProperty: {
+        'bg-color': 'background-color',
+      },
     },
   },
   plugins: [],

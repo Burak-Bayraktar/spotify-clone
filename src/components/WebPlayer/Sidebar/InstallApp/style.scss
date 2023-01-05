@@ -1,8 +1,10 @@
 .web-player-container {
   .install-app {
     &-container {
-      @apply flex bottom-0 bg-black-default w-full h-10 left-0 gap-4 items-center;
-      @apply hover:cursor-pointer;
+      a {
+        @apply flex bg-black-default w-full h-10 gap-4 items-center;
+        @apply hover:cursor-pointer;
+      }
     }
 
     &-svg {

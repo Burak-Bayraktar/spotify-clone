@@ -1,5 +1,6 @@
 import InstallAppSvg from 'assets/svg/InstallApp';
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 type InstallAppProps = {
@@ -8,10 +9,12 @@ type InstallAppProps = {
 
 const InstallApp = (props: InstallAppProps) => (
   <div ref={props.elementRef} className="install-app-container">
-    <div className="install-app-svg">
-      <InstallAppSvg />
-    </div>
-    <div className="install-app-text">Install App</div>
+    <Link to="/download">
+      <div className="install-app-svg">
+        <InstallAppSvg />
+      </div>
+      <div className="install-app-text">Install App</div>
+    </Link>
   </div>
 );
 
