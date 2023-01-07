@@ -37,7 +37,7 @@
 
     .resizer {
       width: var(--sidebar-resizer-width);
-      @apply absolute right-0 top-0 h-full cursor-col-resize;
+      @apply absolute -right-[5px] top-0 h-full cursor-col-resize;
     }
 
     .resizer:hover {
