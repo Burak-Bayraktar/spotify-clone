@@ -6,12 +6,12 @@ const useTotalHeightOfElement = (props: { element: RefObject<HTMLElement> }) => 
 
   useEffect(() => {
     calculateElementHeight();
-  }, []);
-
-  useEffect(() => {
     window.addEventListener('resize', calculateElementHeight);
-    return () => window.removeEventListener('resize', calculateElementHeight);
-  }, [props.element.current]);
+
+    return () => {
+      window.removeEventListener('resize', calculateElementHeight);
+    };
+  }, []);
 
   const calculateElementHeight = () => {
     let height: number = 0;

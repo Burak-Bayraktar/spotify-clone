@@ -19,15 +19,15 @@ const Scrollable = (props: ScrollableProps) => {
     addScrollBarListeners();
 
     return () => {
-      props.elementRef?.removeEventListener('scroll', calcThumbAndTargetPositionOnScroll);
+      props.elementRef?.removeEventListener('scroll', calcThumbAndTargetPosition);
+      window.removeEventListener('resize', calcThumbAndTargetPosition);
       barRef.current?.removeEventListener('mousedown', subscribeMouseToCalcThumbAndTargetPosition);
       document.removeEventListener('mouseup', unsubscribeMouseToCalcThumbAndTargetPosition);
     };
   }, [props.elementRef, barRef.current]);
 
-  const calcThumbAndTargetPositionOnScroll = useCallback(() => {
+  const calcThumbAndTargetPosition = useCallback(() => {
     if (!props.elementRef) return;
-
     const { scrollTop } = props.elementRef;
     const { ratio } = calcMeasurementValues();
 
@@ -67,9 +67,10 @@ const Scrollable = (props: ScrollableProps) => {
   );
 
   const addScrollBarListeners = () => {
-    props.elementRef?.addEventListener('scroll', calcThumbAndTargetPositionOnScroll);
+    props.elementRef?.addEventListener('scroll', calcThumbAndTargetPosition);
     barRef.current?.addEventListener('mousedown', subscribeMouseToCalcThumbAndTargetPosition);
     document.addEventListener('mouseup', unsubscribeMouseToCalcThumbAndTargetPosition);
+    window.addEventListener('resize', calcThumbAndTargetPosition);
   };
 
   const subscribeMouseToCalcThumbAndTargetPosition = (e: MouseEvent) => {
