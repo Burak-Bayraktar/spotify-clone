@@ -5,8 +5,12 @@
     .logo-container {
       @apply flex mb-[1.125rem] pr-6;
 
+      a {
+        @apply flex items-center flex-shrink-[1] max-w-[131px] w-[28.75rem] h-10;
+      }
+
       svg {
-        @apply flex flex-shrink-[1] max-w-[131px] h-10;
+        @apply w-full;
       }
     }
 
