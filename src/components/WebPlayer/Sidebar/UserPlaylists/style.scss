@@ -15,7 +15,7 @@
     }
 
     &__item {
-      @apply select-none h-[var(--row-height)];
+      @apply h-[var(--row-height)];
     }
 
     &__item:hover {

@@ -11,6 +11,10 @@
     );
   grid-template-rows: 80px 1fr 90px;
 
+  * {
+    @apply select-none;
+  }
+
   .header-container {
     grid-column: 2;
     @apply bg-green-300;

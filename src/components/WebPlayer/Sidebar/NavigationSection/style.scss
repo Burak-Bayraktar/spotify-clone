@@ -3,8 +3,6 @@
     @apply flex flex-col gap-y-4 mb-2;
 
     .navigation-group {
-      @apply select-none;
-
       &__item {
         &,
         &__link {

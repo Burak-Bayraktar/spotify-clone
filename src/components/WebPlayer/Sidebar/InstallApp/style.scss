@@ -14,7 +14,7 @@
     }
 
     &-text {
-      @apply truncate text-[.8125rem] font-bold text-gray-700 select-none;
+      @apply truncate text-[.8125rem] font-bold text-gray-700;
       @apply md:text-sm;
     }
   }
