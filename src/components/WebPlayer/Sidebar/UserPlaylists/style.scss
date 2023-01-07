@@ -1,9 +1,9 @@
 .web-player-container {
   --row-height: 32px;
+  --min-height: calc(var(--row-height) * 3);
 
   .user-playlists {
     @apply whitespace-nowrap overflow-y-scroll pr-6 h-full;
-    scrollbar-width: 12px;
 
     &::-webkit-scrollbar {
       display: none;
@@ -11,6 +11,7 @@
 
     &-container {
       @apply h-full mt-2;
+      min-height: var(--min-height);
     }
 
     &__item {
