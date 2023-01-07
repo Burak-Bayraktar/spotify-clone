@@ -74,7 +74,7 @@ const UserPlaylists = (props: UserPlaylistProps) => {
             return (
               <li key={item.id} className="user-playlists__item">
                 <div className="user-playlists__name">
-                  <Link to={`playlist/${item.id}`}>{item.name}</Link>
+                  <Link to={`playlist?id=${item.id}`}>{item.name}</Link>
                 </div>
               </li>
             );

@@ -89,11 +89,11 @@ const NavigationSection = (props: NavigationSectionProps) => {
         {
           regularIcon: HomeIconSvgRegular,
           activeIcon: HomeIconSvgActive,
-          activeLink: '/player',
+          activeLink: '/player/home',
           text: 'Home',
           iconFill: '#FFFFFF',
           iconBgColor: 'transparent',
-          to: '.',
+          to: 'home',
         },
         {
           regularIcon: SearchIconRegularSvg,
