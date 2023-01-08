@@ -8,23 +8,72 @@ type ScrollableProps = {
 };
 
 const Scrollable = (props: ScrollableProps) => {
-  const barRef = useRef<HTMLDivElement>(null);
   const [top, setTop] = useState<number>(0);
   const [isBarActive, setIsBarActive] = useState<boolean>(false);
+  const [isBarVisible, setIsBarVisible] = useState<boolean>(false);
+
+  const barRef = useRef<HTMLDivElement>(null);
+  const scrollableRef = useRef<HTMLDivElement>(null);
+  const timeoutId = useRef<number>(0);
 
   let mouseYCoordRelativeToThumb = 0;
   let mouseYCoordRelativeToThumbRest = 0;
 
   useEffect(() => {
-    addScrollBarListeners();
-
+    props.elementRef?.addEventListener('scroll', calcThumbAndTargetPosition);
+    barRef.current?.addEventListener('mousedown', subscribeMouseMovementToCalcThumbAndTargetPosition);
+    document.addEventListener('mouseup', unsubscribeMouseToCalcThumbAndTargetPosition);
+    window.addEventListener('resize', calcThumbAndTargetPosition);
     return () => {
       props.elementRef?.removeEventListener('scroll', calcThumbAndTargetPosition);
-      window.removeEventListener('resize', calcThumbAndTargetPosition);
-      barRef.current?.removeEventListener('mousedown', subscribeMouseToCalcThumbAndTargetPosition);
+      barRef.current?.removeEventListener('mousedown', subscribeMouseMovementToCalcThumbAndTargetPosition);
       document.removeEventListener('mouseup', unsubscribeMouseToCalcThumbAndTargetPosition);
+      window.removeEventListener('resize', calcThumbAndTargetPosition);
     };
   }, [props.elementRef, barRef.current]);
+
+  useEffect(() => {
+    scrollableRef.current?.addEventListener('mouseenter', makeScrollBarVisible);
+    scrollableRef.current?.addEventListener('mouseleave', toggleScrollBarVisibility);
+
+    return () => {
+      scrollableRef.current?.removeEventListener('mouseenter', makeScrollBarVisible);
+      scrollableRef.current?.removeEventListener('mouseleave', toggleScrollBarVisibility);
+    };
+  }, [isBarActive, isBarVisible, timeoutId.current]);
+
+  const makeScrollBarVisible = () => {
+    setIsBarVisible(true);
+    clearTimeout(timeoutId.current);
+  };
+
+  const checkIfCursorOnTargetElement = (e: MouseEvent) => {
+    window.removeEventListener('mouseup', checkIfCursorOnTargetElement);
+
+    const isMouseInsideTargetElement = e
+      .composedPath()
+      .map((item) => {
+        return Boolean((item as HTMLElement).dataset?.identifier === 'scrollable');
+      })
+      .find((i) => i === true);
+
+    if (isMouseInsideTargetElement) {
+      return clearTimeout(timeoutId.current);
+    }
+
+    toggleScrollBarVisibility();
+  };
+
+  const toggleScrollBarVisibility = () => {
+    if (isBarActive) {
+      return clearTimeout(timeoutId.current);
+    }
+
+    makeScrollBarVisible();
+    timeoutId.current = setTimeout(() => {
+      setIsBarVisible(false);
+    }, 1000);
+  };
 
   const calcThumbAndTargetPosition = useCallback(() => {
     if (!props.elementRef) return;
@@ -51,7 +100,6 @@ const Scrollable = (props: ScrollableProps) => {
       setTop((prev) => {
         if (prev + e.movementY < 0) {
           props.elementRef.scrollTop = prev / ratio;
-
           return prev;
         }
 
@@ -67,20 +115,12 @@ const Scrollable = (props: ScrollableProps) => {
     [props.elementRef, barRef.current]
   );
 
-  const addScrollBarListeners = () => {
-    props.elementRef?.addEventListener('scroll', calcThumbAndTargetPosition);
-    barRef.current?.addEventListener('mousedown', subscribeMouseToCalcThumbAndTargetPosition);
-    document.addEventListener('mouseup', unsubscribeMouseToCalcThumbAndTargetPosition);
-    window.addEventListener('resize', calcThumbAndTargetPosition);
-  };
-
-  const subscribeMouseToCalcThumbAndTargetPosition = (e: MouseEvent) => {
+  const subscribeMouseMovementToCalcThumbAndTargetPosition = (e: MouseEvent) => {
     setIsBarActive(true);
 
     const rect = (e.target as HTMLDivElement).getBoundingClientRect();
     const height = getComputedStyle(e.target as HTMLDivElement).height;
 
-    const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
     const rest = Number(height.slice(0, -2)) - y;
@@ -89,6 +129,7 @@ const Scrollable = (props: ScrollableProps) => {
     mouseYCoordRelativeToThumbRest = rest;
 
     document?.addEventListener('mousemove', calcThumbAndTargetPositionOnMouseMove);
+    window.addEventListener('mouseup', checkIfCursorOnTargetElement);
   };
 
   const unsubscribeMouseToCalcThumbAndTargetPosition = () => {
@@ -136,10 +177,14 @@ const Scrollable = (props: ScrollableProps) => {
   };
 
   return (
-    <div className="scrollable" style={{ height: props.height }}>
+    <div data-identifier="scrollable" ref={scrollableRef} className="scrollable" style={{ height: props.height }}>
       {props.children}
       <div className="scroll-container" onClick={(e: React.MouseEvent) => scrollTheContentOnClickToBar(e)}>
-        <div ref={barRef} className={`scroll-bar ${isBarActive ? '-active' : ''}`} style={{ top }} />
+        <div
+          ref={barRef}
+          className={`scroll-bar ${isBarActive ? '-active' : ''} ${isBarVisible ? '' : '--invisible'}`}
+          style={{ top }}
+        />
       </div>
     </div>
   );
