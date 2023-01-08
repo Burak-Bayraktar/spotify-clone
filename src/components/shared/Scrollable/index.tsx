@@ -28,6 +28,7 @@ const Scrollable = (props: ScrollableProps) => {
 
   const calcThumbAndTargetPosition = useCallback(() => {
     if (!props.elementRef) return;
+
     const { scrollTop } = props.elementRef;
     const { ratio } = calcMeasurementValues();
 
@@ -95,6 +96,35 @@ const Scrollable = (props: ScrollableProps) => {
     document?.removeEventListener('mousemove', calcThumbAndTargetPositionOnMouseMove);
   };
 
+  const scrollTheContentOnClickToBar = (e: React.MouseEvent) => {
+    if (!barRef.current) return;
+
+    const { scrollHeight, scrollTop } = props.elementRef;
+    const { top: barTop, bottom: barBottom } = barRef.current.getBoundingClientRect();
+
+    if (e.clientY > barTop && e.clientY < barBottom) return;
+
+    let newTop: number = 0;
+    if (e.clientY > barTop) {
+      if (scrollTop + (e.clientY - barBottom) >= scrollHeight) {
+        newTop = props.elementRef.scrollHeight;
+      } else {
+        newTop = scrollTop + (e.clientY - barBottom);
+      }
+    }
+
+    if (e.clientY < barTop) {
+      if (scrollTop - (barTop - e.clientY) === 0) {
+        newTop = 0;
+      } else {
+        newTop = scrollTop - (barTop - e.clientY);
+      }
+    }
+
+    props.elementRef.scrollTop = newTop;
+    calcThumbAndTargetPosition();
+  };
+
   const calcMeasurementValues = () => {
     const { offsetHeight, scrollHeight } = props.elementRef;
 
@@ -108,7 +138,7 @@ const Scrollable = (props: ScrollableProps) => {
   return (
     <div className="scrollable" style={{ height: props.height }}>
       {props.children}
-      <div className="scroll-container">
+      <div className="scroll-container" onClick={(e: React.MouseEvent) => scrollTheContentOnClickToBar(e)}>
         <div ref={barRef} className={`scroll-bar ${isBarActive ? '-active' : ''}`} style={{ top }} />
       </div>
     </div>
