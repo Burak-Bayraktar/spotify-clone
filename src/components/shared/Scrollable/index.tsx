@@ -16,6 +16,8 @@ const Scrollable = (props: ScrollableProps) => {
   const barRef = useRef<HTMLDivElement>(null);
   const scrollableRef = useRef<HTMLDivElement>(null);
   const timeoutId = useRef<number>(0);
+  const preventScroll = useRef<boolean>(false);
+  const preventScrollTimeout = useRef<number>(0);
 
   let mouseYCoordRelativeToThumb = 0;
   let mouseYCoordRelativeToThumbRest = 0;
@@ -24,7 +26,6 @@ const Scrollable = (props: ScrollableProps) => {
     if (!props.elementRef) return;
 
     const { scrollHeight, offsetHeight } = props.elementRef;
-    console.log(scrollHeight, offsetHeight);
     setIsBarHidden(scrollHeight === offsetHeight);
   }, [props.elementRef]);
 
@@ -85,7 +86,7 @@ const Scrollable = (props: ScrollableProps) => {
   };
 
   const calcThumbAndTargetPosition = useCallback(() => {
-    if (!props.elementRef) return;
+    if (!props.elementRef || preventScroll.current) return;
 
     const { scrollTop, scrollHeight, offsetHeight } = props.elementRef;
 
@@ -108,6 +109,13 @@ const Scrollable = (props: ScrollableProps) => {
       if (e.clientY > thumbViewportBottom - mouseYCoordRelativeToThumbRest && e.movementY < 0) return;
 
       const { ratio, targetTop } = calcMeasurementValues();
+
+      preventScroll.current = true;
+
+      clearTimeout(preventScrollTimeout.current);
+      preventScrollTimeout.current = setTimeout(() => {
+        preventScroll.current = false;
+      }, 100);
 
       setTop((prev) => {
         if (prev + e.movementY < 0) {
