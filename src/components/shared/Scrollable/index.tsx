@@ -5,6 +5,7 @@ type ScrollableProps = {
   children: React.ReactNode;
   height: number | string;
   elementRef: HTMLElement;
+  isTargetDataFetched?: boolean;
 };
 
 const Scrollable = (props: ScrollableProps) => {
@@ -24,10 +25,10 @@ const Scrollable = (props: ScrollableProps) => {
 
   useEffect(() => {
     if (!props.elementRef) return;
-
     const { scrollHeight, offsetHeight } = props.elementRef;
+
     setIsBarHidden(scrollHeight === offsetHeight);
-  }, [props.elementRef]);
+  }, [props.isTargetDataFetched]);
 
   useEffect(() => {
     props.elementRef?.addEventListener('scroll', calcThumbAndTargetPosition);
@@ -53,6 +54,7 @@ const Scrollable = (props: ScrollableProps) => {
   }, [isBarActive, isBarVisible, timeoutId.current]);
 
   const makeScrollBarVisible = () => {
+    console.log('sa');
     setIsBarVisible(true);
     clearTimeout(timeoutId.current);
   };

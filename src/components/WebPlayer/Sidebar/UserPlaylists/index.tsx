@@ -67,7 +67,11 @@ const UserPlaylists = (props: UserPlaylistProps) => {
   }, []);
 
   return (
-    <Scrollable elementRef={playlistRef.current!} height={props.componentHeight}>
+    <Scrollable
+      elementRef={playlistRef.current!}
+      height={props.componentHeight}
+      isTargetDataFetched={Boolean(userPlaylists?.items.length)}
+    >
       <div ref={props.containerRef} className="user-playlists-container">
         <ul ref={playlistRef} className="user-playlists">
           {userPlaylists?.items.map((item) => {
