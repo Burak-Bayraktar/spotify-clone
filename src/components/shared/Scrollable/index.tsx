@@ -11,6 +11,7 @@ const Scrollable = (props: ScrollableProps) => {
   const [top, setTop] = useState<number>(0);
   const [isBarActive, setIsBarActive] = useState<boolean>(false);
   const [isBarVisible, setIsBarVisible] = useState<boolean>(false);
+  const [isBarHidden, setIsBarHidden] = useState<boolean>(false);
 
   const barRef = useRef<HTMLDivElement>(null);
   const scrollableRef = useRef<HTMLDivElement>(null);
@@ -18,6 +19,14 @@ const Scrollable = (props: ScrollableProps) => {
 
   let mouseYCoordRelativeToThumb = 0;
   let mouseYCoordRelativeToThumbRest = 0;
+
+  useEffect(() => {
+    if (!props.elementRef) return;
+
+    const { scrollHeight, offsetHeight } = props.elementRef;
+    console.log(scrollHeight, offsetHeight);
+    setIsBarHidden(scrollHeight === offsetHeight);
+  }, [props.elementRef]);
 
   useEffect(() => {
     props.elementRef?.addEventListener('scroll', calcThumbAndTargetPosition);
@@ -78,7 +87,10 @@ const Scrollable = (props: ScrollableProps) => {
   const calcThumbAndTargetPosition = useCallback(() => {
     if (!props.elementRef) return;
 
-    const { scrollTop } = props.elementRef;
+    const { scrollTop, scrollHeight, offsetHeight } = props.elementRef;
+
+    setIsBarHidden(scrollHeight === offsetHeight);
+
     const { ratio } = calcMeasurementValues();
 
     const scrollBarCurrentTop = scrollTop * ratio;
@@ -182,7 +194,9 @@ const Scrollable = (props: ScrollableProps) => {
       <div className="scroll-container" onClick={(e: React.MouseEvent) => scrollTheContentOnClickToBar(e)}>
         <div
           ref={barRef}
-          className={`scroll-bar ${isBarActive ? '-active' : ''} ${isBarVisible ? '' : '--invisible'}`}
+          className={`scroll-bar ${isBarActive ? '-active' : ''} ${isBarVisible ? '' : '--invisible'} ${
+            isBarHidden ? 'hidden' : 'block'
+          }`}
           style={{ top }}
         />
       </div>
