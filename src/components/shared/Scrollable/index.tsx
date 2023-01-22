@@ -54,7 +54,6 @@ const Scrollable = (props: ScrollableProps) => {
   }, [isBarActive, isBarVisible, timeoutId.current]);
 
   const makeScrollBarVisible = () => {
-    console.log('sa');
     setIsBarVisible(true);
     clearTimeout(timeoutId.current);
   };

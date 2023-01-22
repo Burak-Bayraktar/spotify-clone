@@ -9,7 +9,7 @@
   grid-template-columns: calc(var(--width) + var(--sidebar-resizer-width)) calc(
       100% - calc(var(--width) + var(--sidebar-resizer-width))
     );
-  grid-template-rows: 80px 1fr 90px;
+  grid-template-rows: 64px 1fr 90px;
 
   * {
     @apply select-none;
@@ -17,7 +17,6 @@
 
   .header-container {
     grid-column: 2;
-    @apply bg-green-300;
   }
 
   .main-section-container {
