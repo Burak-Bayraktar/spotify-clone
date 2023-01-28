@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-type HistoryTrack = {
-  id: number;
-  url: string;
-};
-
+type HistoryTrack = { id: number; url: string };
 type NavigationState = 'NO_ACTION' | 'BACK' | 'FORWARD';
+type NavigateButtonName = 'back' | 'forward';
+
+const FIRST_ROUTE_ID: number = 1;
 
 const useHistoryTrack = () => {
   const [historyTracker, setHistoryTracker] = useState<HistoryTrack[]>([]);
@@ -14,7 +13,7 @@ const useHistoryTrack = () => {
   const navigate = useNavigate();
 
   const isFirstRender = useRef<boolean>(true);
-  const currentPageId = useRef<number>(1);
+  const currentPageId = useRef<number>(FIRST_ROUTE_ID);
   let navigationState = useRef<NavigationState>('NO_ACTION');
   const currentUrl = pathname + search;
 
@@ -41,6 +40,33 @@ const useHistoryTrack = () => {
     });
   }, [currentUrl]);
 
+  const [buttonActiveState, setButtonActiveState] = useState<Record<NavigateButtonName, boolean>>({
+    back: false,
+    forward: false,
+  });
+
+  useEffect(() => {
+    if (!historyTracker.length) return;
+
+    if (currentPageId.current < historyTracker.length) {
+      setButtonActiveState(() => {
+        return { back: true, forward: true };
+      });
+    }
+
+    if (currentPageId.current === historyTracker.length) {
+      setButtonActiveState(() => {
+        return { back: true, forward: false };
+      });
+    }
+
+    if (currentPageId.current === FIRST_ROUTE_ID) {
+      setButtonActiveState(() => {
+        return { back: false, forward: true };
+      });
+    }
+  }, [currentPageId.current]);
+
   const goBack = () => {
     if (currentPageId.current - 1 > 0) {
       currentPageId.current -= 1;
@@ -62,8 +88,9 @@ const useHistoryTrack = () => {
   };
 
   return {
-    currentPageId,
+    currentPageId: currentPageId.current,
     historyTracker,
+    buttonActiveState,
     goBack,
     goForward,
   };

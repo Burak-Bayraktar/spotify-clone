@@ -9,10 +9,18 @@
     @apply px-8 py-4 flex justify-between items-center;
 
     .navigation-button {
-      @apply opacity-60 w-8 h-8 rounded-full bg-black-default bg-opacity-70 inline-flex justify-center items-center;
+      @apply w-8 h-8 rounded-full bg-black-default bg-opacity-70 inline-flex justify-center items-center;
 
       &-container {
         @apply flex gap-4;
+      }
+
+      &.--active {
+        @apply opacity-100;
+      }
+
+      &.--inactive {
+        @apply opacity-60 cursor-not-allowed;
       }
     }
 

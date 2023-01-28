@@ -10,18 +10,23 @@ type HeaderProps = {
 };
 
 const Header = ({ children }: HeaderProps) => {
+  const { goBack, goForward, buttonActiveState } = useHistoryTrack();
   const { display_name, images } = useUser();
   const [userAvatarUrl] = images;
-
-  const { goBack, goForward } = useHistoryTrack();
 
   return (
     <header className="header-container">
       <div className="navigation-button-container">
-        <button className="navigation-button back-button" onClick={goBack}>
+        <button
+          className={`navigation-button back-button ${buttonActiveState.back ? '--active' : '--inactive'}`}
+          onClick={goBack}
+        >
           <HeaderBackButton />
         </button>
-        <button className="navigation-button forward-button" onClick={goForward}>
+        <button
+          className={`navigation-button forward-button ${buttonActiveState.forward ? '--active' : '--inactive'}`}
+          onClick={goForward}
+        >
           <HeaderForwardButton />
         </button>
       </div>
