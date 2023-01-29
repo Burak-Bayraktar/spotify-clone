@@ -1,18 +1,18 @@
-import SpotifySpinner from 'assets/spinners/spotify-spinner';
+import { useMemo, lazy, Suspense } from 'react';
 import { useUser } from 'contexts/UserContext';
 import { useUserOs } from 'hooks/useUserOs';
-import { lazy, Suspense } from 'react';
 import { EOSTypes } from 'types/WebSite/DownloadPage';
+import SpotifySpinner from 'assets/spinners/spotify-spinner';
 import './style.scss';
 
 const WebPlayerLayout = () => {
   const { loading } = useUser();
   const { userDeviceType } = useUserOs();
 
-  const WebPlayerHeader = lazy(() => import('views/Layout/WebPlayer/Header'));
-  const WebPlayerSidebar = lazy(() => import('views/Layout/WebPlayer/Sidebar'));
-  const MainSection = lazy(() => import('views/Layout/WebPlayer/Main'));
-  const NowPlayingBar = lazy(() => import('views/Layout/WebPlayer/NowPlayingBar'));
+  const WebPlayerHeader = useMemo(() => lazy(() => import('views/Layout/WebPlayer/Header')), []);
+  const WebPlayerSidebar = useMemo(() => lazy(() => import('views/Layout/WebPlayer/Sidebar')), []);
+  const MainSection = useMemo(() => lazy(() => import('views/Layout/WebPlayer/Main')), []);
+  const NowPlayingBar = useMemo(() => lazy(() => import('views/Layout/WebPlayer/NowPlayingBar')), []);
 
   if (loading) {
     return <SpotifySpinner />;
