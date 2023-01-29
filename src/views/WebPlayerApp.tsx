@@ -1,18 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import WebPlayerLayout from 'views/Layout/WebPlayer';
-import PlayerHomePage from './Content/WebPlayerPages/HomePage';
-import PlaylistPage from './Content/WebPlayerPages/PlaylistPage';
-import SearchPage from './Content/WebPlayerPages/SearchPage';
-import UserLibrary from './Content/WebPlayerPages/UserLibrary';
+import { webPlayerRoutes } from './routes';
 
 const WebPlayerApp = () => {
+  const { layout, home, playlist, search, collection } = webPlayerRoutes;
   return (
     <Routes>
-      <Route path="/player" element={<WebPlayerLayout />}>
-        <Route path="home" element={<PlayerHomePage />} />
-        <Route path="playlist" element={<PlaylistPage />} />
-        <Route path="search" element={<SearchPage />} />
-        <Route path="collection" element={<UserLibrary />} />
+      <Route path={layout.path} element={<layout.element />}>
+        <Route path={home.path} element={<home.element />} />
+        <Route path={playlist.path} element={<playlist.element />} />
+        <Route path={search.path} element={<search.element />} />
+        <Route path={collection.path} element={<collection.element />} />
       </Route>
     </Routes>
   );

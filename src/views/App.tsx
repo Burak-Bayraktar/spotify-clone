@@ -1,20 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import LoginPage from 'views/Auth/Login';
-import HomePage from 'views/Content/WebSitePages/HomePage';
-import RedirectPage from 'views/Content/WebSitePages/RedirectPage';
-import PremiumPage from 'views/Content/WebSitePages/PremiumPage';
-import WebSiteLayout from 'views/Layout/WebSite';
-import DownloadPage from 'views/Content/WebSitePages/DownloadPage';
+import { webSiteRoutes } from './routes';
 
 function WebSiteApp() {
+  const { layout, home, premium, download, redirect, login } = webSiteRoutes;
   return (
     <Routes>
-      <Route path="/" element={<WebSiteLayout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="premium" element={<PremiumPage />} />
-        <Route path="download" element={<DownloadPage />} />
-        <Route path="redirect" element={<RedirectPage />} />
-        <Route path="login" element={<LoginPage />} />
+      <Route path={layout.path} element={<layout.element />}>
+        <Route path={home.path} element={<home.element />} />
+        <Route path={premium.path} element={<premium.element />} />
+        <Route path={download.path} element={<download.element />} />
+        <Route path={redirect.path} element={<redirect.element />} />
+        <Route path={login.path} element={<login.element />} />
       </Route>
     </Routes>
   );
