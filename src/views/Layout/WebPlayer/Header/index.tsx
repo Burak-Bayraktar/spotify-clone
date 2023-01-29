@@ -3,13 +3,14 @@ import HeaderForwardButton from 'assets/svg/Player_Header/HeaderForwardButton';
 import UserMenuOpener from 'assets/svg/Player_Header/UserMenuOpener';
 import { useUser } from 'contexts/UserContext';
 import useHistoryTrack from 'hooks/useHistoryTrack';
+import { Suspense } from 'react';
 import './style.scss';
 
 type HeaderProps = {
-  children: React.ReactNode;
+  Children: React.LazyExoticComponent<() => JSX.Element> | undefined;
 };
 
-const Header = ({ children }: HeaderProps) => {
+const Header = ({ Children }: HeaderProps) => {
   const { goBack, goForward, buttonActiveState } = useHistoryTrack();
   const { display_name, images } = useUser();
   const [userAvatarUrl] = images;
@@ -30,7 +31,13 @@ const Header = ({ children }: HeaderProps) => {
           <HeaderForwardButton />
         </button>
       </div>
-      <div className="child-container">{children}</div>
+      <div className="child-container">
+        {Children && (
+          <Suspense fallback="">
+            <Children />
+          </Suspense>
+        )}
+      </div>
       <div className="user-button-container">
         <div className="user-avatar">
           <img src={userAvatarUrl.url} alt="user-avatar" />

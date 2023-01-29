@@ -2,12 +2,14 @@ import { useMemo, lazy, Suspense } from 'react';
 import { useUser } from 'contexts/UserContext';
 import { useUserOs } from 'hooks/useUserOs';
 import { EOSTypes } from 'types/WebSite/DownloadPage';
+import useGetActiveSubComponent from './Header/hooks/useGetActiveSubComponent';
 import SpotifySpinner from 'assets/spinners/spotify-spinner';
 import './style.scss';
 
 const WebPlayerLayout = () => {
   const { loading } = useUser();
   const { userDeviceType } = useUserOs();
+  const { activeSubHeaderComponent } = useGetActiveSubComponent();
 
   const WebPlayerHeader = useMemo(() => lazy(() => import('views/Layout/WebPlayer/Header')), []);
   const WebPlayerSidebar = useMemo(() => lazy(() => import('views/Layout/WebPlayer/Sidebar')), []);
@@ -22,7 +24,7 @@ const WebPlayerLayout = () => {
     return (
       <Suspense fallback={<SpotifySpinner />}>
         <div className="web-player-container">
-          <WebPlayerHeader />
+          <WebPlayerHeader Children={activeSubHeaderComponent} />
           <WebPlayerSidebar />
           <MainSection />
           <NowPlayingBar />
