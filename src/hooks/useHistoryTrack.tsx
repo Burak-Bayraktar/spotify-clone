@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-type HistoryTrack = { id: number; url: string };
+type HistoryTrack = { id: number; url: { pathname: string; search: string } };
 type NavigationState = 'NO_ACTION' | 'BACK' | 'FORWARD';
 type NavigateButtonName = 'back' | 'forward';
 
@@ -29,14 +29,16 @@ const useHistoryTrack = () => {
     }
 
     setHistoryTracker((prev) => {
+      const lastSavedPathname = prev[prev.length - 1]?.url.pathname;
+      const overwriteLastItem = lastSavedPathname === pathname;
+
+      if (overwriteLastItem) {
+        const newArr = [...prev].slice(0, -1);
+        return createNewHistoryTrackerArray(newArr);
+      }
+
       currentPageId.current = prev.length + 1;
-      return [
-        ...prev,
-        {
-          id: prev.length + 1,
-          url: pathname + search,
-        },
-      ];
+      return createNewHistoryTrackerArray(prev);
     });
   }, [currentUrl]);
 
@@ -67,13 +69,23 @@ const useHistoryTrack = () => {
     }
   }, [currentPageId.current]);
 
+  const createNewHistoryTrackerArray = (previousArray: HistoryTrack[]) => {
+    return [
+      ...previousArray,
+      {
+        id: previousArray.length + 1,
+        url: { pathname, search },
+      },
+    ];
+  };
+
   const goBack = () => {
     if (currentPageId.current - 1 > 0) {
       currentPageId.current -= 1;
       const prevPage = historyTracker.find((item) => item.id === currentPageId.current);
       navigationState.current = 'BACK';
 
-      navigate(prevPage?.url!);
+      navigate({ pathname: prevPage?.url.pathname, search: prevPage?.url.search });
     }
   };
 
@@ -83,7 +95,7 @@ const useHistoryTrack = () => {
       const prevPage = historyTracker.find((item) => item.id === currentPageId.current);
       navigationState.current = 'FORWARD';
 
-      navigate(prevPage?.url!);
+      navigate({ pathname: prevPage?.url.pathname, search: prevPage?.url.search });
     }
   };
 
