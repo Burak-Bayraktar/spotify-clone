@@ -1,0 +1,22 @@
+.web-player-container {
+  $bar-width: 364px;
+  .search-bar {
+    @apply flex flex-col relative;
+    flex-basis: $bar-width;
+
+    &-input {
+      @apply flex rounded-[500px] grow-0 pl-12 text-black-default;
+      flex-basis: $bar-width;
+    }
+
+    &-input::placeholder {
+      @apply font-normal text-sm text-gray-900 pr-12 py-[6px];
+    }
+
+    .input-icons {
+      @apply flex items-center px-3 h-full pointer-events-none absolute top-0;
+      width: $bar-width;
+      flex-basis: $bar-width;
+    }
+  }
+}

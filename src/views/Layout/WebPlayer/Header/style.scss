@@ -24,6 +24,10 @@
       }
     }
 
+    .child-container {
+      @apply flex grow pl-4 pr-8 h-10;
+    }
+
     .user-button-container {
       @apply flex justify-center items-center gap-2 h-8 p-[2px];
 

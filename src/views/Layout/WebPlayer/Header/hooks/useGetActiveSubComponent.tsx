@@ -4,7 +4,7 @@ import { PlayerViewNames, PlayerViewPaths } from 'views/routes';
 
 const useGetActiveSubComponent = () => {
   const { pathname } = useLocation();
-  const SearchBar = useMemo(() => lazy(() => import('components/WebPlayer/Header/sub-components/SearchBar')), []);
+  const SearchBar = useMemo(() => lazy(() => import('components/WebPlayer/Header/sub-components/SearchBar/index')), []);
   const PlaylistFilters = useMemo(
     () => lazy(() => import('components/WebPlayer/Header/sub-components/PlaylistFilters')),
     []
