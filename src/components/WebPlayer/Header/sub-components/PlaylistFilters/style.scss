@@ -1,0 +1,16 @@
+.web-player-container {
+  .playlist-filters {
+    @apply flex gap-2;
+
+    &-item {
+      @apply rounded;
+      a {
+        @apply font-bold text-sm inline-block py-[0.625rem] px-4  cursor-pointer;
+      }
+
+      &.--active {
+        @apply bg-gray-125;
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ const useGetActiveSubComponent = () => {
   const { pathname } = useLocation();
   const SearchBar = useMemo(() => lazy(() => import('components/WebPlayer/Header/sub-components/SearchBar/index')), []);
   const PlaylistFilters = useMemo(
-    () => lazy(() => import('components/WebPlayer/Header/sub-components/PlaylistFilters')),
+    () => lazy(() => import('components/WebPlayer/Header/sub-components/PlaylistFilters/index')),
     []
   );
 
@@ -23,7 +23,7 @@ const useGetActiveSubComponent = () => {
     const headerSubcomponent:
       | { path: PlayerViewPaths; element: React.LazyExoticComponent<() => JSX.Element> }
       | undefined = Object.values(headerSubComponents).find((item) => {
-      return `${base}/${item.path}` === pathname;
+      return pathname.startsWith(`${base}/${item.path}`);
     });
 
     if (headerSubcomponent) {
