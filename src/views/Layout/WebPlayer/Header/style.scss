@@ -1,5 +1,5 @@
 .web-player-container {
-  --background-base: rgb(56, 56, 56);
+  --background-base: theme(colors.gray.150);
 
   .header-container {
     background-color: var(--background-base);
