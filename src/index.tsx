@@ -4,6 +4,7 @@ import 'index.scss';
 import WebSiteApp from 'views/App';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from 'contexts/UserContext';
+import { HistoryProvider } from 'contexts/HistoryContext';
 import WebPlayerApp from 'views/WebPlayerApp';
 
 const container = document.getElementById('root');
@@ -13,7 +14,9 @@ root.render(
     <UserProvider>
       <BrowserRouter>
         <WebSiteApp />
-        <WebPlayerApp />
+        <HistoryProvider>
+          <WebPlayerApp />
+        </HistoryProvider>
       </BrowserRouter>
     </UserProvider>
   </React.StrictMode>
