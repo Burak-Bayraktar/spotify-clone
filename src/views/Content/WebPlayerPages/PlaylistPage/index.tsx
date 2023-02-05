@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useHistory } from 'contexts/HistoryContext';
+import { useSearchParams } from 'react-router-dom';
 
 const PlaylistPage = () => {
   const [searchParams] = useSearchParams();
   const playlistId = searchParams.get('id');
+  const appHistory = useHistory([playlistId]);
 
   return <div>PlaylistPage = {playlistId}</div>;
 };

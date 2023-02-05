@@ -1,8 +1,8 @@
 import HeaderBackButton from 'assets/svg/Player_Header/HeaderBackButton';
 import HeaderForwardButton from 'assets/svg/Player_Header/HeaderForwardButton';
 import UserMenuOpener from 'assets/svg/Player_Header/UserMenuOpener';
+import { useHistory } from 'contexts/HistoryContext';
 import { useUser } from 'contexts/UserContext';
-import useHistoryTrack from 'hooks/useHistoryTrack';
 import { Suspense } from 'react';
 import './style.scss';
 
@@ -11,7 +11,7 @@ type HeaderProps = {
 };
 
 const Header = ({ Children }: HeaderProps) => {
-  const { goBack, goForward, buttonActiveState } = useHistoryTrack();
+  const { goBack, goForward, buttonActiveState } = useHistory()!;
   const { display_name, images } = useUser();
   const [userAvatarUrl] = images;
 
