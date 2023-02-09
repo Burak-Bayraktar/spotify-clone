@@ -8,7 +8,7 @@ type HistoryTrack = {
   trackArray: Array<HistoryObject>;
   goBack: () => void;
   goForward: () => void;
-  addToHistoryTrack: () => void;
+  addToHistoryTrack: (overwriteLastItem: boolean) => void;
   currentPageId: number;
   buttonActiveState: Record<NavigateButtonName, boolean>;
 };
@@ -64,18 +64,18 @@ export const HistoryProvider: React.FC<ProviderProps> = ({ children }) => {
     ];
   };
 
-  const addToHistoryTrack = () => {
-    setHistoryTracker((prev) => {
-      const lastSavedPathname = prev[prev.length - 1]?.url.pathname;
-      const overwriteLastItem = lastSavedPathname === pathname;
+  const addToHistoryTrack = (overwriteLastItem: boolean) => {
+    setHistoryTracker(() => {
+      const lastSavedPathname = historyTracker[historyTracker.length - 1]?.url.pathname;
+      const areLastItemAndCurrentSame = lastSavedPathname === pathname;
 
-      if (overwriteLastItem) {
-        const newArr = [...prev].slice(0, -1);
+      if (overwriteLastItem && areLastItemAndCurrentSame) {
+        const newArr = [...historyTracker].slice(0, -1);
         return createNewHistoryTrackerArray(newArr);
       }
 
-      currentPageId.current = prev.length + 1;
-      return createNewHistoryTrackerArray(prev);
+      currentPageId.current = historyTracker.length + 1;
+      return createNewHistoryTrackerArray(historyTracker);
     });
   };
 
@@ -84,10 +84,7 @@ export const HistoryProvider: React.FC<ProviderProps> = ({ children }) => {
       currentPageId.current -= 1;
       const prevPage = historyTracker.find((item) => item.id === currentPageId.current);
 
-      navigate(
-        { pathname: prevPage?.url.pathname, search: prevPage?.url.search },
-        { state: { navigateState: 'back' } }
-      );
+      navigate({ pathname: prevPage?.url.pathname, search: prevPage?.url.search }, { state: { navigateState: 'back' } });
     }
   };
 
@@ -96,10 +93,7 @@ export const HistoryProvider: React.FC<ProviderProps> = ({ children }) => {
       currentPageId.current += 1;
       const prevPage = historyTracker.find((item) => item.id === currentPageId.current);
 
-      navigate(
-        { pathname: prevPage?.url.pathname, search: prevPage?.url.search },
-        { state: { navigateState: 'forward' } }
-      );
+      navigate({ pathname: prevPage?.url.pathname, search: prevPage?.url.search }, { state: { navigateState: 'forward' } });
     }
   };
 
@@ -112,18 +106,4 @@ export const HistoryProvider: React.FC<ProviderProps> = ({ children }) => {
     addToHistoryTrack,
   };
   return <BrowserHistoryContext.Provider value={values}>{children}</BrowserHistoryContext.Provider>;
-};
-
-export const useHistory = (dependencies: Array<any> = []) => {
-  const appHistory = useContext(BrowserHistoryContext);
-  const location = useLocation();
-
-  useEffect(() => {
-    const state = location.state as 'back' | 'forward' | null;
-    if (appHistory && !state) {
-      appHistory.addToHistoryTrack();
-    }
-  }, dependencies);
-
-  return appHistory;
 };

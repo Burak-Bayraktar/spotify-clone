@@ -1,4 +1,4 @@
-import { useHistory } from 'contexts/HistoryContext';
+import useHistory from 'hooks/useHistory';
 
 const PlayerHomePage = () => {
   useHistory();

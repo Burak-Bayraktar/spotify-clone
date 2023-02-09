@@ -1,4 +1,4 @@
-import { useHistory } from 'contexts/HistoryContext';
+import useHistory from 'hooks/useHistory';
 import { useLocation } from 'react-router-dom';
 
 const SearchPage = () => {
@@ -7,7 +7,7 @@ const SearchPage = () => {
   const searchParams = new URLSearchParams(search);
   const searchKey = searchParams.get('key');
 
-  useHistory([search]);
+  useHistory([search], true);
 
   return <div>Search Key: {searchKey}</div>;
 };
