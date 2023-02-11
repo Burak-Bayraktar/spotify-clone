@@ -15,7 +15,7 @@ const Sidebar = () => {
     <>
       <aside ref={childrenRefs.sidebarRef} className={`sidebar-container${isResizing ? ' -resizing' : ''}`}>
         <div ref={childrenRefs.logoRef as React.RefObject<HTMLDivElement>} className="logo-container">
-          <Link to={'/player'}>
+          <Link to="/player/home">
             <LogoImg />
           </Link>
         </div>
@@ -23,10 +23,7 @@ const Sidebar = () => {
 
         <hr ref={childrenRefs.dividerRef as React.RefObject<HTMLHRElement>} className="--divider" />
 
-        <UserPlaylists
-          containerRef={childrenRefs.userPlaylistsRef as React.RefObject<HTMLDivElement>}
-          componentHeight={targetHeight}
-        />
+        <UserPlaylists containerRef={childrenRefs.userPlaylistsRef as React.RefObject<HTMLDivElement>} componentHeight={targetHeight} />
         <InstallApp elementRef={childrenRefs.installAppRef as React.RefObject<HTMLDivElement>} />
         <span ref={resizerRef} className="resizer" />
       </aside>

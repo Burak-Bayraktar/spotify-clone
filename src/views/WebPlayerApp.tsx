@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import CollectionPage from './Content/WebPlayerPages/CollectionPage';
 import { webPlayerRoutes } from './routes';
 
@@ -7,6 +7,7 @@ const WebPlayerApp = () => {
   return (
     <Routes>
       <Route path={layout.path} element={<layout.element />}>
+        <Route path="/player" element={<Navigate to="/player/home" />} />
         <Route path={home.path} element={<home.element />} />
         <Route path={playlist.path} element={<playlist.element />} />
         <Route path={search.path} element={<search.element />} />
