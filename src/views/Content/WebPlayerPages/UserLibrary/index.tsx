@@ -1,17 +1,23 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { PlayerViewPaths } from 'views/routes';
+import { BasePlayerViewPaths } from 'types/WebPlayer/routeTypes';
+import { filters } from 'types/WebPlayer/UserLibrary/types';
+
 const UserLibrary = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const collectionBasePath: PlayerViewPaths = 'collection';
-    const playerBasePath: PlayerViewPaths = '/player';
+    const collectionBasePath: BasePlayerViewPaths = 'collection';
+    const playerBasePath: BasePlayerViewPaths = '/player';
 
-    if (location.pathname + location.search === `${playerBasePath}/${collectionBasePath}`) {
+    const collectionBaseUrl = `${playerBasePath}/${collectionBasePath}`;
+    const activePageUrl = location.pathname + location.search;
+
+    if (activePageUrl === collectionBaseUrl) {
+      const firstFilterPath = `${collectionBaseUrl}/${filters[0]}`;
       navigate({
-        pathname: '/player/collection/playlists',
+        pathname: firstFilterPath,
       });
     }
   }, [location.pathname + location.search]);
