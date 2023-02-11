@@ -11,13 +11,11 @@ import RedirectPage from 'views/Content/WebSitePages/RedirectPage';
 import PremiumPage from 'views/Content/WebSitePages/PremiumPage';
 import DownloadPage from 'views/Content/WebSitePages/DownloadPage';
 
-type PlayerViewNames = 'layout' | 'home' | 'playlist' | 'search' | 'collection';
-type PlayerViewPaths = '/player' | 'home' | 'playlist' | 'search' | 'collection';
-type PlayerRoutes = Record<PlayerViewNames, { path: PlayerViewPaths; element: () => JSX.Element }>;
+import { BasePlayerViewNames, BasePlayerViewPaths } from 'types/WebPlayer/routeTypes';
+import { WebsiteViewNames, WebsiteViewPaths } from 'types/WebSite/routeTypes';
 
-type WebsiteViewNames = 'layout' | 'home' | 'premium' | 'download' | 'redirect' | 'login';
-type WebsiteViewPaths = '/' | 'premium' | 'download' | 'redirect' | 'login';
 type WebsiteRoutes = Record<WebsiteViewNames, { path: WebsiteViewPaths; element: () => JSX.Element }>;
+type PlayerRoutes = Record<BasePlayerViewNames, { path: BasePlayerViewPaths; element: () => JSX.Element }>;
 
 const webSiteRoutes: WebsiteRoutes = {
   layout: { path: '/', element: WebSiteLayout },
@@ -37,11 +35,4 @@ const webPlayerRoutes: PlayerRoutes = {
 };
 
 export { webSiteRoutes, webPlayerRoutes };
-export type {
-  WebsiteViewNames,
-  WebsiteViewPaths,
-  WebsiteRoutes,
-  PlayerViewNames,
-  PlayerViewPaths,
-  PlayerRoutes as Routes,
-};
+export type { WebsiteRoutes, PlayerRoutes as Routes };

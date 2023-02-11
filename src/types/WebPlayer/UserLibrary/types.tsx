@@ -1,4 +1,6 @@
-type RequiredFilters = 'playlists' | 'podcasts' | 'albums' | 'artists';
+const filters = ['playlists', 'podcasts', 'albums', 'artists'] as const;
+
+type RequiredFilters = typeof filters[number];
 
 type UserLibraryFilters = {
   [key in RequiredFilters]: {
@@ -10,3 +12,4 @@ type UserLibraryFilters = {
 };
 
 export type { RequiredFilters, UserLibraryFilters };
+export { filters };
