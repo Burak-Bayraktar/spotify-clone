@@ -1,0 +1,11 @@
+.popup-menu {
+  @apply absolute w-full h-full;
+
+  &[data-menu-open='true'] {
+    @apply block;
+  }
+
+  &[data-menu-open='false'] {
+    @apply hidden;
+  }
+}
