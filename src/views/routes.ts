@@ -3,6 +3,8 @@ import PlayerHomePage from 'views/Content/WebPlayerPages/HomePage';
 import PlaylistPage from 'views/Content/WebPlayerPages/PlaylistPage';
 import SearchPage from 'views/Content/WebPlayerPages/SearchPage';
 import UserLibrary from 'views/Content/WebPlayerPages/UserLibrary';
+import UserProfile from 'views/Content/WebPlayerPages/UserProfile';
+import Preferences from 'views/Content/WebPlayerPages/Preferences';
 
 import WebSiteLayout from 'views/Layout/WebSite';
 import LoginPage from 'views/Auth/Login';
@@ -32,6 +34,8 @@ const webPlayerRoutes: PlayerRoutes = {
   playlist: { path: 'playlist', element: PlaylistPage },
   search: { path: 'search', element: SearchPage },
   collection: { path: 'collection', element: UserLibrary },
+  user: { path: 'user/:userId', element: UserProfile },
+  preferences: { path: 'preferences', element: Preferences },
 };
 
 export { webSiteRoutes, webPlayerRoutes };

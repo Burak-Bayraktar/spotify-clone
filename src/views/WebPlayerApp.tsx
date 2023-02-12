@@ -3,7 +3,7 @@ import CollectionPage from './Content/WebPlayerPages/CollectionPage';
 import { webPlayerRoutes } from './routes';
 
 const WebPlayerApp = () => {
-  const { layout, home, playlist, search, collection } = webPlayerRoutes;
+  const { layout, home, playlist, search, collection, user, preferences } = webPlayerRoutes;
   return (
     <Routes>
       <Route path={layout.path} element={<layout.element />}>
@@ -14,6 +14,8 @@ const WebPlayerApp = () => {
         <Route path={collection.path} element={<collection.element />}>
           <Route path=":collectionType" element={<CollectionPage />} />
         </Route>
+        <Route path={user.path} element={<user.element />} />
+        <Route path={preferences.path} element={<preferences.element />} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,6 @@
 .web-player-container {
   .playlist-filters {
-    @apply flex gap-2;
+    @apply flex gap-2 pl-2;
 
     &-item {
       @apply rounded;

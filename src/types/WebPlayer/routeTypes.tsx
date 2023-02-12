@@ -1,7 +1,7 @@
 import { filters } from './UserLibrary/types';
 
-const playerViewNamesArray = ['layout', 'home', 'playlist', 'search', 'collection'] as const;
-const playerViewPathsArray = ['/player', 'home', 'playlist', 'search', 'collection'] as const;
+const playerViewNamesArray = ['layout', 'home', 'playlist', 'search', 'collection', 'user', 'preferences'] as const;
+const playerViewPathsArray = ['/player', 'home', 'playlist', 'search', 'collection', 'user/:userId', 'preferences'] as const;
 
 type BasePlayerViewNames = typeof playerViewNamesArray[number];
 type BasePlayerViewPaths = typeof playerViewPathsArray[number];
