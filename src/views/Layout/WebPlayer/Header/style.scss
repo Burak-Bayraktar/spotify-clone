@@ -6,13 +6,19 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0, var(--background-base) 100%),
       url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1IiBkPSJNMCAwaDMwMHYzMDBIMHoiLz48L3N2Zz4=);
 
-    @apply px-8 py-4 flex justify-between items-center;
+    @apply pl-4 pr-8 py-4 flex justify-between items-center;
+    @apply lg:pl-8;
 
     .navigation-button {
       @apply w-8 h-8 rounded-full bg-black-default bg-opacity-70 inline-flex justify-center items-center;
 
       &-container {
         @apply flex gap-4;
+      }
+
+      &.forward-button {
+        @apply hidden;
+        @apply lg:flex;
       }
 
       &.--active {
@@ -25,23 +31,7 @@
     }
 
     .child-container {
-      @apply flex grow pl-4 pr-8 h-10;
-    }
-
-    .user-button-container {
-      @apply flex justify-center items-center gap-2 h-8 p-[2px];
-
-      .user-avatar {
-        @apply w-7 h-7;
-
-        img {
-          @apply rounded-full;
-        }
-      }
-
-      .user-display-name {
-        @apply text-sm font-bold;
-      }
+      @apply flex grow pl-4 h-10;
     }
   }
 }

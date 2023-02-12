@@ -1,10 +1,9 @@
 import HeaderBackButton from 'assets/svg/Player_Header/HeaderBackButton';
 import HeaderForwardButton from 'assets/svg/Player_Header/HeaderForwardButton';
-import UserMenuOpener from 'assets/svg/Player_Header/UserMenuOpener';
 import useHistory from 'hooks/useHistory';
-import { useUser } from 'contexts/UserContext';
 import { Suspense } from 'react';
 import './style.scss';
+import UserButtonContainer from 'components/WebPlayer/Header/components/UserButtonContainer';
 
 type HeaderProps = {
   Children: React.LazyExoticComponent<() => JSX.Element> | undefined;
@@ -12,8 +11,6 @@ type HeaderProps = {
 
 const Header = ({ Children }: HeaderProps) => {
   const { goBack, goForward, buttonActiveState } = useHistory()!;
-  const { display_name, images } = useUser();
-  const [userAvatarUrl] = images;
 
   return (
     <header className="header-container">
@@ -32,13 +29,7 @@ const Header = ({ Children }: HeaderProps) => {
           </Suspense>
         )}
       </div>
-      <div className="user-button-container">
-        <div className="user-avatar">
-          <img src={userAvatarUrl.url} alt="user-avatar" />
-        </div>
-        <span className="user-display-name">{display_name}</span>
-        <UserMenuOpener />
-      </div>
+      <UserButtonContainer />
     </header>
   );
 };

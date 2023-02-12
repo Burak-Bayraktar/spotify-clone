@@ -1,0 +1,56 @@
+.user-button-container {
+  @apply flex justify-center items-center gap-2 h-8 p-[2px] cursor-pointer rounded-[23px] relative;
+  @apply hover:bg-gray-800;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  .menu-opener {
+    @apply bg-transparent w-full h-full absolute;
+  }
+
+  .arrow-down,
+  .arrow-up {
+    @apply hidden;
+    @apply lg:flex;
+  }
+
+  .user-avatar {
+    @apply w-7 h-7;
+
+    img {
+      @apply rounded-full;
+    }
+  }
+
+  .user-display-name {
+    @apply hidden;
+    @apply lg:block lg:text-sm lg:font-bold;
+  }
+
+  .user-button-menu {
+    @apply absolute bg-gray-800 top-10 -left-40 min-w-[196px] max-w-[350px] p-1 rounded;
+    @apply lg:-left-16;
+
+    &[data-menu-open='true'] {
+      @apply block;
+    }
+
+    &[data-menu-open='false'] {
+      @apply hidden;
+    }
+
+    &-list-item {
+      @apply flex items-center h-10 px-3 rounded cursor-default;
+      @apply hover:bg-[hsla(0,0%,100%,.1)];
+
+      a,
+      button {
+        @apply w-full h-[inherit] flex justify-between items-center cursor-default;
+
+        .button-text {
+          @apply text-[.8125rem];
+          @apply md:text-sm;
+        }
+      }
+    }
+  }
+}
