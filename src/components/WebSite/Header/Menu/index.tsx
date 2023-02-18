@@ -10,6 +10,7 @@ import MenuList from 'components/WebSite/Header/Menu/components/MenuList';
 import { MenuItemProps, MenuItemTypes } from 'interfaces/MenuProps';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { logoutUser } from 'helpers';
+import SpotifySpinner from 'assets/spinners/spotify-spinner';
 
 interface LocationState {
   from: string;
@@ -17,6 +18,7 @@ interface LocationState {
 
 const Menu = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const { display_name, images } = useUser();
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,9 +38,13 @@ const Menu = () => {
     }
 
     if (location.search.includes('?logout=true')) {
-      logoutUser();
-      navigate(location.pathname);
-      navigate(0);
+      setLoading(true);
+      logoutUser()
+        .then(() => {
+          navigate(location.pathname);
+          navigate(0);
+        })
+        .finally(() => setTimeout(() => setLoading(false), 500));
     }
   }, [location, location.pathname, newLocationState]);
 
@@ -78,6 +84,7 @@ const Menu = () => {
 
   return (
     <>
+      {loading && <SpotifySpinner />}
       <nav className={`header-menu-container`}>
         <div className="header-menu">
           <MenuList dividerLine={3} menuItems={setItems(MenuItemTypes.DESKTOP)} />
@@ -85,10 +92,7 @@ const Menu = () => {
       </nav>
       <nav className="header-mobile-menu-container">
         {display_name && <img src={images[0].url} alt="user-image" />}
-        <div
-          className={`header-mobile-menu-trigger ${setTriggerStateOnMenuOpen()}`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
+        <div className={`header-mobile-menu-trigger ${setTriggerStateOnMenuOpen()}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           <span className="-line"></span>
         </div>
         <div className={`header-mobile-menu ${isMobileMenuOpen ? 'menu-active' : ''}`}>

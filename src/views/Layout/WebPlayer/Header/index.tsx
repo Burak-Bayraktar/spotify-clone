@@ -1,16 +1,17 @@
 import HeaderBackButton from 'assets/svg/Player_Header/HeaderBackButton';
 import HeaderForwardButton from 'assets/svg/Player_Header/HeaderForwardButton';
 import useHistory from 'hooks/useHistory';
-import { Suspense } from 'react';
+import { Suspense, useContext } from 'react';
 import './style.scss';
 import UserButtonContainer from 'components/WebPlayer/Header/components/UserButtonContainer';
+import { BrowserHistoryContext } from 'contexts/HistoryContext';
 
 type HeaderProps = {
   Children: React.LazyExoticComponent<() => JSX.Element> | undefined;
 };
 
 const Header = ({ Children }: HeaderProps) => {
-  const { goBack, goForward, buttonActiveState } = useHistory()!;
+  const { goBack, goForward, buttonActiveState } = useContext(BrowserHistoryContext)!;
 
   return (
     <header className="header-container">

@@ -10,6 +10,14 @@ body { background-color: $body-bg; }
 	position: absolute;
   left: 50%;
   top: 50%;
+
+  &-container {
+    background-color: #222;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    overflow-y: hidden;
+  }
 }
 
 .spinner > .dot {

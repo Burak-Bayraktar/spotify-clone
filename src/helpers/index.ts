@@ -27,8 +27,13 @@ export const generateLoginUrl = () => {
 };
 
 export const logoutUser = () => {
-  localStorage.removeItem('access-token');
-  localStorage.removeItem('refresh-token');
+  return new Promise((resolve, _) => {
+    setTimeout(() => {
+      localStorage.removeItem('access-token');
+      localStorage.removeItem('refresh-token');
+      resolve('succesfully logged out');
+    }, 500);
+  });
 };
 
 export const getAccessToken = (code: string) => {
