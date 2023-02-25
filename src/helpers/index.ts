@@ -8,6 +8,7 @@ type AccessToken = {
 export const generateLoginUrl = () => {
   var scopes = [
     'user-read-private',
+    'user-read-email',
     'playlist-read-private',
     'playlist-modify-public',
     'playlist-modify-private',
@@ -15,6 +16,10 @@ export const generateLoginUrl = () => {
     'user-library-modify',
     'user-follow-read',
     'user-follow-modify',
+    'user-top-read',
+    'user-read-recently-played',
+    'user-read-playback-state',
+    'user-modify-playback-state',
   ];
 
   let baseUrl = `https://accounts.spotify.com/authorize?`;
