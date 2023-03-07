@@ -6,6 +6,7 @@ export enum EDeviceTypes {
   Android = 'Android',
   iPhone = 'iPhone',
   iPad = 'iPad',
+  Mac = 'Macintosh',
 }
 
 export enum EOSTypes {

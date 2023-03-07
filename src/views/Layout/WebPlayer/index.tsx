@@ -1,7 +1,7 @@
 import { useMemo, lazy, Suspense } from 'react';
 import { useUser } from 'contexts/UserContext';
 import { useUserOs } from 'hooks/useUserOs';
-import { EOSTypes } from 'types/WebSite/DownloadPage';
+import { EOSTypes, EScreenTypes } from 'types/WebSite/DownloadPage';
 import useGetActiveSubComponent from './Header/hooks/useGetActiveSubComponent';
 import SpotifySpinner from 'assets/spinners/spotify-spinner';
 import './style.scss';
@@ -37,7 +37,7 @@ const WebPlayerLayout = () => {
     return <div className="flex justify-center mt-10 uppercase font-semibold">Mobile version is under development</div>;
   };
 
-  return userDeviceType?.os === EOSTypes.Windows ? getDesktopVersion() : getMobileVersion();
+  return userDeviceType?.screenType === EScreenTypes.Desktop ? getDesktopVersion() : getMobileVersion();
 };
 
 export default WebPlayerLayout;

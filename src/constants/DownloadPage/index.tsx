@@ -42,6 +42,17 @@ export const DEVICE_INFO: TDeviceTypes[] = [
     badge: <img src={MicrosoftBadge} />,
   },
   {
+    name: EDeviceTypes.Mac,
+    os: EOSTypes.macOS,
+    store: EOSStore.AppStore,
+    screenType: EScreenTypes.Desktop,
+    link: {
+      onDevice: 'itms-apps://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580',
+      onOtherDevices: 'https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580',
+    },
+    badge: <AppStoreBadge />,
+  },
+  {
     name: EDeviceTypes.iPad,
     os: EOSTypes.ipadOS,
     store: EOSStore.AppStore,
