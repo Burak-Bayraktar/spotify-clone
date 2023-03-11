@@ -1,67 +1,44 @@
-import { createContext, useEffect, useReducer, useRef } from 'react';
-import { getUserAlbums, getUserTopItems } from 'services';
-import { AlbumResponse, UserTopItemsResponse } from 'types/WebPlayer/responseTypes';
+import { createContext, useEffect, useReducer } from 'react';
+import { getUserAlbums, getUserFollowingArtists, getUserTopItems } from 'services';
+import { HomeViewPossibleTypes, HomeViewTypes } from './types/HomeViewContext';
 import { FetchStateType } from './types/UserContext';
 
-type State = {
-  albums: AlbumResponse;
-  artists: [];
-  playlists: [];
-  tracks: [];
-  topItems: UserTopItemsResponse;
+type HomeViewContextType = {
+  state: State;
+  dispatch: (action: Action) => void;
+};
+
+export type ItemType = {
+  data: HomeViewPossibleTypes,
+  type: HomeViewTypes,
+}
+
+export type State = {
+  items: ItemType[];
   fetchState: FetchStateType;
 };
 
 type Action = {
-  type: 'SET_ALBUMS' | 'SET_ARTISTS' | 'SET_TOP_ITEMS' | 'SET_PLAYLISTS' | 'SET_TRACKS' | 'SET_LOADING' | 'SET_ERROR';
+  type: 'SET_ITEM' | 'SET_LOADING' | 'SET_ERROR';
   payload: any;
 };
 
 const initialState: State = {
-  albums: undefined as any as AlbumResponse,
-  artists: [],
-  playlists: [],
-  tracks: [],
-  topItems: [] as any as UserTopItemsResponse,
+  items: [],
   fetchState: {
     loading: false,
     error: false,
   },
 };
 
-type HomeViewContextType = {
-  state: State;
-  dispatch: (action: Action) => void;
-  getAlbums: () => AlbumResponse;
-};
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case 'SET_ALBUMS':
+    case 'SET_ITEM':
       return {
         ...state,
-        albums: action.payload as AlbumResponse,
-      };
-    case 'SET_ARTISTS':
-      return {
-        ...state,
-        artists: action.payload,
-      };
-    case 'SET_TOP_ITEMS':
-      return {
-        ...state,
-        topItems: action.payload as UserTopItemsResponse,
-      };
-    case 'SET_PLAYLISTS':
-      return {
-        ...state,
-        playlists: action.payload,
-      };
-    case 'SET_TRACKS':
-      return {
-        ...state,
-        tracks: action.payload,
-      };
+        items: action.payload
+      }
     case 'SET_LOADING':
       return {
         ...state,
@@ -89,35 +66,54 @@ export const HomeViewProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     const { abortController: ACUserAlbum, requestPromise: userAlbumPromise } = getUserAlbums();
-    const { abortController: ACUserTopItems, requestPromise: userTopItemPromise } = getUserTopItems('artists');
+    const { abortController: ACUserArtistsTopItems, requestPromise: userArtistsTopItemPromise } = getUserTopItems('artists');
+    const { abortController: ACUserTracksTopItems, requestPromise: userTracksTopItemPromise } = getUserTopItems('tracks');
+    const { abortController: ACUserFollowingArtists, requestPromise: userFollowingArtistsPromise } = getUserFollowingArtists();
 
     dispatch({ type: 'SET_LOADING', payload: true });
-    Promise.allSettled([userAlbumPromise, userTopItemPromise])
+    Promise.allSettled([userAlbumPromise, userArtistsTopItemPromise, userTracksTopItemPromise, userFollowingArtistsPromise])
       .then((res) => {
-        const [albums, topItems] = res;
-        if (albums.status === 'fulfilled') dispatch({ type: 'SET_ALBUMS', payload: albums.value });
-        if (topItems.status === 'fulfilled') dispatch({ type: 'SET_TOP_ITEMS', payload: topItems.value });
+        const [userAlbums, userArtistsTopItems, userTracksTopItems, userFollowingArtists] = res;
+        const result = [
+          {
+            data: userAlbums.status === 'fulfilled' ? userAlbums.value : undefined,
+            type: 'user_albums',
+          },
+          {
+            data: userArtistsTopItems.status === 'fulfilled' ? userArtistsTopItems.value : undefined,
+            type: 'user_top_items',
+          },
+          {
+            data: userTracksTopItems.status === 'fulfilled' ? userTracksTopItems.value : undefined,
+            type: 'user_top_items',
+          },
+          {
+            data: userFollowingArtists.status === 'fulfilled' ? userFollowingArtists.value : undefined,
+            type: 'user_followed_artists',
+          },
+        ];
+        dispatch({ type: 'SET_ITEM', payload: result });
       })
       .catch((err) => {
         dispatch({ type: 'SET_LOADING', payload: false });
         dispatch({ type: 'SET_ERROR', payload: true });
       })
       .finally(() => {
-        console.log('finally');
         dispatch({ type: 'SET_LOADING', payload: false });
         dispatch({ type: 'SET_ERROR', payload: false });
       });
 
     return () => {
       ACUserAlbum.abort();
-      ACUserTopItems.abort();
+      ACUserArtistsTopItems.abort();
+      ACUserTracksTopItems.abort();
+      ACUserFollowingArtists.abort();
     };
   }, []);
 
   const values: HomeViewContextType = {
     state,
     dispatch,
-    getAlbums: () => state.albums,
   };
 
   return <HomeViewContext.Provider value={values}>{children}</HomeViewContext.Provider>;
