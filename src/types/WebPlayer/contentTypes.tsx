@@ -1,10 +1,19 @@
 import { ISpotifyImage } from 'contexts/interfaces/UserContext';
 
 type Artist = {
-  external_urls: { spotify: string };
+  external_urls: {
+    spotify: string;
+  };
+  followers: {
+    href: string | null;
+    total: number;
+  };
+  genres: string[];
   href: string;
   id: string;
+  images: ISpotifyImage[];
   name: string;
+  popularity: number;
   type: string;
   uri: string;
 };
@@ -66,4 +75,38 @@ type Album = {
   };
 };
 
-export type { Artist, Track, Album };
+type Playlist = {
+  collaborative: boolean;
+  description: string | null;
+  external_urls: {
+    spotify: string;
+  };
+  href: string;
+  id: string;
+  images: ISpotifyImage[];
+  name: string;
+  owner: {
+    external_urls: {
+      spotify: string;
+    };
+    followers: {
+      href: string;
+      total: number;
+    };
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+    display_name: string;
+  };
+  public: boolean | null;
+  snapshot_id: string;
+  tracks: {
+    href: string;
+    total: number;
+  };
+  type: string;
+  uri: string;
+}
+
+export type { Artist, Track, Album, Playlist };
